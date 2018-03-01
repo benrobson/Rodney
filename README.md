@@ -35,6 +35,8 @@ At this point in time the bot will not be supporting multiple guilds at once dur
 - [ ] 5.4 Create a module to allow users to play or stream music via the bot.
 - [ ] 5.5 Log via the console errors and warnings having to do with the Bot to alert the Bot Administrator.
 - [ ] 5.6 Log via the console notifications from members leaving guilds, joining guild, getting kicked, banned, unbanned, reported and warned.
+- [ ] 5.7 Create rotating setActivity messages to change and appear every X ammount of minutes
+  - text
 
 ## Version History
 ### Beta Version 1
