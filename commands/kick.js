@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
   .addField('Reason:', reason);
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!reportschannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send this punishment notification.');
+  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send this punishment notification.');
 
   message.guild.member(user).kick(reason);
   message.delete().catch(O_o=>{});
