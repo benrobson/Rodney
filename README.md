@@ -53,8 +53,11 @@ At this point in time the bot will not be supporting multiple guilds at once dur
 - [ ] 6.6 Create rotating setActivity messages to change and appear every X amount of minutes.
   - Operating on X servers for x users.
 - [ ] 6.7 setActivity changes to LIVE when a streamer goes live, it will make a link to a stream that is live.
-- [ ] 6.8 If a new version of the bot is ready to use and the user is `OUT OF DATE` it will alert them on startup via console and a message in the #auditlog channel.
+- [ ] 6.8 If a new version of the bot is ready to use and the user is `OUT OF DATE` it will alert them on startup via console and a message in the #audit-log channel.
 - [ ] 6.9 Implement a swear filter.
+
+#### 7. Issues
+- [ ] 7.1 Allow embeds to work in `return` to beautify error messages.
 
 ## Version History
 ### Beta Version 1
