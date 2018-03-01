@@ -20,7 +20,7 @@ At this point in time the bot will not be supporting multiple guilds at once dur
 #### 3. Commands
 - [ ] 3.1 Create a command to display information about the bot.
 - [ ] 3.2 Create a command to display information about a user.
-- [x] 3.2 Create a command to display information about the development roadmap and a link to this page. **not in this version yet**
+- [x] 3.3 Create a command to display information about the development roadmap and a link to this page. **not in this version yet**
 
 #### 4. Moderation
 - [ ] 4.1 Create a Report Command.
