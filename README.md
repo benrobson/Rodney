@@ -6,6 +6,9 @@ At this point in time the bot will not be supporting multiple guilds at once dur
 - A channel named `#audit-log`.
 - A channel named `#reports`.
 
+## Links
+- [Development Roadmap](https://github.com/shadowolfyt/RodneyTheDiscordBot/wiki/Development-Roadmap)
+
 ## Roadmap (in Development)
 #### 1. Main
 - [ ] 1.0 Create the Bot Framework.
