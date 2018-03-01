@@ -1,10 +1,11 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
+const package = require('./package.json');
 const client = new Discord.Client({disableEveryone: true});
 
 client.on('ready', async () => {
   console.log(`${client.user.username} is online.`);
-  client.user.setActivity('in Development...', {type: 'WORKING'})
+  client.user.setActivity('in Development...', {type: 'PLAYING'})
 });
 
 client.on('message', async message => {
@@ -17,11 +18,11 @@ client.on('message', async message => {
 
   if (cmd === `${prefix}report`){
     let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    let reason = args.join(" ").slice(22);
+    let reason = args.join(' ').slice(22);
     if(!user) return message.channel.send('Sorry, I couldn\'t find that user.');
 
     let embed = new Discord.RichEmbed()
-    .setDescription('Report')
+    .setDescription('**Incoming Report!**')
     .setColor('#15f153')
     .addField('Reported User', `${user} with ID: ${user.id}`)
     .addField('Reported By:', `${message.author} with ID: ${message.author.id}`)
@@ -36,13 +37,13 @@ client.on('message', async message => {
     let icon = message.guild.iconURL;
     let embed = new Discord.RichEmbed()
 
-    .setDescription('Guild Information')
+    .setDescription(`**Information about ${message.guild.name}**`)
     .setColor('#15f153')
     .setThumbnail(icon)
     .addField('Server Name:', message.guild.name)
     .addField('Created At:', message.guild.createdAt)
-    .addField("You Joined:", message.member.joinedAt)
-    .addField("Total Members:", message.guild.memberCount);
+    .addField('You Joined:', message.member.joinedAt)
+    .addField('Total Members:', message.guild.memberCount);
 
     return message.channel.send(embed);
   }
@@ -51,11 +52,12 @@ client.on('message', async message => {
     let icon = client.user.displayAvatarURL;
     let embed = new Discord.RichEmbed()
 
-    .setDescription('Bot Information')
+    .setDescription(`**Information about ${client.user.username}**`)
     .setColor('#15f153')
     .setThumbnail(icon)
     .addField('Bot Name:', client.user.username)
-    .addField('Created At:', client.user.createdAt);
+    .addField('Created At:', client.user.createdAt)
+    .addField('Current Version:', package.version);
 
     return message.channel.send(embed);
   }

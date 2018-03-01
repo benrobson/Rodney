@@ -30,6 +30,8 @@ A Discord bot developed in JavaScript using the discord.js Library.
 - [ ] Create a Web Interface for Bot Administrator.
 - [ ] Automate the process to create a #audit-log channel.
 - [ ] Create a module to allow users to play or stream music via the bot.
+- [ ] Create a log of what happens to the bot (errors).
+- [ ] Create a log of what happens in all guilds ()
 
 ## Version History
 ### Beta Version 1
