@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
 const package = require('./package.json');
+const fs = require("fs");
 const client = new Discord.Client({disableEveryone: true});
 
 client.on('ready', async () => {
@@ -10,12 +11,24 @@ client.on('ready', async () => {
 
 client.on('message', async message => {
   if (message.author.bot) return;
-  if (message.channel.type === 'dm') return; // if a User send a command to the bot via DM, it will not respond
+  if (message.channel.type === 'dm') return; // the bot will not respond to messages from a DM
   let prefix = config.prefix;
   let messageArray = message.content.split(' ');
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  // Roadmap Command
+  if (cmd === `${prefix}roadmap`){
+    let embed = new Discord.RichEmbed()
+
+    .setDescription(`**Roadmap [Current and Future Development Progress]**`)
+    .setColor(config.plainembedcolor)
+    .addField(`Want to see the current and future progression of ${client.user.username}, see the link to the progression roadmap:`, 'https://goo.gl/j6F65M');
+
+    return message.channel.send(embed);
+  }
+
+  // Report Command
   if (cmd === `${prefix}report`){
     let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     let reason = args.join(' ').slice(22);
@@ -23,22 +36,26 @@ client.on('message', async message => {
 
     let embed = new Discord.RichEmbed()
     .setDescription('**Incoming Report!**')
-    .setColor('#15f153')
+    .setColor(config.reportembedcolor)
     .addField('Reported User', `${user} with ID: ${user.id}`)
     .addField('Reported By:', `${message.author} with ID: ${message.author.id}`)
     .addField('Channel:', message.channel)
     .addField('Time:', message.createdAt)
     .addField('Reason:', reason);
 
+    let reportschannel = messgae.guild.channels.find('name', 'reports');
+    if (!reportschannel) return message.channel.send('Sorry, I couldn\'t find the Reports Channel, unable to send this report.')
+
     return message.channel.send(embed);
   }
 
+  // Server Information Command
   if (cmd === `${prefix}serverinfo`){
     let icon = message.guild.iconURL;
     let embed = new Discord.RichEmbed()
 
     .setDescription(`**Information about ${message.guild.name}**`)
-    .setColor('#15f153')
+    .setColor(config.plainembedcolor)
     .setThumbnail(icon)
     .addField('Server Name:', message.guild.name)
     .addField('Created At:', message.guild.createdAt)
@@ -48,12 +65,13 @@ client.on('message', async message => {
     return message.channel.send(embed);
   }
 
+  // Bot Information Command
   if (cmd === `${prefix}botinfo`){
     let icon = client.user.displayAvatarURL;
     let embed = new Discord.RichEmbed()
 
     .setDescription(`**Information about ${client.user.username}**`)
-    .setColor('#15f153')
+    .setColor(config.plainembedcolor)
     .setThumbnail(icon)
     .addField('Bot Name:', client.user.username)
     .addField('Created At:', client.user.createdAt)
