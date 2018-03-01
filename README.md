@@ -21,6 +21,7 @@ At this point in time the bot will not be supporting multiple guilds at once dur
 - [ ] 3.1 Create a command to display information about the bot.
 - [ ] 3.2 Create a command to display information about a user.
 - [x] 3.3 Create a command to display information about the development roadmap and a link to this page.
+- [ ] 3.4 Create a command to change the prefix of the bot.
 
 #### 4. Moderation
 - [ ] 4.1 Create a Report Command.
@@ -48,6 +49,7 @@ At this point in time the bot will not be supporting multiple guilds at once dur
   - Operating on X servers for x users.
 - [ ] 6.7 setActivity changes to LIVE when a streamer goes live, it will make a link to a stream that is live.
 - [ ] 6.8 If a new version of the bot is ready to use and the user is `OUT OF DATE` it will alert them on startup via console and a message in the #auditlog channel.
+- [ ] 6.9 Implement a swear filter.
 
 ## Version History
 ### Beta Version 1
