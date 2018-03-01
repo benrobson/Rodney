@@ -5,7 +5,7 @@ At this point in time the bot will not be supporting multiple guilds at once dur
 ## Roadmap (in Development)
 #### 1. Main
 - [ ] 1.0 Create the Bot Framework.
-- [ ] 1.1 Create a message handler.
+- [ ] 1.1 Create a basic command handler.
 - [ ] 1.2 Split Commands and Guild Events into a separate folder.
 
 #### 2. Guild Events (mostly in #auditlog)
@@ -38,6 +38,7 @@ At this point in time the bot will not be supporting multiple guilds at once dur
 - [ ] 5.5 Log from console when a user has been kicked.
 - [ ] 5.6 Log from console when a user has been banned.
 - [ ] 5.7 Log from console when a user has been unbanned.
+- [ ] 5.8 Modify and make a professional and more cleaner ready event.
 
 #### 6. Future Features
 - [ ] 6.1 Introduce a database.
