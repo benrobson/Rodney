@@ -2,13 +2,17 @@
 A Discord bot developed in JavaScript using the discord.js Library.
 At this point in time the bot will not be supporting multiple guilds at once during the development period of the Beta process.
 
+## Requirements
+- A channel named `#audit-log`.
+- A channel named `#reports`.
+
 ## Roadmap (in Development)
 #### 1. Main
 - [ ] 1.0 Create the Bot Framework.
 - [ ] 1.1 Create a basic command handler.
 - [ ] 1.2 Split Commands and Guild Events into a separate folder.
 
-#### 2. Guild Events (mostly in #auditlog)
+#### 2. Guild Events (mostly in #audit-log)
 - [ ] 2.1 Display notification when a user joins a guild.
 - [ ] 2.2 Display notification when a user leaves a guild.
 - [ ] 2.3 Display notification when a user has been warned.
