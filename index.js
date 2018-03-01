@@ -23,7 +23,7 @@ client.on('message', async message => {
 
     .setDescription(`**Roadmap [Current and Future Development Progress]**`)
     .setColor(config.plainembedcolor)
-    .addField(`Want to see the current and future progression of ${client.user.username}, see the link to the progression roadmap:`, 'https://goo.gl/j6F65M');
+    .addField(`Want to see the current and future progression of ${client.user.username}, see the link to the progression roadmap:`, 'https://goo.gl/2jCKvp');
 
     return message.channel.send(embed);
   }
@@ -43,8 +43,8 @@ client.on('message', async message => {
     .addField('Time:', message.createdAt)
     .addField('Reason:', reason);
 
-    let reportschannel = messgae.guild.channels.find('name', 'reports');
-    if (!reportschannel) return message.channel.send('Sorry, I couldn\'t find the Reports Channel, unable to send this report.')
+    let reportschannel = message.guild.channels.find('name', 'reports');
+    if (!reportschannel) return message.channel.send('Sorry, I couldn\'t find the Reports Channel, unable to send this report.');
 
     return message.channel.send(embed);
   }
