@@ -44,7 +44,7 @@ At this point in time the bot will not be supporting multiple guilds at once dur
 - [ ] 6.3 Automate the process to create a #audit-log channel if the guild doesn't already have one.
 - [ ] 6.4 Create a module to allow users to play or stream music via the bot.
 - [ ] 6.5 Log via the console errors and warnings having to do with the Bot to alert the Bot Administrator.
-- [ ] 6.6 Create rotating setActivity messages to change and appear every X ammount of minutes.
+- [ ] 6.6 Create rotating setActivity messages to change and appear every X amount of minutes.
   - Operating on X servers for x users.
 - [ ] 6.7 setActivity changes to LIVE when a streamer goes live, it will make a link to a stream that is live.
 - [ ] 6.8 If a new version of the bot is ready to use and the user is `OUT OF DATE` it will alert them on startup via console and a message in the #auditlog channel.
