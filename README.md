@@ -10,5 +10,5 @@ At this point in time the bot will not be supporting multiple guilds at once dur
 
 ## Links
 - [Wiki](https://github.com/shadowolfyt/RodneyTheDiscordBot/wiki)
-- [Development Roadmap](https://github.com/shadowolfyt/RodneyTheDiscordBot/wiki/Development-Roadmap) (look here for what is in store in later versions).
+- [Development Roadmap / Issue Tracker](https://github.com/shadowolfyt/RodneyTheDiscordBot/issues)
 - [Version History](https://github.com/shadowolfyt/RodneyTheDiscordBot/wiki/Version-History) (look here for what is currently being added).
