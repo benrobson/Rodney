@@ -1,5 +1,6 @@
 const Discord = require('discord.js'); // this links to the official Discord npm package
 const config = require('./config.json'); // this links to the config.json file
+const token = require('./token.json'); // this links to the token.json file where my bot token is stored for Development Purposes
 const package = require('./package.json'); // this links to the package.json file
 const client = new Discord.Client({disableEveryone: true}); // this is the object for the bot itself
 const fs = require('fs'); // this is the 'File System' that reads all of the commands in the commands folder
@@ -38,4 +39,4 @@ client.on('message', async message => {
 
 });
 
-client.login(config.token);
+client.login(token.token);
