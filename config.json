@@ -1,0 +1,11 @@
+{
+  "token": "YOUR TOKEN HERE",
+  "prefix": "-",
+  "ownerid": "169978063478587392",
+
+  "plainembedcolor": "#FFFFFF",
+  "reportembedcolor": "#FFA500",
+  "errorembedcolor": "#FF0000",
+  "muteembedcolor": "#FFFF00",
+  "banembedcolor": "#FF0000"
+}
