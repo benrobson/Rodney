@@ -10,20 +10,20 @@ fs.readdir('./commands/', (err, files) => {
   if (err) console.log(err);
   let jsfile = files.filter(f => f.split(".").pop() === 'js')
   if (jsfile.length <= 0) {
-    console.log('Couldn\'t find commands.');
+    console.log('Couldn\'t find commands.'); // if the bot cannot find any commands in the file path given, it will error out
     return;
   }
 
   jsfile.forEach((files, i) => {
-    let props = require(`./commands/${files}`);
-    console.log(`${files} has been loaded!`);
+    let props = require(`./commands/${files}`); // this is the file path where the bot will find commands from
+    console.log(`${files} has been loaded!`); // this is the message you will see when commands are loading into bot instance
     client.commands.set(props.help.name, props);
   })});
 
 // Bot Bootup Event
 client.on('ready', async () => {
-  console.log(`${client.user.username} is online.`);
-  client.user.setActivity('in Development...', {type: 'PLAYING'});
+  console.log(`${client.user.username} is online.`); // this is the message you will see when the bot is online
+  client.user.setActivity('in Development...', {type: 'PLAYING'}); // this sets the Activity Status of the bot
 });
 
 client.on('message', async message => {
@@ -39,4 +39,4 @@ client.on('message', async message => {
 
 });
 
-client.login(token.token);
+client.login(token.token); // this links to an external file where you should keep your token
