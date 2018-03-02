@@ -39,4 +39,4 @@ client.on('message', async message => {
 
 });
 
-client.login(token.token); // this links to an external file where you should keep your token
+client.login(process.env.BOT_TOKEN); // this links to an external file where you should keep your token
