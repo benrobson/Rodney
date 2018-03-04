@@ -37,8 +37,32 @@ client.on('message', async message => {
   let commandfile = client.commands.get(cmd.slice(prefix.length));
   if (commandfile) commandfile.run(client, message, args);
 
-  // Guild Events
+// Guild Events
+client.on('guildMemberAdd', async member => {
+  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
 
+  let embed = new Discord.RichEmbed()
+  .setTitle('A user has joined!')
+  .setColor(config.joinembedcolor)
+  .addField('Username:', `${member}`)
+  .addField('Time:', message.createdAt);
+
+  auditlogchannel.send(embed);
+});
+
+client.on('guildMembeRemove', async member => {
+  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
+
+  let embed = new Discord.RichEmbed()
+  .setTitle('A user has left.')
+  .setColor(config.joinembedcolor)
+  .addField('Username:', `${member}`)
+  .addField('Time:', message.createdAt);
+
+  auditlogchannel.send(embed);
+});
 
 });
 
