@@ -3,15 +3,15 @@ const config = require('../config.json'); // this links to the config.json file
 
 module.exports.run = async (client, message, args) => {
   let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  let reason = args.join(' ').slice(22);
   if (!user) {
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
     .setColor(config.errorembedcolor)
-    .setDescription('A error has occurred processing this command.\nThe user you have requested to punish could not be found.');
+    .setDescription('The user you have requested to punish could not be found or a reason has not been supplied for this report.');
     message.channel.send(embed);
     message.delete().catch(O_o=>{});
   };
+  let reason = args.join(' ').slice(22);
 
   let embed = new Discord.RichEmbed()
   .setTitle('Incoming Report!')
@@ -27,7 +27,7 @@ module.exports.run = async (client, message, args) => {
   const embed = new Discord.RichEmbed()
   .setTitle('An error has occurred!')
   .setColor(config.errorembedcolor)
-  .setDescription('A error has occurred processing this command.\nI could not find a `#reports` channel.\nPlease contact your guild/server Administrator to create one.');
+  .setDescription('A `#reports` channel could not be found!\nPlease contact your guild/server Administrator to create one.');
   message.channel.send(embed);
   };
 
