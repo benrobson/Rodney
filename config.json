@@ -4,8 +4,10 @@
   "ownerid": "169978063478587392",
 
   "plainembedcolor": "#ffffff",
+  "noticeembedcolor": "#e8d935",
   "reportembedcolor": "#ffa500",
   "errorembedcolor": "#ff0000",
+  "warnembedcolor": "#564f82",
   "muteembedcolor": "#ffff00",
   "banembedcolor": "#ff0000",
   "kickembedcolor": "#1fad7e"
