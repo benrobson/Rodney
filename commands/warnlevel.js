@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
   if (!user) return message.reply('This user cannot be found.');
 
   let embed = new Discord.RichEmbed()
-  .setDescription(`**Warning Profile for ${user}**`)
+  .setTitle(`**Warning Profile for ${user}**`)
   .setColor(config.plainembedcolor)
   .addField('User', `${user} with ID: ${user.id}`)
   .addField('Number Of Warnings:', `**${warns[user.id].warns}**`)

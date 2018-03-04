@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
   });
 
   let embed = new Discord.RichEmbed()
-  .setDescription('**User has been Warned**')
+  .setTitle('User has been Warned')
   .setColor(config.reportembedcolor)
   .addField('Warned User', `${user} with ID: ${user.id}`)
   .addField('Warned By:', `${message.author} with ID: ${message.author.id}`)
@@ -64,14 +64,14 @@ module.exports.run = async (client, message, args) => {
     setTimeout(function(){
       user.removeRole(muterole.id);
       let embed = new Discord.RichEmbed()
-      .setDescription('**User has been Unmuted**')
+      .setTitle('User has been Unmuted')
       .setColor(config.plainembedcolor)
       .addField('Muted User', `${user} with ID: ${user.id}`)
       auditlogchannel.send(embed);
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
-    .setDescription('**User has been Temporarily Muted**')
+    .setTitle('User has been Temporarily Muted')
     .setColor(config.muteembedcolor)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
@@ -94,14 +94,14 @@ module.exports.run = async (client, message, args) => {
     setTimeout(function(){
       user.removeRole(muterole.id);
       let embed = new Discord.RichEmbed()
-      .setDescription('**User has been Unmuted**')
+      .setTitle('User has been Unmuted')
       .setColor(config.plainembedcolor)
       .addField('Muted User', `${user} with ID: ${user.id}`)
       auditlogchannel.send(embed);
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
-    .setDescription('**User has been Temporarily Muted**')
+    .setTitle('User has been Temporarily Muted')
     .setColor(config.muteembedcolor)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
@@ -121,14 +121,14 @@ module.exports.run = async (client, message, args) => {
     setTimeout(function(){
       user.removeRole(muterole.id);
       let embed = new Discord.RichEmbed()
-      .setDescription('**User has been Unmuted**')
+      .setTitle('User has been Unmuted')
       .setColor(config.plainembedcolor)
       .addField('Muted User', `${user} with ID: ${user.id}`)
       auditlogchannel.send(embed);
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
-    .setDescription('**User has been Temporarily Muted**')
+    .setTitle('User has been Temporarily Muted')
     .setColor(config.muteembedcolor)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
@@ -144,8 +144,8 @@ module.exports.run = async (client, message, args) => {
     message.guild.member(user).kick(reason);
 
     let embed = new Discord.RichEmbed()
-    .setDescription('**User has been Kicked**')
-    .setColor(config.reportembedcolor)
+    .setTitle('User has been Kicked')
+    .setColor(config.kickembedcolor)
     .addField('Kicked User', `${user} with ID: ${user.id}`)
     .addField('Kicked By:', '**AUTOMATIC ESCALATION SYSTEM**')
     .addField('Kicked in Channel:', message.channel)
@@ -164,14 +164,14 @@ module.exports.run = async (client, message, args) => {
     setTimeout(function(){
       user.removeRole(muterole.id);
       let embed = new Discord.RichEmbed()
-      .setDescription('**User has been Unmuted**')
+      .setTitle('User has been Unmuted')
       .setColor(config.plainembedcolor)
       .addField('Muted User', `${user} with ID: ${user.id}`)
       auditlogchannel.send(embed);
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
-    .setDescription('**User has been Temporarily Muted**')
+    .setTitle('User has been Temporarily Muted')
     .setColor(config.muteembedcolor)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')

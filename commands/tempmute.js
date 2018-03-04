@@ -7,7 +7,15 @@ module.exports.run = async (client, message, args) => {
   let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if (!user) return message.reply('User could not be found');
   if (user.hasPermission('MANAGE_MESSAGES')) return message.channel.send('This user cannot be muted.');
-  let reason = args.join(' ').slice(22);
+  let reason = args.join(' ').slice(2).join(' ');
+  if (!reason) {
+    const embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('A error has occurred processing this command.\nPlease supply a reason for the Temporary Mute.');
+    message.channel.send(embed);
+    message.delete().catch(O_o=>{});
+  }
 
   let muterole = message.guild.roles.find('name', 'Muted'); // Bot checks to see if there is a role named Muted.
   if (!muterole){ // if there is no role named Muted, the bot will go ahead and create the role and apply permissions to every channel.
@@ -35,14 +43,14 @@ module.exports.run = async (client, message, args) => {
   setTimeout(function(){
     user.removeRole(muterole.id);
     let embed = new Discord.RichEmbed()
-    .setDescription('**User has been Unmuted**')
+    .setTitle('User has been Unmuted')
     .setColor(config.plainembedcolor)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     auditlogchannel.send(embed);
   }, ms(time))
 
   let embed = new Discord.RichEmbed()
-  .setDescription('**User has been Temporarily Muted**')
+  .setTitle('User has been Temporarily Muted')
   .setColor(config.muteembedcolor)
   .addField('Muted User', `${user} with ID: ${user.id}`)
   .addField('Muted By:', `${message.author} with ID: ${message.author.id}`)
