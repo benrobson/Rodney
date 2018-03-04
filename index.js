@@ -37,6 +37,13 @@ client.on('message', async message => {
   let commandfile = client.commands.get(cmd.slice(prefix.length));
   if (commandfile) commandfile.run(client, message, args);
 
+
+
+  // These are all guild events, yet to be seperated into an Event Handler
+  // These events are here because there is no other place for them, yet
+
+
+
 });
 
 client.login(token.token); // this links to an external file where you should keep your token
