@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
     .setColor(config.errorembedcolor)
-    .setDescription('A error has occurred processing this command.\nPlease supply a reason for the Temporary Mute.');
+    .setDescription('Please supply a reason for the Temporary Mute.');
     message.channel.send(embed);
     message.delete().catch(O_o=>{});
   }
