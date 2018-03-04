@@ -3,9 +3,10 @@
   "prefix": "-",
   "ownerid": "169978063478587392",
 
-  "plainembedcolor": "#FFFFFF",
-  "reportembedcolor": "#FFA500",
-  "errorembedcolor": "#FF0000",
-  "muteembedcolor": "#FFFF00",
-  "banembedcolor": "#FF0000",
+  "plainembedcolor": "#ffffff",
+  "reportembedcolor": "#ffa500",
+  "errorembedcolor": "#ff0000",
+  "muteembedcolor": "#ffff00",
+  "banembedcolor": "#ff0000",
+  "kickembedcolor": "#1fad7e"
 }
