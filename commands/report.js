@@ -11,10 +11,10 @@ module.exports.run = async (client, message, args) => {
     .setDescription('A error has occurred processing this command.\nThe user you have requested to punish could not be found.');
     message.channel.send(embed);
     message.delete().catch(O_o=>{});
-  }
+  };
 
   let embed = new Discord.RichEmbed()
-  .setDescription('**Incoming Report!**')
+  .setTitle('Incoming Report!')
   .setColor(config.reportembedcolor)
   .addField('Reported User', `${user} with ID: ${user.id}`)
   .addField('Reported By:', `${message.author} with ID: ${message.author.id}`)
