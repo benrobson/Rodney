@@ -37,6 +37,9 @@ client.on('message', async message => {
   let commandfile = client.commands.get(cmd.slice(prefix.length));
   if (commandfile) commandfile.run(client, message, args);
 
+  // Guild Events
+
+
 });
 
 client.login(token.token); // this links to an external file where you should keep your token

@@ -4,7 +4,7 @@ const config = require('../config.json'); // this links to the config.json file
 module.exports.run = async (client, message, args) => {
   let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   let reason = args.join(' ').slice(22);
-  if(!user) {
+  if (!user) {
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
     .setColor(config.errorembedcolor)
