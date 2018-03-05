@@ -51,7 +51,7 @@ client.on('guildMemberAdd', async member => {
   auditlogchannel.send(embed);
 });
 
-client.on('guildMembeRemove', async member => {
+client.on('guildMemberRemove', async member => {
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
 
@@ -63,7 +63,7 @@ client.on('guildMembeRemove', async member => {
 
   auditlogchannel.send(embed);
 });
-
 });
 
-client.login(token.token); // this links to an external file where you should keep your token
+//client.login(config.token);  // this link to the config.json where you should have put your token.
+client.login(token.token); // this links to an external file where I keep my token for devleopment purposes.
