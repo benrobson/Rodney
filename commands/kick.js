@@ -28,7 +28,7 @@ module.exports.run = async (client, message, args) => {
   if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send this punishment notification.');
 
   message.guild.member(user).kick(reason);
-  //message.delete().catch(O_o=>{});
+  message.delete().catch(O_o=>{});
   auditlogchannel.send(embed);
 }
 
