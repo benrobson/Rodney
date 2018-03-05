@@ -38,6 +38,7 @@ client.on('message', async message => {
   if (commandfile) commandfile.run(client, message, args);
 
 // Guild Events
+// User Join Noticication Event
 client.on('guildMemberAdd', async member => {
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
@@ -51,6 +52,7 @@ client.on('guildMemberAdd', async member => {
   auditlogchannel.send(embed);
 });
 
+// User Leave Noticication Event
 client.on('guildMemberRemove', async member => {
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
