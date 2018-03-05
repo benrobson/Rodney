@@ -57,7 +57,7 @@ client.on('guildMembeRemove', async member => {
 
   let embed = new Discord.RichEmbed()
   .setTitle('A user has left.')
-  .setColor(config.joinembedcolor)
+  .setColor(config.leaveembedcolor)
   .addField('Username:', `${member}`)
   .addField('Time:', message.createdAt);
 
