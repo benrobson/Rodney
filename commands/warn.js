@@ -31,7 +31,13 @@ module.exports.run = async (client, message, args) => {
   .addField('Reason:', reason);
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send this punishment notification.');
+  if (!auditlogchannel) {
+    let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('A `#audit-log` channel channel could not be found, the punishment notification could not be sent.');
+    message.channel.send(embed);
+  }
 
   message.delete().catch(O_o=>{});
   auditlogchannel.send(embed);
