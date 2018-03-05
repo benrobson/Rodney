@@ -22,50 +22,50 @@ fs.readdir('./commands/', (err, files) => {
 
 // Bot Bootup Event
 client.on('ready', async () => {
-  console.log(`${client.user.username} is online.`); // this is the message you will see when the bot is online
-  client.user.setActivity('in Development...', {type: 'PLAYING'}); // this sets the Activity Status of the bot
+    console.log(`${client.user.username} is online.`); // this is the message you will see when the bot is online
+    client.user.setActivity('in Development...', {type: 'PLAYING'}); // this sets the Activity Status of the bot
 });
 
 client.on('message', async message => {
-  if (message.author.bot) return; // this will not allow the bot to respond to it's own messages
-  if (message.channel.type === 'dm') return; // the bot will not respond to messages from a DM
-  let prefix = config.prefix; // this redirects to the config where the prefix is stored
-  let messageArray = message.content.split(' ');
-  let cmd = messageArray[0];
-  let args = messageArray.slice(1);
+    if (message.author.bot) return; // this will not allow the bot to respond to it's own messages
+    if (message.channel.type === 'dm') return; // the bot will not respond to messages from a DM
+    let prefix = config.prefix; // this redirects to the config where the prefix is stored
+    let messageArray = message.content.split(' ');
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
 
-  let commandfile = client.commands.get(cmd.slice(prefix.length));
-  if (commandfile) commandfile.run(client, message, args);
+    let commandfile = client.commands.get(cmd.slice(prefix.length));
+    if (commandfile) commandfile.run(client, message, args);
 
-// Guild Events
-// User Join Noticication Event
-client.on('guildMemberAdd', async member => {
-  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
+    // Guild Events
+    // User Join Noticication Event
+    client.on('guildMemberAdd', async member => {
+      let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+      if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
 
-  let embed = new Discord.RichEmbed()
-  .setTitle('A user has joined!')
-  .setColor(config.joinembedcolor)
-  .addField('Username:', `${member}`)
-  .addField('Time:', message.createdAt);
+      let embed = new Discord.RichEmbed()
+      .setTitle('A user has joined!')
+      .setColor(config.joinembedcolor)
+      .addField('Username:', `${member}`)
+      .addField('Time:', message.createdAt);
 
-  auditlogchannel.send(embed);
-});
+      auditlogchannel.send(embed);
+    });
 
-// User Leave Noticication Event
-client.on('guildMemberRemove', async member => {
-  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
+    // User Leave Noticication Event
+    client.on('guildMemberRemove', async member => {
+      let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+      if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
 
-  let embed = new Discord.RichEmbed()
-  .setTitle('A user has left.')
-  .setColor(config.leaveembedcolor)
-  .addField('Username:', `${member}`)
-  .addField('Time:', message.createdAt);
+      let embed = new Discord.RichEmbed()
+      .setTitle('A user has left.')
+      .setColor(config.leaveembedcolor)
+      .addField('Username:', `${member}`)
+      .addField('Time:', message.createdAt);
 
-  auditlogchannel.send(embed);
-});
-});
+      auditlogchannel.send(embed);
+    });
+  });
 
 //client.login(config.token);  // this link to the config.json where you should have put your token.
 client.login(token.token); // this links to an external file where I keep my token for devleopment purposes.
