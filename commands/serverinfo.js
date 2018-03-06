@@ -12,7 +12,8 @@ module.exports.run = async (client, message, args) => {
   .addField('Server Owner:', message.guild.owner)
   .addField('Created At:', message.guild.createdAt)
   .addField('Server Region:', message.guild.region)
-  .addField('Total Members:', message.guild.memberCount);
+  .addField('Total Members:', message.guild.memberCount)
+  .addField('Large [over 250 members]:', message.guild.large);
 
   return message.channel.send(embed);
 }

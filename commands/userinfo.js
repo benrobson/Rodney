@@ -9,10 +9,12 @@ module.exports.run = async (client, message, args) => {
   .setColor(config.plainembedcolor)
   .setThumbnail(icon)
   .addField('Username:', message.author.username)
+  .addField('Roles:', 'Coming Soon')
+  .addField('Account Created at:', 'Coming Soon')
   .addField('You Joined Guild at:', message.member.joinedAt);
 
   return message.channel.send(embed);
-}
+};
 
 module.exports.help = {
   name: 'userinfo',
