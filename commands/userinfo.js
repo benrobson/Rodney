@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
   .setTitle(`Information about ${message.author.username}`)
   .setColor(config.plainembedcolor)
   .setThumbnail(icon)
-  .addField('Username:', client.user.name)
+  .addField('Username:', message.author.username)
   .addField('You Joined Guild at:', message.member.joinedAt);
 
   return message.channel.send(embed);
