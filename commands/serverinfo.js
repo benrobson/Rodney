@@ -9,9 +9,9 @@ module.exports.run = async (client, message, args) => {
   .setColor(config.plainembedcolor)
   .setThumbnail(icon)
   .addField('Server Name:', message.guild.name)
-  .addField('Created At:', message.guild.createdAt)
   .addField('Server Owner:', message.guild.owner)
-  .addField('You Joined:', message.member.joinedAt)
+  .addField('Created At:', message.guild.createdAt)
+  .addField('Server Region:', message.guild.region)
   .addField('Total Members:', message.guild.memberCount);
 
   return message.channel.send(embed);
