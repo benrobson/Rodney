@@ -5,11 +5,12 @@ module.exports.run = async (client, message, args) => {
   let icon = message.guild.iconURL;
   let embed = new Discord.RichEmbed()
 
-  .setDescription(`**Information about ${message.guild.name}**`)
+  .setTitle(`Information about ${message.guild.name}`)
   .setColor(config.plainembedcolor)
   .setThumbnail(icon)
   .addField('Server Name:', message.guild.name)
   .addField('Created At:', message.guild.createdAt)
+  .addField('Server Owner:', message.guild.owner)
   .addField('You Joined:', message.member.joinedAt)
   .addField('Total Members:', message.guild.memberCount);
 
@@ -17,5 +18,7 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: 'serverinfo'
+  name: 'serverinfo',
+  description: 'Displays information about the server/guild',
+  usage: 'serverinfo'
 }
