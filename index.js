@@ -22,8 +22,37 @@ fs.readdir('./commands/', (err, files) => {
 
 // Bot Bootup Event
 client.on('ready', async () => {
-    console.log(`${client.user.username} is online.`); // this is the message you will see when the bot is online
+    console.log(`${client.user.username} is online and is operating on ${client.guilds.size} servers.`); // this is the message you will see when the bot is online
     client.user.setActivity('in Development...', {type: 'PLAYING'}); // this sets the Activity Status of the bot
+});
+
+// Guild Events
+// User Join Noticication Event
+client.on('guildMemberAdd', async (message, member) => {
+  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
+
+  let embed = new Discord.RichEmbed()
+  .setTitle('A user has joined!')
+  .setColor(config.joinembedcolor)
+  .addField('Username:', member.user.username)
+  .addField('Time:', message.createdAt);
+
+  auditlogchannel.send(embed);
+});
+
+// User Leave Noticication Event
+client.on('guildMemberRemove', async (message, member) => {
+  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
+
+  let embed = new Discord.RichEmbed()
+  .setTitle('A user has left.')
+  .setColor(config.leaveembedcolor)
+  .addField('Username:', member.user.username)
+  .addField('Time:', message.createdAt);
+
+  auditlogchannel.send(embed);
 });
 
 client.on('message', async message => {
@@ -36,35 +65,6 @@ client.on('message', async message => {
 
     let commandfile = client.commands.get(cmd.slice(prefix.length));
     if (commandfile) commandfile.run(client, message, args);
-
-    // Guild Events
-    // User Join Noticication Event
-    client.on('guildMemberAdd', async member => {
-      let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-      if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
-
-      let embed = new Discord.RichEmbed()
-      .setTitle('A user has joined!')
-      .setColor(config.joinembedcolor)
-      .addField('Username:', `${member}`)
-      .addField('Time:', message.createdAt);
-
-      auditlogchannel.send(embed);
-    });
-
-    // User Leave Noticication Event
-    client.on('guildMemberRemove', async member => {
-      let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-      if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
-
-      let embed = new Discord.RichEmbed()
-      .setTitle('A user has left.')
-      .setColor(config.leaveembedcolor)
-      .addField('Username:', `${member}`)
-      .addField('Time:', message.createdAt);
-
-      auditlogchannel.send(embed);
-    });
   });
 
 //client.login(config.token);  // this link to the config.json where you should have put your token.
