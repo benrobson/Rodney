@@ -16,5 +16,7 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: 'removerole'
+  name: 'removerole',
+  description: 'This will remove a role from the mentioned user.',
+  usage: 'removerole [user] [role]'
 }

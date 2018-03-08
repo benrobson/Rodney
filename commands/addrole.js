@@ -16,5 +16,7 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: 'addrole'
+  name: 'addrole',
+  description: 'This will add a role to the mentioned user.',
+  usage: 'addrole [user] [role]'
 }
