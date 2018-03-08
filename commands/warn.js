@@ -185,8 +185,8 @@ module.exports.run = async (client, message, args) => {
     .addField('Time:', message.createdAt)
     .addField('Reason:', reason);
     auditlogchannel.send(embed);
-  }
-}
+  };
+};
 
 module.exports.help = {
   name: 'warn',
