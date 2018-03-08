@@ -8,11 +8,11 @@ module.exports.run = async (client, message, args) => {
   .setTitle(`Information about ${message.guild.name}`)
   .setColor(config.plainembedcolor)
   .setThumbnail(icon)
-  .addField('Server Name:', message.guild.name)
-  .addField('Server Owner:', message.guild.owner)
+  .addField('Server Name:', message.guild.name, true)
+  .addField('Server Owner:', message.guild.owner, true)
   .addField('Created At:', message.guild.createdAt)
-  .addField('Server Region:', message.guild.region)
-  .addField('Total Members:', message.guild.memberCount)
+  .addField('Server Region:', message.guild.region, true)
+  .addField('Total Members:', message.guild.memberCount, true)
   .addField('Large [over 250 members]:', message.guild.large);
 
   return message.channel.send(embed);
