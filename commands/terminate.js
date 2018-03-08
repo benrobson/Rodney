@@ -2,19 +2,26 @@ const Discord = require('discord.js'); // this links to the official Discord npm
 const config = require('../config.json'); // this links to the config.json file
 
 module.exports.run = async (client, message, args) => {
-  let icon = message.guild.iconURL;
-  let embed = new Discord.RichEmbed()
 
-  .setTitle(`It's time for ${client.user.username} to go!!!`)
-  .setColor(config.errorembedcolor)
-  .setDescription('Leaving Guild...')
+  if (message.author.id !== `${config.ownerid}`){
+    let embed = new Discord.RichEmbed()
+    .setTitle(`An error has occurred!`)
+    .setColor(config.errorembedcolor)
+    .setDescription('Only the owner of the bot can terminate the instance.')
+    message.channel.send(embed);
+  }
 
-  return message.channel.send(embed);
+  if (message.author.id == `${config.ownerid}`){
 
+    let embed = new Discord.RichEmbed()
+    .setTitle(`It's time for ${client.user.username} to go!!!`)
+    .setColor(config.errorembedcolor)
+    .setDescription('Leaving Guild...')
+    message.channel.send(embed);
 
-  guild.leave()
-  .then(g => console.log(`Left the guild ${g}`))
-  .catch(console.error);
+    message.guild.leave();
+    return
+  }
 }
 
 module.exports.help = {
