@@ -9,10 +9,13 @@ module.exports.run = async (client, message, args) => {
   .setTitle(`Information about ${client.user.username}`)
   .setColor(config.plainembedcolor)
   .setThumbnail(icon)
-  .addField('Bot Name:', client.user.username)
+  .addField('Bot Name:', client.user.username, true)
+  .addField('Bot Uptime:', `${client.uptime} [in miliseconds]`, true)
   .addField('Created At:', client.user.createdAt)
-  .addField('Current Version:', package.version)
-  .addField('Bot Uptime:', `${client.uptime} [in miliseconds]`);
+  .addField('Current Version:', package.version, true)
+  .addField('Current Discord.js Version:', '*Coming Soon*', true)
+  .addField('Total Number of Users:', '*Coming Soon*', true)
+  .addField('Total Number of Servers:', client.guilds.size, true);
 
   return message.channel.send(embed);
 }

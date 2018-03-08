@@ -2,18 +2,19 @@ const Discord = require('discord.js'); // this links to the official Discord npm
 const config = require('../config.json'); // this links to the config.json file
 
 module.exports.run = async (client, message, args) => {
-  let icon = message.client.avatarURL;
+  let icon = message.author.avatarURL;
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Information about ${message.author.username}`)
   .setColor(config.plainembedcolor)
   .setThumbnail(icon)
   .addField('Username:', message.author.username)
-  .addField('Roles:', 'Coming Soon')
-  .addField('Account Created at:', 'Coming Soon')
+  .addField('Roles:', '*Coming Soon*')
+  .addField('Messages Sent:', '*Coming Soon*')
+  .addField('Account Created at:', '*Coming Soon*')
   .addField('You Joined Guild at:', message.member.joinedAt);
-
-  return message.channel.send(embed);
+  message.channel.send(embed);
+  return
 };
 
 module.exports.help = {
