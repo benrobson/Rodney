@@ -9,6 +9,7 @@ module.exports.run = async (client, message, args) => {
     .setColor(config.errorembedcolor)
     .setDescription('This user could not be found, or does not exist.');
     message.channel.send(embed);
+    return
   };
   let reason = args.join(' ').slice(22);
   if (!reason){
@@ -17,6 +18,7 @@ module.exports.run = async (client, message, args) => {
     .setColor(config.errorembedcolor)
     .setDescription('There is no reason for this punishment, please provide a reason.');
     message.channel.send(embed);
+    return
   };
   if (!message.member.hasPermission('MANAGE_MEMBERS')){
     let embed = new Discord.RichEmbed()
@@ -24,6 +26,7 @@ module.exports.run = async (client, message, args) => {
     .setColor(config.errorembedcolor)
     .setDescription('You do not have sufficent permissions to use this command.');
     message.channel.send(embed);
+    return
   };
   if (user.hasPermission('MANAGE_MESSAGES')){
     let embed = new Discord.RichEmbed()
@@ -31,6 +34,7 @@ module.exports.run = async (client, message, args) => {
     .setColor(config.errorembedcolor)
     .setDescription('This user cannot be banned.');
     message.channel.send(embed);
+    return
   };
 
   let embed = new Discord.RichEmbed()
@@ -49,6 +53,7 @@ module.exports.run = async (client, message, args) => {
     .setColor(config.errorembedcolor)
     .setDescription('A `#audit-log` channel channel could not be found, the punishment notification could not be sent.');
     message.channel.send(embed);
+    return
   }
 
   message.guild.member(user).ban(reason);
@@ -58,5 +63,7 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: 'ban'
+  name: 'ban',
+  description: 'This will permantly ban a user.',
+  usage: 'ban [user] [reason]'
 }
