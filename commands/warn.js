@@ -5,10 +5,26 @@ const ms = require('ms'); // this package allows us to use time
 let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8')); // this links to the warnings.json file
 
 module.exports.run = async (client, message, args) => {
-  if (!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply('Insufficent Permissions.');
   let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+  if (!user){
+    let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('This user could not be found, or does not exist.');
+    message.channel.send(embed);
+    return
+  };
+  if (!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply('Insufficent Permissions.');
   if (user.hasPermission("MANAGE_MESSAGES")) return message.reply('This user cannot be warned.');
   let reason = args.join(" ").slice(22);
+  if (!reason){
+    let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('There is no reason for this punishment, please provide a reason.');
+    message.channel.send(embed);
+    return
+  };
 
   if (!warns[user.id]) warns[user.id] = {
     warns: 0

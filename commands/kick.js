@@ -20,7 +20,14 @@ module.exports.run = async (client, message, args) => {
     message.channel.send(embed);
     return
   };
-  if (user.hasPermission('MANAGE_MESSAGES')) return message.channel.send('This user cannot be kicked.');
+  if (user.hasPermission('MANAGE_MESSAGES')){
+    let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('This user cannot be kicked.');
+    message.channel.send(embed);
+    return
+  };
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has been Kicked')
@@ -32,7 +39,14 @@ module.exports.run = async (client, message, args) => {
   .addField('Reason:', reason);
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send this punishment notification.');
+  if (!auditlogchannel){
+    let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('Sorry, I couldn\'t find the Audit Log Channel, unable to send this punishment notification.');
+    message.channel.send(embed);
+    return
+  };
 
   message.guild.member(user).kick(reason);
   message.delete().catch(O_o=>{});
