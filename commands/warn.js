@@ -189,5 +189,7 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: 'warn'
+  name: 'warn',
+  description: 'This warns the user, after an amount of warns, user goes through the Automatic Escalation System.',
+  usage: 'warn [user] [reason]'
 }
