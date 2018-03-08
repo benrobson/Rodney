@@ -3,15 +3,22 @@ const config = require('../config.json'); // this links to the config.json file
 
 module.exports.run = async (client, message, args) => {
   let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if (!user) return message.channel.send('Sorry, I couldn\'t find that user.');
+  if (!user) {
+    let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('The user you want to kick cannot be found.');
+    message.channel.send(embed);
+    return
+  };
   let reason = args.join(' ').slice(22);
   if (!message.member.hasPermission('MANAGE_MESSAGES')){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
     .setColor(config.errorembedcolor)
     .setDescription('You do not have sufficent permissions to use this command.');
-
     message.channel.send(embed);
+    return
   };
   if (user.hasPermission('MANAGE_MESSAGES')) return message.channel.send('This user cannot be kicked.');
 
@@ -30,8 +37,11 @@ module.exports.run = async (client, message, args) => {
   message.guild.member(user).kick(reason);
   message.delete().catch(O_o=>{});
   auditlogchannel.send(embed);
-}
+  return
+};
 
 module.exports.help = {
-  name: 'kick'
-}
+  name: 'kick',
+  description: 'Kicks the mentioned user from the guild/server',
+  usage: 'kick [user] [reason]'
+};
