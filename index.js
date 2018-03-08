@@ -24,6 +24,7 @@ fs.readdir('./commands/', (err, files) => {
 client.on('ready', async () => {
     console.log(`${client.user.username} is online and is operating on ${client.guilds.size} servers.`); // this is the message you will see when the bot is online
     client.user.setActivity('in Development...', {type: 'PLAYING'}); // this sets the Activity Status of the bot
+    return
 });
 
 // Guild Events
@@ -37,8 +38,8 @@ client.on('guildMemberAdd', async (message, member) => {
   .setColor(config.joinembedcolor)
   .addField('Username:', member.user.username)
   .addField('Time:', message.createdAt);
-
-  auditlogchannel.send(embed);
+  auditlogchannel.send(embed)
+  return
 });
 
 // User Leave Noticication Event
@@ -51,8 +52,8 @@ client.on('guildMemberRemove', async (message, member) => {
   .setColor(config.leaveembedcolor)
   .addField('Username:', member.user.username)
   .addField('Time:', message.createdAt);
-
   auditlogchannel.send(embed);
+  return
 });
 
 client.on('message', async message => {
