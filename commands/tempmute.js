@@ -5,8 +5,22 @@ const ms = require('ms'); // this package allows us to use time
 module.exports.run = async (client, message, args) => {
 
   let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if (!user) return message.reply('User could not be found');
-  if (user.hasPermission('MANAGE_MESSAGES')) return message.channel.send('This user cannot be muted.');
+  if (!user) {
+    const embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('The user you would like to Temporarily Mute could not be found.');
+    message.channel.send(embed);
+    message.delete().catch(O_o=>{});
+  };
+  if (user.hasPermission('MANAGE_MESSAGES')){
+      const embed = new Discord.RichEmbed()
+      .setTitle('An error has occurred!')
+      .setColor(config.errorembedcolor)
+      .setDescription('You do not have permission to use this command.');
+      message.channel.send(embed);
+      message.delete().catch(O_o=>{});
+  };
   let reason = args.join(' ').slice(2).join(' ');
   if (!reason) {
     const embed = new Discord.RichEmbed()
@@ -15,10 +29,10 @@ module.exports.run = async (client, message, args) => {
     .setDescription('Please supply a reason for the Temporary Mute.');
     message.channel.send(embed);
     message.delete().catch(O_o=>{});
-  }
+  };
 
   let muterole = message.guild.roles.find('name', 'Muted'); // Bot checks to see if there is a role named Muted.
-  if (!muterole){ // if there is no role named Muted, the bot will go ahead and create the role and apply permissions to every channel.
+  if (!muterole) { // if there is no role named Muted, the bot will go ahead and create the role and apply permissions to every channel.
     try {
       muterole = await message.guild.createRole({
         name: 'Muted',
@@ -63,7 +77,7 @@ module.exports.run = async (client, message, args) => {
 
   message.delete().catch(O_o=>{});
   auditlogchannel.send(embed);
-}
+};
 
 module.exports.help = {
   name: 'tempmute'

@@ -7,15 +7,22 @@ let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8')); // this link
 module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('Insufficent Permissions!');
   let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if (!user) return message.reply('This user cannot be found.');
+  if (!user){
+    const embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('No user could not be found.');
+    message.channel.send(embed);
+    return
+  };
 
   let embed = new Discord.RichEmbed()
-  .setTitle(`**Warning Profile for ${user}**`)
+  .setTitle(`Warning Profile for ${user}`)
   .setColor(config.plainembedcolor)
   .addField('User', `${user} with ID: ${user.id}`)
   .addField('Number Of Warnings:', `**${warns[user.id].warns}**`)
-
   message.channel.send(embed);
+  return
 }
 
 module.exports.help = {

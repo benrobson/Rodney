@@ -184,7 +184,6 @@ module.exports.run = async (client, message, args) => {
     .addField('Muted for:', time)
     .addField('Time:', message.createdAt)
     .addField('Reason:', reason);
-
     auditlogchannel.send(embed);
   }
 }
