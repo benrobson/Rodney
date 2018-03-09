@@ -27,35 +27,64 @@ client.on('ready', async () => {
     return
 });
 
+
 // Guild Events
 // User Join Noticication Event
-client.on('guildMemberAdd', async (message, member) => {
-  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
+client.on('guildMemberAdd', async member => {
+  let auditlogchannel = member.guild.channels.find('name', 'audit-log');
 
   let embed = new Discord.RichEmbed()
-  .setTitle('A user has joined!')
+  .setTitle('User has joined the server!')
   .setColor(config.joinembedcolor)
-  .addField('Username:', member.user.username)
-  .addField('Time:', message.createdAt);
+  .addField('Username:', `${member}`)
   auditlogchannel.send(embed);
   return
 });
 
 // User Leave Noticication Event
-client.on('guildMemberRemove', async (message, member) => {
-  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send guild user join notification.');
+client.on('guildMemberRemove', async member => {
+  let auditlogchannel = member.guild.channels.find('name', 'audit-log');
 
   let embed = new Discord.RichEmbed()
-  .setTitle('A user has left.')
+  .setTitle('User has left the server!')
   .setColor(config.leaveembedcolor)
-  .addField('Username:', member.user.username)
-  .addField('Time:', message.createdAt);
+  .addField('Username:', `${member}`)
   auditlogchannel.send(embed);
   return
 });
 
+// Channel Create Noticication Event
+client.on('channelCreate', async channel => {
+  let auditlogchannel = channel.guild.channels.find('name', 'audit-log');
+
+  let embed = new Discord.RichEmbed()
+  .setTitle('Channel has been created!')
+  .setColor(config.joinembedcolor)
+  .addField('Channel Name:', `${channel}`)
+  .addField('Channel Type:', `${channel.type}`)
+  .addField('Created At:', `${channel.createdAt}`)
+  auditlogchannel.send(embed);
+  return
+});
+
+// Channel Delete Noticication Event
+client.on('channelDelete', async channel => {
+  let auditlogchannel = channel.guild.channels.find('name', 'audit-log');
+
+  let embed = new Discord.RichEmbed()
+  .setTitle('Channel has been deleted!')
+  .setColor(config.leaveembedcolor)
+  .addField('Channel Name:', `${channel.name}`)
+  .addField('Channel Type:', `${channel.type}`)
+  .addField('Deleted At:', `${channel.createdAt}`)
+  auditlogchannel.send(embed);
+  return
+});
+
+
+
+
+// Message Handler
 client.on('message', async message => {
     if (message.author.bot) return; // this will not allow the bot to respond to it's own messages
     if (message.channel.type === 'dm') return; // the bot will not respond to messages from a DM
