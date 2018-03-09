@@ -13,7 +13,8 @@ module.exports.run = async (client, message, args) => {
   .addField('Created At:', message.guild.createdAt)
   .addField('Server Region:', message.guild.region, true)
   .addField('Total Members:', message.guild.memberCount, true)
-  .addField('Large [over 250 members]:', message.guild.large);
+  .addField('Large [over 250 members]:', message.guild.large, true)
+  .addField('Verification Level:', message.guild.verificationLevel, true);
 
   return message.channel.send(embed);
 }
