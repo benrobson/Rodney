@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
   };
 
   let embed = new Discord.RichEmbed()
-  .setTitle(`Warning Profile for ${user}`)
+  .setTitle(`Warning Profile for ${user.displayName}`)
   .setColor(config.plainembedcolor)
   .addField('User', `${user} with ID: ${user.id}`)
   .addField('Number Of Warnings:', `**${warns[user.id].warns}**`)
