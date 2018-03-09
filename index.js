@@ -95,5 +95,5 @@ client.on('message', async message => {
     if (commandfile) commandfile.run(client, message, args);
   });
 
-//client.login(config.token);  // this link to the config.json where you should have put your token.
+//client.login(config.token);  // THIS IS AN ALTERNATIVE! This is the link to the config.json where you should have put your token.
 client.login(token.token); // this links to an external file where I keep my token for development purposes.
