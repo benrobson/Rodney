@@ -18,6 +18,7 @@
   "homepage": "https://github.com/shadowolfyt/RodneyTheDiscordBot#readme",
   "dependencies": {
     "discord.js": "^11.3.2",
+    "fortnite": "^3.0.0",
     "ms": "^2.1.1"
   }
 }
