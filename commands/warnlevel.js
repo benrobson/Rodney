@@ -23,10 +23,10 @@ module.exports.run = async (client, message, args) => {
   .addField('Number Of Warnings:', `**${warns[user.id].warns}**`)
   message.channel.send(embed);
   return
-}
+};
 
 module.exports.help = {
   name: 'warnlevel',
   description: 'Checks a users warn level, to see where they are on the Automatic Escalation System',
   usage: 'warnlevel [user]'
-}
+};
