@@ -38,7 +38,7 @@ client.on('guildMemberAdd', async (message, member) => {
   .setColor(config.joinembedcolor)
   .addField('Username:', member.user.username)
   .addField('Time:', message.createdAt);
-  auditlogchannel.send(embed)
+  auditlogchannel.send(embed);
   return
 });
 
