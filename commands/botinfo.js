@@ -18,10 +18,10 @@ module.exports.run = async (client, message, args) => {
   .addField('Total Number of Servers:', client.guilds.size, true);
 
   return message.channel.send(embed);
-}
+};
 
 module.exports.help = {
   name: 'botinfo',
   description: 'Displays information about the bot.',
   usage: 'botinfo'
-}
+};
