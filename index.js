@@ -22,7 +22,7 @@ fs.readdir('./commands/', (err, files) => {
 
 // Bot Bootup Event
 client.on('ready', async () => {
-    console.log(`${client.user.username} is online and is operating on ${client.guilds.size} servers.`); // this is the message you will see when the bot is online
+    console.log(`${client.user.username} is online and is operating on ${client.guilds.size} servers for ${client.users.size} users.`); // this is the message you will see when the bot is online
     client.user.setActivity('in Development...', {type: 'PLAYING'}); // this sets the Activity Status of the bot
     return
 });
@@ -95,5 +95,5 @@ client.on('message', async message => {
     if (commandfile) commandfile.run(client, message, args);
   });
 
-//client.login(config.token);  // THIS IS AN ALTERNATIVE! This is the link to the config.json where you should have put your token.
-client.login(token.token); // this links to an external file where I keep my token for development purposes.
+//client.login(config.token); // THIS IS AN ALTERNATIVE! This is the link to the config.json where you should have put your token.
+client.login(token.token); // this links to an external file where I keep my tokens for development purposes.
