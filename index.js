@@ -81,14 +81,12 @@ client.on('channelDelete', async channel => {
   return
 });
 
-
-
-
 // Message Handler
 client.on('message', async message => {
     if (message.author.bot) return; // this will not allow the bot to respond to it's own messages
     if (message.channel.type === 'dm') return; // the bot will not respond to messages from a DM
-    let prefix = config.prefix; // this redirects to the config where the prefix is stored
+
+    let prefix = config.prefix;
     let messageArray = message.content.split(' ');
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
@@ -98,4 +96,4 @@ client.on('message', async message => {
   });
 
 //client.login(config.token);  // this link to the config.json where you should have put your token.
-client.login(token.token); // this links to an external file where I keep my token for devleopment purposes.
+client.login(token.token); // this links to an external file where I keep my token for development purposes.
