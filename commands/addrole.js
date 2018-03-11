@@ -13,10 +13,10 @@ module.exports.run = async (client, message, args) => {
 
   if (user.roles.has(guildRole.id)) return message.reply('That role does exist');
   await (user.addRole(guildRole.id));
-}
+};
 
 module.exports.help = {
   name: 'addrole',
   description: 'This will add a role to the mentioned user.',
   usage: 'addrole [user] [role]'
-}
+};
