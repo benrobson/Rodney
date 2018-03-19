@@ -5,7 +5,14 @@ const ms = require('ms'); // this package allows us to use time
 let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8')); // this links to the warnings.json file
 
 module.exports.run = async (client, message, args) => {
-  if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('Insufficent Permissions!');
+  if (!message.member.hasPermission('MANAGE_MESSAGES')){
+    const embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('You have insufficent permissions.');
+    message.channel.send(embed);
+    return
+  };
   let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   if (!user){
     const embed = new Discord.RichEmbed()
