@@ -23,10 +23,9 @@ fs.readdir('./commands/', (err, files) => {
 // Bot Bootup Event
 client.on('ready', async () => {
     console.log(`${client.user.username} is online and is operating on ${client.guilds.size} servers for ${client.users.size} users.`); // this is the message you will see when the bot is online
-    client.user.setActivity('in Development...', {type: 'PLAYING'}); // this sets the Activity Status of the bot
+    client.user.setActivity(`${client.guilds.size} Servers // ${client.users.size} Users`, {type: 'PLAYING'}); // this sets the Activity Status of the bot
     return
 });
-
 
 // Guild Events
 // User Join Noticication Event
