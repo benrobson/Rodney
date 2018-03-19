@@ -15,7 +15,8 @@ module.exports.run = async (client, message, args) => {
   .addField('Current Version:', package.version, true)
   .addField('Current Discord.js Version:', '*Coming Soon*', true)
   .addField('Total Number of Users:', client.users.size, true)
-  .addField('Total Number of Servers:', client.guilds.size, true);
+  .addField('Total Number of Servers:', client.guilds.size, true)
+  .addField('Ping:', new Date().getTime() - message.createdTimestamp + " ms", true);
 
   return message.channel.send(embed);
 };
