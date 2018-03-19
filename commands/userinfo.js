@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
   .addField('Roles:', '*Coming Soon*')
   .addField('Messages Sent:', '*Coming Soon*')
   .addField('Account Created at:', '*Coming Soon*')
-  .addField('You Joined Guild at:', message.member.joinedAt);
+  .addField('You Joined:', message.member.joinedAt);
   message.channel.send(embed);
   return
 };
