@@ -12,7 +12,6 @@ module.exports.run = async (client, message, args) => {
   .setThumbnail(icon)
   .addField('Bot Name:', client.user.username, true)
   .addField('Bot Uptime:', `${client.uptime} [in miliseconds]`, true)
-  .addField('Current Version:', package.version, true)
   .addField('Discord.js Version:', `v${version}`, true)
   .addField("Node Version", `${process.version}`, true)
   .addField('Total Number of Users:', client.users.size, true)
