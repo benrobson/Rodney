@@ -14,6 +14,7 @@ module.exports.run = async (client, message, args) => {
   .addField('Bot Uptime:', `${client.uptime} [in miliseconds]`, true)
   .addField('Current Version:', package.version, true)
   .addField('Discord.js Version:', `v${version}`, true)
+  .addField("Node Version", `${process.version}`, true)
   .addField('Total Number of Users:', client.users.size, true)
   .addField('Total Number of Servers:', client.guilds.size, true)
   .addField('Ping:', new Date().getTime() - message.createdTimestamp + " ms", true);
