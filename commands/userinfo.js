@@ -8,11 +8,14 @@ module.exports.run = async (client, message, args) => {
   .setTitle(`Information about ${message.author.username}`)
   .setColor(config.plainembedcolor)
   .setThumbnail(icon)
-  .addField('Username:', message.author.username)
+  .addField('Username', message.author.username, true)
+  .addField('User ID', message.member.id, true)
   .addField('Roles:', '*Coming Soon*')
   .addField('Messages Sent:', '*Coming Soon*')
   .addField('Account Created at:', '*Coming Soon*')
-  .addField('You Joined:', message.member.joinedAt);
+  .addField('You Joined:', message.member.joinedAt)
+  .addField('Banable', message.member.bannable, true)
+  .addField('Kickable', message.member.kickable, true);
   message.channel.send(embed);
   return
 };
