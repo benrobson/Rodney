@@ -92,6 +92,32 @@ client.on('message', async message => {
 
     let commandfile = client.commands.get(cmd.slice(prefix.length));
     if (commandfile) commandfile.run(client, message, args);
+
+    // Discord Invite Detector
+    const invite = ['discord.gg'];
+    if(invite.some(word => message.content.toLowerCase().includes(word))) {
+      message.delete().catch(O_o=>{});
+
+      let embed = new Discord.RichEmbed()
+      .setTitle('Discord Invite Detected')
+      .setColor(config.errorembedcolor)
+      .setDescription(`${message.author}, you are not allowed to advertise other Discord Servers in this server!`);
+      message.channel.send(embed);
+      return
+    };
+
+    // Swear Detector
+    const swearWords = ['shit', 'fuck', 'bitch', 'nigger', 'nigga', 'cunt', 'whore'];
+    if(swearWords.some(word => message.content.toLowerCase().includes(word))) {
+      message.delete().catch(O_o=>{});
+
+      let embed = new Discord.RichEmbed()
+      .setTitle('Swear Word Detected')
+      .setColor(config.errorembedcolor)
+      .setDescription(`${message.author}, you can't say that, this is a Christian Minecraft Server!`);
+      message.channel.send(embed).then(msg => msg.delete(3000));
+      return
+    };
   });
 
 //client.login(config.token); // THIS IS AN ALTERNATIVE! This is the link to the config.json where you should have put your token.
