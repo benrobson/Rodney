@@ -14,8 +14,22 @@ module.exports.run = async (client, message, args) => {
     message.channel.send(embed);
     return
   };
-  if (!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply('Insufficent Permissions.');
-  if (user.hasPermission("MANAGE_MESSAGES")) return message.reply('This user cannot be warned.');
+  if (!message.member.hasPermission("MANAGE_MESSAGES")){
+    let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('You do not have sufficent permissions.');
+    message.channel.send(embed);
+    return
+  };
+  if (user.hasPermission("MANAGE_MESSAGES")){
+    let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('This user cannot be warned.');
+    message.channel.send(embed);
+    return
+  };
   let reason = args.join(" ").slice(22);
   if (!reason){
     let embed = new Discord.RichEmbed()
