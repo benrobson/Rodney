@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: 'clear',
+  name: 'purge',
   description: 'This allows messages to be cleared from a channel.',
-  usage: 'clear [number of messages]'
+  usage: 'purge [number of messages]'
 };
