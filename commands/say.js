@@ -21,7 +21,6 @@ module.exports.run = async (client, message, args) => {
 
   let inputmessage = args.join(' ');
   let embed = new Discord.RichEmbed()
-  .setTitle(`Message from ${message.author.username}`)
   .setColor(config.joinembedcolor)
   .setDescription(inputmessage)
   message.delete().catch(O_o=>{});
