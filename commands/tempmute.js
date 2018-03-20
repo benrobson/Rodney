@@ -4,8 +4,7 @@ const ms = require('ms'); // this package allows us to use time
 
 module.exports.run = async (client, message, args) => {
 
-  let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if (user.hasPermission('MANAGE_MESSAGES')){
+  if (!message.member.hasPermission('MANAGE_MESSAGES')){
       const embed = new Discord.RichEmbed()
       .setTitle('An error has occurred!')
       .setColor(config.errorembedcolor)
@@ -13,6 +12,8 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed)
       return
   };
+
+  let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if (!user) {
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
@@ -22,8 +23,18 @@ module.exports.run = async (client, message, args) => {
     message.delete().catch(O_o=>{})
     return
   };
-  let reason = args.join(' ').slice(2).join(' ');
-  if (!reason) {
+  if (user.hasPermission('MANAGE_MESSAGES')) {
+    const embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('You cannot mute this user.');
+    message.channel.send(embed);
+    message.delete().catch(O_o=>{})
+    return
+  };
+
+  let reason = args.slice(2).join(' ');
+  if (!reason){
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
     .setColor(config.errorembedcolor)
@@ -53,17 +64,13 @@ module.exports.run = async (client, message, args) => {
   };
 
   let time = args[1];
-  if (!time) return message.reply('you have not specified a time.');
-  await(user.addRole(muterole.id));
-
-  setTimeout(function(){
-    user.removeRole(muterole.id);
-    let embed = new Discord.RichEmbed()
-    .setTitle('User has been Unmuted')
-    .setColor(config.plainembedcolor)
-    .addField('Muted User', `${user} with ID: ${user.id}`)
-    auditlogchannel.send(embed);
-  }, ms(time));
+  if (!time){
+    const embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('You have not specified a time.');
+    message.channel.send(embed);
+  };
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has been Temporarily Muted')
@@ -79,7 +86,17 @@ module.exports.run = async (client, message, args) => {
 
   message.delete().catch(O_o=>{});
   auditlogchannel.send(embed)
-  return
+
+  await(user.addRole(muterole.id));
+
+  setTimeout(function(){
+    user.removeRole(muterole.id);
+    let embed = new Discord.RichEmbed()
+    .setTitle('User has been Unmuted')
+    .setColor(config.plainembedcolor)
+    .addField('Muted User', `${user} with ID: ${user.id}`)
+    auditlogchannel.send(embed);
+  }, ms(time));
 };
 
 module.exports.help = {
