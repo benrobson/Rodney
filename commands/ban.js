@@ -11,6 +11,14 @@ module.exports.run = async (client, message, args) => {
     message.channel.send(embed);
     return
   };
+  if (!message.member.hasPermission('BAN_MEMBERS')){
+    let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.errorembedcolor)
+    .setDescription('You do not have sufficent permissions to use this command.');
+    message.channel.send(embed);
+    return
+  };
   let reason = args.join(' ').slice(22);
   if (!reason){
     let embed = new Discord.RichEmbed()
