@@ -2,6 +2,7 @@ const Discord = require('discord.js'); // this links to the official Discord npm
 const config = require('../config.json'); // this links to the config.json file
 
 module.exports.run = async (client, message, args) => {
+  let large = message.guild.large ? "✅" : "❎";
   let icon = message.guild.iconURL;
   let embed = new Discord.RichEmbed()
 
@@ -13,7 +14,7 @@ module.exports.run = async (client, message, args) => {
   .addField('Created At:', message.guild.createdAt)
   .addField('Server Region:', message.guild.region, true)
   .addField('Total Members:', message.guild.memberCount, true)
-  .addField('Large:', message.guild.large, true)
+  .addField('Large:', large, true)
   .addField('Verification Level:', message.guild.verificationLevel, true);
 
   return message.channel.send(embed);
