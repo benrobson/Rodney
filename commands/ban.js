@@ -68,10 +68,10 @@ module.exports.run = async (client, message, args) => {
   message.delete().catch(O_o=>{});
   auditlogchannel.send(embed);
   return;
-}
+};
 
 module.exports.help = {
   name: 'ban',
   description: 'This will permantly ban a user.',
-  usage: 'ban [user] [reason]'
-}
+  usage: 'ban [@user] [reason]'
+};
