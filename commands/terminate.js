@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
     let embed = new Discord.RichEmbed()
     .setTitle(`An error has occurred!`)
     .setColor(config.errorembedcolor)
-    .setDescription('Only the owner of the bot can terminate the instance.')
+    .setDescription(`Only <@${config.ownerid}> terminate the instance.`)
     message.channel.send(embed);
   }
 
