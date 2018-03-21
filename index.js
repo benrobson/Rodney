@@ -101,7 +101,7 @@ client.on('message', async message => {
       let embed = new Discord.RichEmbed()
       .setTitle('Discord Invite Detected')
       .setColor(config.red)
-      .setDescription(`${message.author}, you are not allowed to advertise other Discord Servers in this server!`);
+      .setDescription(`${message.author}, you are not allowed to advertise other Discord servers.`);
       message.channel.send(embed);
       return
     };
