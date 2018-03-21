@@ -35,5 +35,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
   name: 'warnlevel',
   description: 'Checks a users warn level, to see where they are on the Automatic Escalation System',
-  usage: 'warnlevel [user]'
+  usage: 'warnlevel [@user]'
 };
