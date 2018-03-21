@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
   };
 
   let embed = new Discord.RichEmbed()
-  .setTitle(`Here is ${user.displayName}s Avatar`)
+  .setTitle(`Here is ${user.displayName}s avatar.`)
   .setColor(config.white)
   .setImage(user.avatarURL);
   message.channel.send(embed);
