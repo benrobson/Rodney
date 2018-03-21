@@ -2,6 +2,8 @@ const Discord = require('discord.js'); // this links to the official Discord npm
 const config = require('../config.json'); // this links to the config.json file
 
 module.exports.run = async (client, message, args) => {
+  let kickable = message.member.kickable ? "✅" : "❎";
+  let bannable = message.member.bannable ? "✅" : "❎";
   let icon = message.author.avatarURL;
 
   let embed = new Discord.RichEmbed()
@@ -14,8 +16,8 @@ module.exports.run = async (client, message, args) => {
   .addField('Messages Sent:', '*Coming Soon*')
   .addField('Account Created at:', '*Coming Soon*')
   .addField('You Joined:', message.member.joinedAt)
-  .addField('Banable', message.member.bannable, true)
-  .addField('Kickable', message.member.kickable, true);
+  .addField('Banable', bannable, true)
+  .addField('Kickable', kickable, true);
   message.channel.send(embed);
   return
 };
