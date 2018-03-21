@@ -95,20 +95,20 @@ client.on('message', async message => {
 
     // Discord Invite Detector
     const invite = ['discord.gg'];
-    if(invite.some(word => message.content.toLowerCase().includes(word))) {
+    if (invite.some(word => message.content.toLowerCase().includes(word))) {
       message.delete().catch(O_o=>{});
 
       let embed = new Discord.RichEmbed()
       .setTitle('Discord Invite Detected')
       .setColor(config.red)
-      .setDescription(`${message.author}, you are not allowed to advertise other Discord servers.`);
+      .setDescription(`${message.author}, you are not allowed to advertise other Discords`);
       message.channel.send(embed);
       return
     };
 
     // Swear Detector
     const swearWords = ['shit', 'fuck', 'bitch', 'nigger', 'nigga', 'cunt', 'whore', 'fag', 'faggot', 'dick', 'cock', 'pussy', 'slut', 'bastard'];
-    if(swearWords.some(word => message.content.toLowerCase().includes(word))) {
+    if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
       message.delete().catch(O_o=>{});
 
       let embed = new Discord.RichEmbed()
