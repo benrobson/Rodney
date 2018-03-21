@@ -64,6 +64,6 @@ module.exports.run = async (client, message, args, tools) => {
 
 module.exports.help = {
   name: 'fortnite',
-  description: 'Displays stats for a user on a gaming platform for the game Fortnite',
+  description: 'Displays stats for a user on the game Fortnite.',
   usage: 'fortnite [pc | xbl | psn] [username]'
 };
