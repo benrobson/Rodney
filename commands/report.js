@@ -38,6 +38,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'report',
-  description: 'Report a player to the staff of the Discord',
+  description: 'Report a player to the staff of this Discord server.',
   usage: 'report [@user] [reason]'
 }
