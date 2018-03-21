@@ -1,9 +1,13 @@
 const Discord = require('discord.js'); // this links to the official Discord npm package
-const { version } = require("discord.js");
+const { version } = require('discord.js');
 const config = require('../config.json'); // this links to the config.json file
 const package = require('../package.json'); // this links to the package.json file
 
 module.exports.run = async (client, message, args) => {
+  var ms = client.uptime,
+  min = Math.floor((ms/1000/60) << 0),
+  sec = Math.floor((ms/1000) % 60);
+
   let icon = client.user.displayAvatarURL;
   let embed = new Discord.RichEmbed()
 
@@ -11,7 +15,7 @@ module.exports.run = async (client, message, args) => {
   .setColor(config.plainembedcolor)
   .setThumbnail(icon)
   .addField('Bot Name:', client.user.username, true)
-  .addField('Bot Uptime:', `${client.uptime} [in miliseconds]`, true)
+  .addField('Bot Uptime:', min + ' minutes ' + sec + ' seconds', true)
   .addField('Discord.js Version:', `v${version}`, true)
   .addField("Node Version", `${process.version}`, true)
   .addField('Total Number of Users:', client.users.size, true)
