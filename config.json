@@ -2,15 +2,14 @@
   "prefix": "-",
   "ownerid": "169978063478587392",
 
-  "plainembedcolor": "#ffffff",
-  "noticeembedcolor": "#e8d935",
-  "reportembedcolor": "#ffa500",
-  "errorembedcolor": "#ff0000",
-  "warnembedcolor": "#564f82",
-  "muteembedcolor": "#ffff00",
-  "banembedcolor": "#ff0000",
-  "kickembedcolor": "#7e2ab2",
-  "joinembedcolor": "#62ef83",
-  "leaveembedcolor": "#ff6368",
-  "fortniteembedcolor": "#9d19d6"
+  "discordinvitedetector": "true",
+  "swearfilter": "true",
+
+  "white": "#ffffff",
+  "red": "#ff0000",
+  "orange": "#ffa500",
+  "yellow": "#ffff00",
+  "green": "#00ff00",
+  "blue": "#0000ff",
+  "purple": "#551a8b",
 }

@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('MANAGE_MESSAGES')){
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('You have insufficent permissions.');
     message.channel.send(embed);
     return
@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
   if (!user){
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('No user could not be found.');
     message.channel.send(embed);
     return
@@ -25,7 +25,7 @@ module.exports.run = async (client, message, args) => {
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Warning Profile for ${user.displayName}`)
-  .setColor(config.plainembedcolor)
+  .setColor(config.white)
   .addField('User', `${user} with ID: ${user.id}`)
   .addField('Number Of Warnings:', `**${warns[user.id].warns}**`)
   message.channel.send(embed);
@@ -34,6 +34,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'warnlevel',
-  description: 'Checks a users warn level, to see where they are on the Automatic Escalation System',
+  description: 'Checks a users warn level.',
   usage: 'warnlevel [@user]'
 };

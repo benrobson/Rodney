@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args, tools) => {
       if (res.startsWith('Error:')) return message.channel.send('Please enter a valid URL');
       let embed = new Discord.RichEmbed()
       .setTitle('Here is the shortened URL.')
-      .setColor(config.joinembedcolor)
+      .setColor(config.green)
       .setDescription(`${res}`);
       message.channel.send(embed);
       return
@@ -20,7 +20,7 @@ module.exports.run = async (client, message, args, tools) => {
     if (res.startsWith('Error:')){
       let embed = new Discord.RichEmbed()
       .setTitle('An error has occurred!')
-      .setColor(config.errorembedcolor)
+      .setColor(config.red)
       .setDescription(`${res}`);
       message.channel.send(embed);
       return

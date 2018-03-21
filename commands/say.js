@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('MANAGE_MESSAGES')){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('You do not have sufficent permissions to use this command.');
     message.channel.send(embed);
     return
@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
   if (!args[0]){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('Please specify the message you would like to send, you cannot send an empty message.');
     message.channel.send(embed);
     return
@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
 
   let inputmessage = args.join(' ');
   let embed = new Discord.RichEmbed()
-  .setColor(config.joinembedcolor)
+  .setColor(config.green)
   .setDescription(inputmessage)
   message.delete().catch(O_o=>{});
   message.channel.send(embed);

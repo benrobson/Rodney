@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
   if (!user) {
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('The user you have requested to punish could not be found or a reason has not been supplied for this report.');
     message.channel.send(embed);
     message.delete().catch(O_o=>{});
@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
 
   let embed = new Discord.RichEmbed()
   .setTitle('Incoming Report!')
-  .setColor(config.reportembedcolor)
+  .setColor(config.red)
   .addField('Reported User', `${user} with ID: ${user.id}`)
   .addField('Reported By:', `${message.author} with ID: ${message.author.id}`)
   .addField('Reported in Channel:', message.channel)
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
   if (!reportschannel) {
   const embed = new Discord.RichEmbed()
   .setTitle('An error has occurred!')
-  .setColor(config.errorembedcolor)
+  .setColor(config.red)
   .setDescription('A `#reports` channel could not be found!\nPlease contact your guild/server Administrator to create one.');
   message.channel.send(embed);
   };

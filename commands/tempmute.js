@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('MANAGE_MESSAGES')){
       const embed = new Discord.RichEmbed()
       .setTitle('An error has occurred!')
-      .setColor(config.errorembedcolor)
+      .setColor(config.red)
       .setDescription('You do not have permission to use this command.');
       message.channel.send(embed)
       return
@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
   if (!user) {
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('The user you would like to Temporarily Mute could not be found.');
     message.channel.send(embed);
     message.delete().catch(O_o=>{})
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
   if (user.hasPermission('MANAGE_MESSAGES')) {
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('You cannot mute this user.');
     message.channel.send(embed);
     message.delete().catch(O_o=>{})
@@ -37,7 +37,7 @@ module.exports.run = async (client, message, args) => {
   if (!reason){
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('Please supply a reason for the Temporary Mute.');
     message.channel.send(embed);
     message.delete().catch(O_o=>{})
@@ -67,14 +67,14 @@ module.exports.run = async (client, message, args) => {
   if (!time){
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('You have not specified a time.');
     message.channel.send(embed);
   };
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has been Temporarily Muted')
-  .setColor(config.muteembedcolor)
+  .setColor(config.red)
   .addField('Muted User', `${user} with ID: ${user.id}`)
   .addField('Muted By:', `${message.author} with ID: ${message.author.id}`)
   .addField('Muted for:', time)
@@ -93,7 +93,7 @@ module.exports.run = async (client, message, args) => {
     user.removeRole(muterole.id);
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Unmuted')
-    .setColor(config.plainembedcolor)
+    .setColor(config.yellow)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     auditlogchannel.send(embed);
   }, ms(time));
@@ -102,5 +102,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
   name: 'tempmute',
   description: 'This will temporarily mute a user',
-  usage: 'tempmute [user] [time s/m/h/d] [reason]'
+  usage: 'tempmute [user] [time h/m/s] [reason]'
 };

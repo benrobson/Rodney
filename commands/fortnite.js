@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args, tools) => {
   if (!['pc','xbl','psn'].includes(args[0])){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('Please include a platform in your arguments.');
     message.channel.send(embed);
     return
@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args, tools) => {
   if (!args[1]){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('Please include a username in your arguments.');
     message.channel.send(embed);
     return
@@ -32,7 +32,7 @@ module.exports.run = async (client, message, args, tools) => {
     let embed = new Discord.RichEmbed()
     .setTitle(`Fortnite Stats for ${data.username}`)
     .setThumbnail('https://i.imgur.com/SudHnUn.png')
-    .setColor(config.fortniteembedcolor)
+    .setColor(config.purple)
     .addField('Top Placement Top 3s:', `${data.lifetimeStats[0].value}`, true)
     .addField('Top Placement Top 5s:', `${data.lifetimeStats[1].value}`, true)
     .addField('Top Placement Top 6s:', `${data.lifetimeStats[3].value}`, true)
@@ -55,7 +55,7 @@ module.exports.run = async (client, message, args, tools) => {
   .catch(error => {
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('This username was not found.');
     message.channel.send(embed);
     return

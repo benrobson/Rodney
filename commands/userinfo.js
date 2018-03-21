@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Information about ${message.author.username}`)
-  .setColor(config.plainembedcolor)
+  .setColor(config.red)
   .setThumbnail(icon)
   .addField('Username', message.author.username, true)
   .addField('User ID', message.member.id, true)
@@ -22,6 +22,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'userinfo',
-  description: 'Displays information about the user mentioned',
+  description: 'Displays information about the user.',
   usage: 'userinfo'
 }

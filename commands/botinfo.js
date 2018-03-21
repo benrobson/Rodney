@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.RichEmbed()
 
   .setTitle(`Information about ${client.user.username}`)
-  .setColor(config.plainembedcolor)
+  .setColor(config.white)
   .setThumbnail(icon)
   .addField('Bot Name:', client.user.username, true)
   .addField('Bot Uptime:', min + ' minutes ' + sec + ' seconds', true)

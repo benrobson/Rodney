@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
   if (!user){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('This user could not be found, or does not exist.');
     message.channel.send(embed);
     return
@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission("MANAGE_MESSAGES")){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('You do not have sufficent permissions.');
     message.channel.send(embed);
     return
@@ -25,7 +25,7 @@ module.exports.run = async (client, message, args) => {
   if (user.hasPermission("MANAGE_MESSAGES")){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('This user cannot be warned.');
     message.channel.send(embed);
     return
@@ -34,7 +34,7 @@ module.exports.run = async (client, message, args) => {
   if (!reason){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('There is no reason for this punishment, please provide a reason.');
     message.channel.send(embed);
     return
@@ -52,7 +52,7 @@ module.exports.run = async (client, message, args) => {
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has been Warned')
-  .setColor(config.reportembedcolor)
+  .setColor(config.yellow)
   .addField('Warned User', `${user} with ID: ${user.id}`)
   .addField('Warned By:', `${message.author} with ID: ${message.author.id}`)
   .addField('Warned in Channel:', message.channel)
@@ -64,7 +64,7 @@ module.exports.run = async (client, message, args) => {
   if (!auditlogchannel) {
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('A `#audit-log` channel channel could not be found, the punishment notification could not be sent.');
     message.channel.send(embed);
   }
@@ -101,14 +101,14 @@ module.exports.run = async (client, message, args) => {
       user.removeRole(muterole.id);
       let embed = new Discord.RichEmbed()
       .setTitle('User has been Unmuted')
-      .setColor(config.plainembedcolor)
+      .setColor(config.yellow)
       .addField('Muted User', `${user} with ID: ${user.id}`)
       auditlogchannel.send(embed);
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Temporarily Muted')
-    .setColor(config.muteembedcolor)
+    .setColor(config.red)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
     .addField('Muted for:', time)
@@ -131,14 +131,14 @@ module.exports.run = async (client, message, args) => {
       user.removeRole(muterole.id);
       let embed = new Discord.RichEmbed()
       .setTitle('User has been Unmuted')
-      .setColor(config.plainembedcolor)
+      .setColor(config.yellow)
       .addField('Muted User', `${user} with ID: ${user.id}`)
       auditlogchannel.send(embed);
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Temporarily Muted')
-    .setColor(config.muteembedcolor)
+    .setColor(config.red)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
     .addField('Muted for:', time)
@@ -158,14 +158,14 @@ module.exports.run = async (client, message, args) => {
       user.removeRole(muterole.id);
       let embed = new Discord.RichEmbed()
       .setTitle('User has been Unmuted')
-      .setColor(config.plainembedcolor)
+      .setColor(config.yellow)
       .addField('Muted User', `${user} with ID: ${user.id}`)
       auditlogchannel.send(embed);
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Temporarily Muted')
-    .setColor(config.muteembedcolor)
+    .setColor(config.red)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
     .addField('Muted for:', time)
@@ -181,7 +181,7 @@ module.exports.run = async (client, message, args) => {
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Kicked')
-    .setColor(config.kickembedcolor)
+    .setColor(config.blue)
     .addField('Kicked User', `${user} with ID: ${user.id}`)
     .addField('Kicked By:', '**AUTOMATIC ESCALATION SYSTEM**')
     .addField('Kicked in Channel:', message.channel)
@@ -191,7 +191,7 @@ module.exports.run = async (client, message, args) => {
     auditlogchannel.send(embed);
   }
 
-  // 4th warning is user is Muted for 1 day
+  // 6th warning is user is Muted for 1 day
   if (warns[user.id].warns === 6){
     let muterole = message.guild.roles.find('name', 'Muted'); // Bot checks to see if there is a role named Muted.
     let time = '1d';
@@ -201,14 +201,14 @@ module.exports.run = async (client, message, args) => {
       user.removeRole(muterole.id);
       let embed = new Discord.RichEmbed()
       .setTitle('User has been Unmuted')
-      .setColor(config.plainembedcolor)
+      .setColor(config.yellow)
       .addField('Muted User', `${user} with ID: ${user.id}`)
       auditlogchannel.send(embed);
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Temporarily Muted')
-    .setColor(config.muteembedcolor)
+    .setColor(config.red)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
     .addField('Muted for:', time)
@@ -216,10 +216,26 @@ module.exports.run = async (client, message, args) => {
     .addField('Reason:', reason);
     auditlogchannel.send(embed);
   };
+
+  // 7th warning will ban the user from the guild
+  if (warns[user.id].warns === 7){
+    let embed = new Discord.RichEmbed()
+    .setTitle('User has been Banned')
+    .setColor(config.red)
+    .addField('Banned User', `${user} with ID: ${user.id}`)
+    .addField('Banned By:', '**AUTOMATIC ESCALATION SYSTEM**')
+    .addField('Banned in Channel:', message.channel)
+    .addField('Time:', message.createdAt)
+    .addField('Reason:', reason);
+
+    message.guild.member(user).ban(reason);
+    auditlogchannel.send(embed);
+    return;
+  };
 };
 
 module.exports.help = {
   name: 'warn',
   description: 'This warns the user, after an amount of warns, user goes through the Automatic Escalation System.',
-  usage: 'warn [user] [reason]'
+  usage: 'warn [@user] [reason]'
 }

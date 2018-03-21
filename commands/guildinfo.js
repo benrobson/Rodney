@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.RichEmbed()
 
   .setTitle(`Information about ${message.guild.name}`)
-  .setColor(config.plainembedcolor)
+  .setColor(config.white)
   .setThumbnail(icon)
   .addField('Server Name:', message.guild.name, true)
   .addField('Server Owner:', message.guild.owner, true)
@@ -20,7 +20,7 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: 'serverinfo',
-  description: 'Displays information about the server/guild',
-  usage: 'serverinfo'
+  name: 'guildinfo',
+  description: 'Displays information about the guild',
+  usage: 'guildinfo'
 }

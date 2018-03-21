@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
   if (!user){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('This user could not be found, or does not exist.');
     message.channel.send(embed);
     return
@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('BAN_MEMBERS')){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('You do not have sufficent permissions to use this command.');
     message.channel.send(embed);
     return
@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
   if (!reason){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('There is no reason for this punishment, please provide a reason.');
     message.channel.send(embed);
     return
@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('MANAGE_MEMBERS')){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('You do not have sufficent permissions to use this command.');
     message.channel.send(embed);
     return
@@ -39,7 +39,7 @@ module.exports.run = async (client, message, args) => {
   if (user.hasPermission('MANAGE_MESSAGES')){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('This user cannot be banned.');
     message.channel.send(embed);
     return
@@ -47,7 +47,7 @@ module.exports.run = async (client, message, args) => {
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has been Banned')
-  .setColor(config.banembedcolor)
+  .setColor(config.red)
   .addField('Banned User', `${user} with ID: ${user.id}`)
   .addField('Banned By:', `${message.author} with ID: ${message.author.id}`)
   .addField('Banned in Channel:', message.channel)
@@ -58,7 +58,7 @@ module.exports.run = async (client, message, args) => {
   if (!auditlogchannel) {
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('A `#audit-log` channel channel could not be found, the punishment notification could not be sent.');
     message.channel.send(embed);
     return

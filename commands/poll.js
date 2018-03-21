@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
   if (args == 0){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('You cannot send an empty poll.');
     message.channel.send(embed);
     return
@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Poll by ${message.author.username}`)
-  .setColor(config.plainembedcolor)
+  .setColor(config.white)
   .setDescription(`${args}`.split(',').join(' '));
 
   return message.channel.send(embed).then(message.delete())
@@ -27,6 +27,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'poll',
-  description: 'Displays information about the user mentioned',
+  description: 'Make a poll with a question with thumbs up and down reactions',
   usage: 'poll [question]'
 };

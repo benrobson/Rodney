@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
   if (!user){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('This user could not be found, or does not exist.');
     message.channel.send(embed);
     return
@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Here is ${user.displayName}s Avatar`)
-  .setColor(config.plainembedcolor)
+  .setColor(config.white)
   .setImage(user.avatarURL);
   message.channel.send(embed);
   return

@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
   if (!user) {
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('The user you want to kick cannot be found.');
     message.channel.send(embed);
     return
@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('MANAGE_MESSAGES')){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('You do not have sufficent permissions to use this command.');
     message.channel.send(embed);
     return
@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
   if (user.hasPermission('MANAGE_MESSAGES')){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('This user cannot be kicked.');
     message.channel.send(embed);
     return
@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has been Kicked')
-  .setColor(config.kickembedcolor)
+  .setColor(config.blue)
   .addField('Kicked User:', `${user} with ID: ${user.id}`)
   .addField('Kicked By:', `${message.author} with ID: ${message.author.id}`)
   .addField('Kicked in Channel:', message.channel)
@@ -42,7 +42,7 @@ module.exports.run = async (client, message, args) => {
   if (!auditlogchannel){
     let embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('Sorry, I couldn\'t find the Audit Log Channel, unable to send this punishment notification.');
     message.channel.send(embed);
     return

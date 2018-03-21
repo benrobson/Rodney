@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
   if (message.author.id !== `${config.ownerid}`){
     let embed = new Discord.RichEmbed()
     .setTitle(`An error has occurred!`)
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription(`Only <@${config.ownerid}> terminate the instance.`)
     message.channel.send(embed);
   }
@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
   if (message.author.id == `${config.ownerid}`){
     let embed = new Discord.RichEmbed()
     .setTitle(`It's time for ${client.user.username} to go!!!`)
-    .setColor(config.errorembedcolor)
+    .setColor(config.red)
     .setDescription('Leaving Guild...')
     message.channel.send(embed);
 

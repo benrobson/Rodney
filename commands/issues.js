@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.RichEmbed()
 
   .setTitle('Issue Tracker')
-  .setColor(config.plainembedcolor)
+  .setColor(config.white)
   .setDescription(`If you would like to report an issue or make a suggestion in the bot development, please do so on the tracker ${package.bugs.url}`)
   message.channel.send(embed);
   return
