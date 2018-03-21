@@ -3,13 +3,14 @@ const config = require('../config.json'); // this links to the config.json file
 const superagent = require('superagent');
 
 module.exports.run = async (client, message, args) => {
-  const mcIP = args.join(' ').slice(8);
+  let mcIP =
 
   let {body} = await superagent
   .get('http://mcapi.us/server/status?ip=' + mcIP);
 
   let embed = new Discord.RichEmbed()
-  .setTitle(`Information about this Minecraft Server.`)
+  .setTitle(`Information about ${mcIP}`)
+  .setThumbnail('http://minecraftpocketedition.wikia.com/wiki/File:Minecraft_1.2_Logo.png')
   .setColor(config.green)
   .addField('Server Online:', body.online, true)
   .addField('Players On:', body.players.now, true)
