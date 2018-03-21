@@ -34,7 +34,7 @@ client.on('guildMemberAdd', async member => {
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has joined the server!')
-  .setColor(config.joinembedcolor)
+  .setColor(config.green)
   .addField('Username:', `${member}`)
   auditlogchannel.send(embed);
   return
@@ -46,7 +46,7 @@ client.on('guildMemberRemove', async member => {
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has left the server!')
-  .setColor(config.leaveembedcolor)
+  .setColor(config.red)
   .addField('Username:', `${member}`)
   auditlogchannel.send(embed);
   return
@@ -58,7 +58,7 @@ client.on('channelCreate', async channel => {
 
   let embed = new Discord.RichEmbed()
   .setTitle('Channel has been created!')
-  .setColor(config.joinembedcolor)
+  .setColor(config.green)
   .addField('Channel Name:', `${channel}`)
   .addField('Channel Type:', `${channel.type}`)
   .addField('Created At:', `${channel.createdAt}`)
@@ -72,7 +72,7 @@ client.on('channelDelete', async channel => {
 
   let embed = new Discord.RichEmbed()
   .setTitle('Channel has been deleted!')
-  .setColor(config.leaveembedcolor)
+  .setColor(config.red)
   .addField('Channel Name:', `${channel.name}`)
   .addField('Channel Type:', `${channel.type}`)
   .addField('Deleted At:', `${channel.createdAt}`)
@@ -100,7 +100,7 @@ client.on('message', async message => {
 
       let embed = new Discord.RichEmbed()
       .setTitle('Discord Invite Detected')
-      .setColor(config.errorembedcolor)
+      .setColor(config.red)
       .setDescription(`${message.author}, you are not allowed to advertise other Discord Servers in this server!`);
       message.channel.send(embed);
       return
@@ -113,7 +113,7 @@ client.on('message', async message => {
 
       let embed = new Discord.RichEmbed()
       .setTitle('Swear Word Detected')
-      .setColor(config.errorembedcolor)
+      .setColor(config.red)
       .setDescription(`${message.author}, you can't say that, this is a Christian Minecraft Server!`);
       message.channel.send(embed).then(msg => msg.delete(3000));
       return
