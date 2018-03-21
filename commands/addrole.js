@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
   let guildRole = message.guild.roles.find('name', role);
   if (!role) return message.reply('Couldn\'t find that role.');
 
-  if (user.roles.has(guildRole.id)) return message.reply('That role does exist');
+  if (user.roles.has(guildRole.id)) return message.reply('That role does exist!');
   await (user.addRole(guildRole.id));
 };
 
