@@ -107,7 +107,7 @@ module.exports.run = async (client, message, args) => {
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
-    .setTitle('User has been Temporarily Muted')
+    .setTitle('User has been Temporarily Muted.')
     .setColor(config.red)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
@@ -137,7 +137,7 @@ module.exports.run = async (client, message, args) => {
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
-    .setTitle('User has been Temporarily Muted')
+    .setTitle('User has been Temporarily Muted.')
     .setColor(config.red)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
@@ -164,7 +164,7 @@ module.exports.run = async (client, message, args) => {
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
-    .setTitle('User has been Temporarily Muted')
+    .setTitle('User has been Temporarily Muted.')
     .setColor(config.red)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
@@ -180,7 +180,7 @@ module.exports.run = async (client, message, args) => {
     message.guild.member(user).kick(reason);
 
     let embed = new Discord.RichEmbed()
-    .setTitle('User has been Kicked')
+    .setTitle('User has been Kicked.')
     .setColor(config.blue)
     .addField('Kicked User', `${user} with ID: ${user.id}`)
     .addField('Kicked By:', '**AUTOMATIC ESCALATION SYSTEM**')
@@ -200,14 +200,14 @@ module.exports.run = async (client, message, args) => {
     setTimeout(function(){
       user.removeRole(muterole.id);
       let embed = new Discord.RichEmbed()
-      .setTitle('User has been Unmuted')
+      .setTitle('User has been Unmuted.')
       .setColor(config.yellow)
       .addField('Muted User', `${user} with ID: ${user.id}`)
       auditlogchannel.send(embed);
     }, ms(time))
 
     let embed = new Discord.RichEmbed()
-    .setTitle('User has been Temporarily Muted')
+    .setTitle('User has been Temporarily Muted.')
     .setColor(config.red)
     .addField('Muted User', `${user} with ID: ${user.id}`)
     .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
@@ -220,7 +220,7 @@ module.exports.run = async (client, message, args) => {
   // 7th warning will ban the user from the guild
   if (warns[user.id].warns === 7){
     let embed = new Discord.RichEmbed()
-    .setTitle('User has been Banned')
+    .setTitle('User has been Banned.')
     .setColor(config.red)
     .addField('Banned User', `${user} with ID: ${user.id}`)
     .addField('Banned By:', '**AUTOMATIC ESCALATION SYSTEM**')
