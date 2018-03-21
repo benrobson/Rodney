@@ -23,5 +23,5 @@ module.exports.run = async (client, message, args) => {
   module.exports.help = {
     name: 'avatar',
     description: 'This will display your avatar.',
-    usage: 'avatar'
+    usage: 'avatar [@user]'
   }
