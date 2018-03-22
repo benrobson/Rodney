@@ -16,8 +16,8 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.RichEmbed()
   .setTitle('User has been banned')
   .setColor(config.red)
-  .addField('Banned User', `${user} with ID: ${user.id}`)
-  .addField('Banned By:', `${message.author} with ID: ${message.author.id}`)
+  .addField('Banned User', `${user}`)
+  .addField('Banned By:', `${message.author}`)
   .addField('Banned in Channel:', message.channel)
   .addField('Time:', message.createdAt)
   .addField('Reason:', reason);
