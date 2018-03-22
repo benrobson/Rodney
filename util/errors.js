@@ -60,3 +60,13 @@ module.exports.invalidPoll = (message) => {
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
 };
+
+// Used if a user does not specify a number of messages to purge
+module.exports.provideNumber = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('Please provide a number of messages you would like to delete.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
