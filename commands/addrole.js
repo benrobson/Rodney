@@ -13,6 +13,26 @@ module.exports.run = async (client, message, args) => {
 
   if (user.roles.has(guildRole.id)) return message.reply('That role does exist!');
   await (user.addRole(guildRole.id));
+
+  let embed = new Discord.RichEmbed()
+  .setTitle('User has been assigned to a role.')
+  .setColor(config.green)
+  .addField('Assigned User:', `${user}`)
+  .addField('Assigned By:', `${message.author}`)
+  .addField('Assigned Role:', `${role}`);
+
+  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+  if (!auditlogchannel){
+    let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.red)
+    .setDescription('Sorry, I couldn\'t find the Audit Log Channel, unable to send this punishment notification.');
+    message.channel.send(embed);
+    return
+  };
+
+  auditlogchannel.send(embed);
+  return
 };
 
 module.exports.help = {
