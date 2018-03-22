@@ -3,7 +3,7 @@ const config = require('../config.json'); // this links to the config.json file
 const superagent = require('superagent');
 
 module.exports.run = async (client, message, args) => {
-  let mcIP =
+  let mcIP = args[0];
 
   let {body} = await superagent
   .get('http://mcapi.us/server/status?ip=' + mcIP);
