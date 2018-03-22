@@ -56,6 +56,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'kick',
-  description: 'Kicks the mentioned user from the guild/server',
+  description: 'Kicks the mentioned user from the guild/server.',
   usage: 'kick [user] [reason]'
 };

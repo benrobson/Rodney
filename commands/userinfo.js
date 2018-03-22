@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
   .addField('Messages Sent:', '*Coming Soon*')
   .addField('Account Created at:', '*Coming Soon*')
   .addField('You Joined:', message.member.joinedAt)
-  .addField('Banable', bannable, true)
+  .addField('Bannable', bannable, true)
   .addField('Kickable', kickable, true);
   message.channel.send(embed);
   return

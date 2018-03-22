@@ -27,6 +27,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'poll',
-  description: 'Make a poll with a question with thumbs up and down reactions',
+  description: 'Make a poll with a question with thumbs up and down reactions.',
   usage: 'poll [question]'
 };

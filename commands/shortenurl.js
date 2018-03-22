@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args, tools) => {
 
   if (!args[1]){
     shorten.shorten(args[0], function(res){
-      if (res.startsWith('Error:')) return message.channel.send('Please enter a valid URL');
+      if (res.startsWith('Error:')) return message.channel.send('Please enter a valid URL!');
       let embed = new Discord.RichEmbed()
       .setTitle('Here is the shortened URL.')
       .setColor(config.green)

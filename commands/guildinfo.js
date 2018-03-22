@@ -22,6 +22,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'guildinfo',
-  description: 'Displays information about the guild',
+  description: 'Displays information about the guild.',
   usage: 'guildinfo'
 }
