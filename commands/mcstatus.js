@@ -7,12 +7,14 @@ module.exports.run = async (client, message, args) => {
 
   let {body} = await superagent
   .get('http://mcapi.us/server/status?ip=' + mcIP);
+  let status = body.online ? "✅" : "❎";
+
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Information about ${mcIP}`)
-  .setThumbnail('http://minecraftpocketedition.wikia.com/wiki/File:Minecraft_1.2_Logo.png')
+  .setThumbnail('https://vignette.wikia.nocookie.net/minecraftpocketedition/images/f/f1/Minecraft_1.2_Logo.png/revision/latest?cb=20171204231225')
   .setColor(body.online ? config.green : config.red)
-  .addField('Server Online:', body.online, true)
+  .addField('Server Online:', status, true)
   .addField('Players On:', body.players.now, true)
   .addField('Max Players:', body.players.max, true);
 
