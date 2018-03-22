@@ -94,7 +94,7 @@ client.on('message', async message => {
 
     let commandfile = client.commands.get(cmd.slice(prefix.length));
     if (commandfile) commandfile.run(client, message, args);
-
+    
     // Discord Invite Detector
     const invite = ['discord.gg'];
     if (invite.some(word => message.content.toLowerCase().includes(word))) {
