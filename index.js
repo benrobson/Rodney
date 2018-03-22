@@ -22,11 +22,11 @@ fs.readdir('./commands/', (err, files) => {
 
 // Bot Bootup Event
 client.on('ready', async () => {
-    console.log(`${client.user.username} is online and is operating on ${client.guilds.size} servers for ${client.users.size} users.`); // this is the message you will see when the bot is online
-    let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
-    let pluralnonpluralplayers = (client.users.size > 1) ? 'Users' : 'User';
-    client.user.setActivity(`${client.guilds.size} ${pluralnonpluralservers} // ${client.users.size} ${pluralnonpluralplayers}`, {type: 'PLAYING'}); // this sets the Activity Status of the bot
-    return
+  let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
+  let pluralnonpluralusers = (client.users.size > 1) ? 'Users' : 'User';
+  console.log(`${client.user.username} is online and is operating on ${client.guilds.size} ${pluralnonpluralservers} for ${client.users.size} ${pluralnonpluralusers}.`); // this is the message you will see when the bot is online
+  client.user.setActivity(`${client.guilds.size} ${pluralnonpluralservers} // ${client.users.size} ${pluralnonpluralusers}`, {type: 'PLAYING'}); // this sets the Activity Status of the bot
+  return
 });
 
 // Guild Events
