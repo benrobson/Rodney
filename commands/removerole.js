@@ -1,10 +1,12 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
+const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
-  if (!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply('Insufficent Permissions.');
+  if (!message.member.hasPermission('MANAGE_ROLES')) return errors.noPermissions(message, 'MANAGE_ROLES');
+
   let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if (!user) return message.reply('Couldn\'t find that user.');
+  if (!user) return errors.invalidUser(message);
 
   let role = args.join(' ').slice(22);
   if (!role) return message.reply('Please specify a role.');
@@ -17,19 +19,12 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.RichEmbed()
   .setTitle('User has been removed from a role.')
   .setColor(config.yellow)
-  .addField('Removed User:', `${user}`)
-  .addField('Removed By:', `${message.author}`)
-  .addField('Removed Role:', `${role}`);
+  .addField('Removed User', `${user}`)
+  .addField('Removed By', `${message.author}`)
+  .addField('Removed Role', `${role}`);
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('Sorry, I couldn\'t find the Audit Log Channel, unable to send this punishment notification.');
-    message.channel.send(embed);
-    return
-  };
+  if (!auditlogchannel) return errors.noLogChannel(message);
 
   auditlogchannel.send(embed);
   return
@@ -38,5 +33,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
   name: 'removerole',
   description: 'This will remove a role from the mentioned user.',
-  usage: 'removerole [user] [role]'
+  usage: 'removerole [@user] [role]'
 }
