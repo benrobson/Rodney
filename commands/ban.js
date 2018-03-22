@@ -1,49 +1,17 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
+const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
+  if (!message.member.hasPermission('BAN_MEMBERS'))return errors.noPermissions(message, 'BAN_MEMBERS');
+
   let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if (!user){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('This user could not be found, or does not exist.');
-    message.channel.send(embed);
-    return
-  };
-  if (!message.member.hasPermission('BAN_MEMBERS')){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('You do not have sufficent permissions to use this command.');
-    message.channel.send(embed);
-    return
-  };
+  if (!user) return errors.invalidUser(message);
+
   let reason = args.join(' ').slice(22);
-  if (!reason){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('There is no reason for this punishment, please provide a reason.');
-    message.channel.send(embed);
-    return
-  };
-  if (!message.member.hasPermission('MANAGE_MEMBERS')){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('You do not have sufficent permissions to use this command.');
-    message.channel.send(embed);
-    return
-  };
-  if (user.hasPermission('MANAGE_MESSAGES')){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('This user cannot be banned.');
-    message.channel.send(embed);
-    return
-  };
+  if (!reason) return errors.invalidReason(message);
+
+  if (user.hasPermission('MANAGE_MESSAGES')) return errors.cannotPunish(message);
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has been banned')
@@ -55,14 +23,7 @@ module.exports.run = async (client, message, args) => {
   .addField('Reason:', reason);
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) {
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('A `#audit-log` channel channel could not be found, the punishment notification could not be sent.');
-    message.channel.send(embed);
-    return
-  }
+  if (!auditlogchannel) return errors.noLogChannel(message);
 
   message.guild.member(user).ban(reason);
   message.delete().catch(O_o=>{});
@@ -72,6 +33,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'ban',
-  description: 'This will permantly ban a user.',
+  description: 'This will permantly ban a user from the guild.',
   usage: 'ban [@user] [reason]'
 };
