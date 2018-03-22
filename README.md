@@ -17,5 +17,6 @@ If you are having troubles and/or issues setting up the bot, please leave an iss
 ## Useful Resources
 - [An Idiots Guide Discord](https://discord.gg/gkZCQtH) [these guys were helpful in little code issues]
 - [The Source Code Discord](https://discordapp.com/invite/w24CQMR) [these guys were helpful in little code issues]
+- [My Discord](https://discord.gg/n8cHyFA) [these guys were helpful in little code issues]
 - [Emoji Unicode Tables](https://apps.timwhitlock.info/emoji/tables/unicode) [this was helpful when it came to using emojis in the code]
 - [discord.js Documentation](https://discord.js.org/#/docs/main/stable/general/welcome) [overall helpful]
