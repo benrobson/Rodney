@@ -23,7 +23,6 @@ module.exports.run = async (client, message, args) => {
     return
   };
 
-  let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
   if (warns[user.id].warns === 0){
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
