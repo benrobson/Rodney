@@ -23,6 +23,16 @@ module.exports.run = async (client, message, args) => {
     return
   };
 
+  let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
+  if (warns[user.id].warns === 0){
+    const embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.red)
+    .setDescription('This user has no warnings in the system.');
+    message.channel.send(embed);
+    return
+  };
+
   let embed = new Discord.RichEmbed()
   .setTitle(`Warning Profile for ${user.displayName}`)
   .setColor(config.white)
