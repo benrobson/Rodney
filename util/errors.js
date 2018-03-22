@@ -27,3 +27,12 @@ module.exports.invalidUser = (message) => {
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
 };
+
+module.exports.invalidReason = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('No reason has been provided.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
