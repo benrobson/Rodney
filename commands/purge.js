@@ -32,7 +32,8 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.RichEmbed()
   .setTitle('Messages Purged!')
   .setColor(config.green)
-  .addField('Kicked By:', `${message.author} with ID: ${message.author.id}`)
+  .addField('Purged By:', `${message.author}`)
+  .addField('Number of Messages:', args)
   .addField('Channel:', message.channel)
   .addField('Time:', message.createdAt)
 
