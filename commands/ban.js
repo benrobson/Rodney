@@ -22,17 +22,17 @@ module.exports.run = async (client, message, args) => {
   .addField('Time:', message.createdAt)
   .addField('Reason:', reason);
 
+  message.guild.member(user).ban(reason);
+
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
 
-  message.guild.member(user).ban(reason);
-  message.delete().catch(O_o=>{});
   auditlogchannel.send(embed);
   return;
 };
 
 module.exports.help = {
   name: 'ban',
-  description: 'This will permantly ban a user from the guild.',
+  description: 'This will permanently ban a user from the guild.',
   usage: 'ban [@user] [reason]'
 };
