@@ -1,6 +1,7 @@
 {
   "prefix": "-",
   "ownerid": "YOUR DISCORD ID HERE",
+  "errortimeout": "5000",
 
   "white": "#ffffff",
   "red": "#ff0000",
