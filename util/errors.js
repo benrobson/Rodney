@@ -6,10 +6,21 @@ module.exports.noLogChannel = (message, perm) => {
   let embed = new Discord.RichEmbed()
   .setTitle('An error has occurred!')
   .setColor(config.red)
-  .setDescription('Sorry, I could not find the Audit Log Channel. This notification was unable to be sent!');
+  .setDescription('Sorry, I could not find the `#audit-log` channel. This notification was unable to be sent!');
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
 };
+
+// Used if there is no #reports channel in the guild
+module.exports.noReportChannel = (message, perm) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setColor(config.red)
+  .setDescription('Sorry, I could not find the `#reports` channel. This report was unable to be sent!');
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
+
 
 // Used if user has no permissions to execute the command
 module.exports.noPermissions = (message, perm) => {
