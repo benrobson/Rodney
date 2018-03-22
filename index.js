@@ -1,22 +1,22 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('./config.json'); // this links to the config.json file
-const token = require('./token.json'); // this links to the token.json file where my bot token is stored for Development Purposes
-const package = require('./package.json'); // this links to the package.json file
-const client = new Discord.Client({disableEveryone: true}); // this is the object for the bot itself
-const fs = require('fs'); // this is the 'File System' that reads all of the commands in the commands folder
+const Discord = require('discord.js');
+const config = require('./config.json');
+const token = require('./token.json');
+const package = require('./package.json');
+const client = new Discord.Client({disableEveryone: true});
+const fs = require('fs');
 client.commands = new Discord.Collection();
 
 fs.readdir('./commands/', (err, files) => {
   if (err) console.log(err);
   let jsfile = files.filter(f => f.split(".").pop() === 'js')
   if (jsfile.length <= 0) {
-    console.log('Couldn\'t find commands.'); // if the bot cannot find any commands in the file path given, it will error out
+    console.log('Couldn\'t find commands.');
     return;
   }
 
   jsfile.forEach((files, i) => {
-    let props = require(`./commands/${files}`); // this is the file path where the bot will find commands from
-    console.log(`${files} has been loaded!`); // this is the message you will see when commands are loading into bot instance
+    let props = require(`./commands/${files}`);
+    console.log(`${files} has been loaded!`);
     client.commands.set(props.help.name, props);
   })});
 
@@ -24,8 +24,8 @@ fs.readdir('./commands/', (err, files) => {
 client.on('ready', async () => {
   let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
   let pluralnonpluralusers = (client.users.size > 1) ? 'Users' : 'User';
-  console.log(`${client.user.username} is online and is operating on ${client.guilds.size} ${pluralnonpluralservers} for ${client.users.size} ${pluralnonpluralusers}.`); // this is the message you will see when the bot is online
-  client.user.setActivity(`${client.guilds.size} ${pluralnonpluralservers} // ${client.users.size} ${pluralnonpluralusers}`, {type: 'PLAYING'}); // this sets the Activity Status of the bot
+  console.log(`${client.user.username} is online and is operating on ${client.guilds.size} ${pluralnonpluralservers} for ${client.users.size} ${pluralnonpluralusers}.`);
+  client.user.setActivity(`${client.guilds.size} ${pluralnonpluralservers} // ${client.users.size} ${pluralnonpluralusers}`, {type: 'PLAYING'});
   return
 });
 
@@ -84,8 +84,8 @@ client.on('channelDelete', async channel => {
 
 // Message Handler
 client.on('message', async message => {
-    if (message.author.bot) return; // this will not allow the bot to respond to it's own messages
-    if (message.channel.type === 'dm') return; // the bot will not respond to messages from a DM
+    if (message.author.bot) return;
+    if (message.channel.type === 'dm') return;
 
     let prefix = config.prefix;
     let messageArray = message.content.split(' ');
@@ -94,7 +94,7 @@ client.on('message', async message => {
 
     let commandfile = client.commands.get(cmd.slice(prefix.length));
     if (commandfile) commandfile.run(client, message, args);
-    
+
     // Discord Invite Detector
     const invite = ['discord.gg'];
     if (invite.some(word => message.content.toLowerCase().includes(word))) {
@@ -122,4 +122,4 @@ client.on('message', async message => {
     };
   });
 
-client.login(token.token); // this links to an external file where your tokens are stored (token.json)
+client.login(token.token);
