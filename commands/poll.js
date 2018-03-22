@@ -1,19 +1,13 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
+const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
-  if (args == 0){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('You cannot send an empty poll.');
-    message.channel.send(embed);
-    return
-  };
+  if (args == 0) return errors.invalidPoll(message);
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Poll by ${message.author.username}`)
-  .setColor(config.white)
+  .setColor(config.yellow)
   .setDescription(`${args}`.split(',').join(' '));
 
   return message.channel.send(embed).then(message.delete())

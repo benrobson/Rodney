@@ -15,7 +15,7 @@ module.exports.noLogChannel = (message, perm) => {
 module.exports.noPermissions = (message, perm) => {
   let embed = new Discord.RichEmbed()
   .setTitle('An error has occurred!')
-  .setDescription(`You have insufficent permissions to run this command. You require the permission flag of **${perm}**!`)
+  .setDescription(`You have insufficent permissions to run this command.\nYou require the permission flag of **${perm}**!`)
   .setColor(config.red)
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
@@ -46,6 +46,16 @@ module.exports.cannotPunish = (message) => {
   let embed = new Discord.RichEmbed()
   .setTitle('An error has occurred!')
   .setDescription('This user cannot be punished.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
+
+// Used if a user attempts to send an empty poll
+module.exports.invalidPoll = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('Please provide a question for your poll.')
   .setColor(config.red);
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
