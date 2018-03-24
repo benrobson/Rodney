@@ -91,3 +91,13 @@ module.exports.emptyMessage = (message) => {
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
 };
+
+// Used if no valid URL is provided [used in the shortenurl command]
+module.exports.invalidURL = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('Please enter a valid URL.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
