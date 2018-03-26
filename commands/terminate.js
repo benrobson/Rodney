@@ -1,5 +1,5 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
 
 module.exports.run = async (client, message, args) => {
 
