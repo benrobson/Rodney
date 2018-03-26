@@ -111,3 +111,13 @@ module.exports.invalidTime = (message) => {
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
 };
+
+// Used if no time is specified
+module.exports.ownerOnly = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription(`Only <@${config.ownerid}> can use this command.`)
+  .setColor(config.red);
+
+  message.channel.send(embed);
+};
