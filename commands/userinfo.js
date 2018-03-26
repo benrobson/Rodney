@@ -1,17 +1,22 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
+const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
+  let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if (!user) return errors.invalidUser(message);
+
   let kickable = message.member.kickable ? "✅" : "❎";
   let bannable = message.member.bannable ? "✅" : "❎";
-  let icon = message.author.avatarURL;
+  let icon = user.displayAvatarURL;
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Information about ${message.author.username}`)
   .setColor(config.red)
   .setThumbnail(icon)
-  .addField('Username', message.author.username, true)
-  .addField('User ID', message.member.id, true)
+  .addField('Username', message.username, true)
+  .addField('User ID', user.id, true)
+  .addField('Status', user.presence.status, true)
   .addField('Roles:', '*Coming Soon*')
   .addField('Messages Sent:', '*Coming Soon*')
   .addField('Account Created at:', '*Coming Soon*')
@@ -25,5 +30,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
   name: 'userinfo',
   description: 'Displays information about the user.',
-  usage: 'userinfo'
+  usage: 'userinfo [@user]'
 }
