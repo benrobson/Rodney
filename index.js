@@ -32,8 +32,8 @@ client.on('ready', async () => {
 // Guild Events
 // User Join Noticication Event
 client.on('guildMemberAdd', async member => {
-  if (!auditlogchannel) return
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
+  if (!auditlogchannel) return
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has joined the server!')
@@ -45,8 +45,8 @@ client.on('guildMemberAdd', async member => {
 
 // User Leave Noticication Event
 client.on('guildMemberRemove', async member => {
-  if (!auditlogchannel) return
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
+  if (!auditlogchannel) return
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has left the server!')
@@ -58,13 +58,13 @@ client.on('guildMemberRemove', async member => {
 
 // Channel Create Noticication Event
 client.on('channelCreate', async channel => {
+  let auditlogchannel = member.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return
-  let auditlogchannel = channel.guild.channels.find('name', 'audit-log');
 
   let embed = new Discord.RichEmbed()
   .setTitle('Channel has been created!')
   .setColor(config.green)
-  .addField('Channel Name:', `${channel}`)
+  .addField('Channel Name:', `${channel.name}`)
   .addField('Channel Type:', `${channel.type}`)
   .addField('Created At:', `${channel.createdAt}`)
   auditlogchannel.send(embed);
@@ -73,9 +73,9 @@ client.on('channelCreate', async channel => {
 
 // Channel Delete Noticication Event
 client.on('channelDelete', async channel => {
+  let auditlogchannel = member.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return
-  let auditlogchannel = channel.guild.channels.find('name', 'audit-log');
-
+  
   let embed = new Discord.RichEmbed()
   .setTitle('Channel has been deleted!')
   .setColor(config.red)
