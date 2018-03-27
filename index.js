@@ -117,6 +117,8 @@ client.on('message', async message => {
 
     // Discord Invite Detector
     const invite = ['discord.gg'];
+    if (!config.discordinvite) return;
+    if (client.user.bot) return;
     if (invite.some(word => message.content.toLowerCase().includes(word))) {
       message.delete().catch(O_o=>{});
 
@@ -130,6 +132,8 @@ client.on('message', async message => {
 
     // Swear Detector
     const swearWords = ['shit', 'fuck', 'bitch', 'nigger', 'nigga', 'cunt', 'whore', 'fag', 'faggot', 'dick', 'cock', 'pussy', 'slut', 'bastard'];
+    if (!config.swearfilter) return;
+    if (client.user.bot) return;
     if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
       message.delete().catch(O_o=>{});
 
@@ -137,7 +141,7 @@ client.on('message', async message => {
       .setTitle('Swear Word Detected')
       .setColor(config.red)
       .setDescription(`${message.author}, you can't say that, this is a Christian Minecraft Server!`);
-      message.channel.send(embed).then(msg => msg.delete(3000));
+      message.channel.send(embed).then(message => message.delete(3000));
       return
     };
   });
