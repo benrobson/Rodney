@@ -116,7 +116,7 @@ client.on('message', async message => {
     if (commandfile) commandfile.run(client, message, args);
 
     // Discord Invite Detector
-    const invite = ['discord.gg'];
+    const invite = ['discord.gg', 'discord.io'];
     if (!config.discordinvite) return;
     if (client.user.bot) return;
     if (invite.some(word => message.content.toLowerCase().includes(word))) {
