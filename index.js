@@ -30,6 +30,22 @@ client.on('ready', async () => {
 });
 
 // Guild Events
+// Deleted Message Notification Event
+client.on('messageDelete', async message => {
+  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+  if (!auditlogchannel) return
+
+  let embed = new Discord.RichEmbed()
+  .setTitle('A messsage has been deleted.')
+  .setColor(config.yellow)
+  .addField('Sent By', message.author)
+  .addField('Sent At', message.createdAt)
+  .addField('Deleted in', message.channel)
+  .addField('Message Content', message.content)
+  auditlogchannel.send(embed);
+  return
+});
+
 // User Join Noticication Event
 client.on('guildMemberAdd', async member => {
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
@@ -75,7 +91,7 @@ client.on('channelCreate', async channel => {
 client.on('channelDelete', async channel => {
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return
-  
+
   let embed = new Discord.RichEmbed()
   .setTitle('Channel has been deleted!')
   .setColor(config.red)
