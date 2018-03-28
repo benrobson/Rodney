@@ -135,7 +135,7 @@ client.on('message', async message => {
     // Swear Detector
     const swearWords = ['shit', 'fuck', 'bitch', 'nigger', 'nigga', 'cunt', 'whore', 'fag', 'faggot', 'dick', 'cock', 'pussy', 'slut', 'bastard'];
     if (!config.swearfilter) return;
-    if (client.user.bot) return;
+    //if (client.user.bot) return;
     if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
       message.delete().catch(O_o=>{});
 
