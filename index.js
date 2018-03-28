@@ -54,7 +54,8 @@ client.on('guildMemberAdd', async member => {
   let embed = new Discord.RichEmbed()
   .setTitle('User has joined the server!')
   .setColor(config.green)
-  .addField('Username:', `${member}`)
+  .addField('Username', member.user.username, true)
+  .addField('Tag', member, true)
   auditlogchannel.send(embed);
   return
 });
@@ -67,7 +68,8 @@ client.on('guildMemberRemove', async member => {
   let embed = new Discord.RichEmbed()
   .setTitle('User has left the server!')
   .setColor(config.red)
-  .addField('Username:', `${member}`)
+  .addField('Username', member.user.username, true)
+  .addField('Tag', member, true)
   auditlogchannel.send(embed);
   return
 });
