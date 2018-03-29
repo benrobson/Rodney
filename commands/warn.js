@@ -61,7 +61,7 @@ module.exports.run = async (client, message, args) => {
         message.guild.channels.forEach(async (channel, id) => {
           await channel.overwritePermissions(muterole, {
             SEND_MESSAGES: false,
-            ADD_REACTIONS: false.
+            ADD_REACTIONS: false,
             SPEAK: false
           });
         });
@@ -189,7 +189,7 @@ module.exports.run = async (client, message, args) => {
     .addField('Muted for:', time)
     .addField('Time:', message.createdAt)
     .addField('Reason:', reason);
-    
+
     auditlogchannel.send(embed);
   };
 
