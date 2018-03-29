@@ -5,8 +5,7 @@ const errors = require('../util/errors.js');
 module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('ADMINISTRATOR')) return errors.noPermissions(message, 'ADMINISTRATOR');
 
-  if (!args[0]) return errors.emptyMessage(message);
-
+  if (!args[0]) return errors.emptyMessage(message);\
   let inputmessage = args.join(' ');
 
   let embed = new Discord.RichEmbed()
