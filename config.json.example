@@ -3,6 +3,9 @@
   "ownerid": "YOUR DISCORD ID HERE",
   "errortimeout": "5000",
 
+  "swearfilter": false,
+  "discordinvite": true,
+
   "white": "#ffffff",
   "red": "#ff0000",
   "orange": "#ffa500",
