@@ -1,44 +1,19 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
-const fs = require('fs'); // this is the 'File System' that reads all of the commands in the commands folder
-const ms = require('ms'); // this package allows us to use time
-let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8')); // this links to the warnings.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
+const fs = require('fs');
+const ms = require('ms');
+let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
+const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
-  let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if (!user){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('This user could not be found, or does not exist.');
-    message.channel.send(embed);
-    return
-  };
-  if (!message.member.hasPermission("MANAGE_MESSAGES")){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('You do not have sufficent permissions.');
-    message.channel.send(embed);
-    return
-  };
-  if (user.hasPermission("MANAGE_MESSAGES")){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('This user cannot be warned.');
-    message.channel.send(embed);
-    return
-  };
+  if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
+  if (user.hasPermission("MANAGE_MESSAGES")) return errors.cannotPunish(message);
+
+  let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if (!user) return errors.invalidUser(message);
+
   let reason = args.join(" ").slice(22);
-  if (!reason){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('There is no reason for this punishment, please provide a reason.');
-    message.channel.send(embed);
-    return
-  };
+  if (!reason) return errors.invalidReason(message);
 
   if (!warns[user.id]) warns[user.id] = {
     warns: 0
@@ -75,8 +50,8 @@ module.exports.run = async (client, message, args) => {
   // Punishments
   // 2nd warning is user is Muted for 5 minutes
   if (warns[user.id].warns === 2){
-    let muterole = message.guild.roles.find('name', 'Muted'); // Bot checks to see if there is a role named Muted.
-    if (!muterole){ // if there is no role named Muted, the bot will go ahead and create the role and apply permissions to every channel.
+    let muterole = message.guild.roles.find('name', 'Muted');
+    if (!muterole){
       try {
         muterole = await message.guild.createRole({
           name: 'Muted',
@@ -86,7 +61,8 @@ module.exports.run = async (client, message, args) => {
         message.guild.channels.forEach(async (channel, id) => {
           await channel.overwritePermissions(muterole, {
             SEND_MESSAGES: false,
-            ADD_REACTIONS: false
+            ADD_REACTIONS: false.
+            SPEAK: false
           });
         });
       } catch(e) {
@@ -116,14 +92,13 @@ module.exports.run = async (client, message, args) => {
     .addField('Reason:', reason);
 
     let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-    if (!auditlogchannel) return message.channel.send('Sorry, I couldn\'t find the Audit Log Channel, unable to send this punishment notification.');
-
+    if (!auditlogchannel) return errors.noLogChannel(message);
     auditlogchannel.send(embed);
   }
 
   // 3nd warning is user is Muted for 15 minutes
   if (warns[user.id].warns === 3){
-    let muterole = message.guild.roles.find('name', 'Muted'); // Bot checks to see if there is a role named Muted.
+    let muterole = message.guild.roles.find('name', 'Muted');
     let time = '15m';
     await(user.addRole(muterole.id));
 
@@ -150,7 +125,7 @@ module.exports.run = async (client, message, args) => {
 
   // 4th warning is user is Muted for 1 hour
   if (warns[user.id].warns === 4){
-    let muterole = message.guild.roles.find('name', 'Muted'); // Bot checks to see if there is a role named Muted.
+    let muterole = message.guild.roles.find('name', 'Muted');
     let time = '1h';
     await(user.addRole(muterole.id));
 
@@ -214,6 +189,7 @@ module.exports.run = async (client, message, args) => {
     .addField('Muted for:', time)
     .addField('Time:', message.createdAt)
     .addField('Reason:', reason);
+    
     auditlogchannel.send(embed);
   };
 

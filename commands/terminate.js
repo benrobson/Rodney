@@ -3,14 +3,8 @@ const config = require('../config.json');
 
 module.exports.run = async (client, message, args) => {
 
-  if (message.author.id !== `${config.ownerid}`){
-    let embed = new Discord.RichEmbed()
-    .setTitle(`An error has occurred!`)
-    .setColor(config.red)
-    .setDescription(`Only <@${config.ownerid}> terminate the instance.`)
-    message.channel.send(embed);
-  }
-
+  if (message.author.id !== `${config.ownerid}`) return errors.ownersOnly(message);
+  
   if (message.author.id == `${config.ownerid}`){
     let embed = new Discord.RichEmbed()
     .setTitle(`It's time for ${client.user.username} to go!!!`)

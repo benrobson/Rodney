@@ -15,7 +15,6 @@ module.exports.run = async (client, message, args, tools) => {
       message.channel.send(embed);
       return
     })
-
   } else {
     shorten.custom(args[0], args[1], function(res){
     if (res.startsWith('Error:')){
