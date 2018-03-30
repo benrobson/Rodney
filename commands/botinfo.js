@@ -31,13 +31,11 @@ module.exports.run = async (client, message, args) => {
   .setTitle(`Information about ${client.user.username}`)
   .setColor(config.white)
   .setThumbnail(icon)
-  .addField('Bot Name:', client.user.username, true)
+  .addField('Bot Name', client.user.username, true)
   .addField('Guild Count', client.guilds.size, true)
-  .addField('Discord.js Version:', `v${version}`, true)
-  .addField("Node Version", `${process.version}`, true)
-  .addField('Total Number of Users:', client.users.size, true)
-  .addField('Total Number of Servers:', client.guilds.size, true)
-  .addField('Ping:', new Date().getTime() - message.createdTimestamp + " ms", true)
+  .addField('Discord.js Version', `v${version}`, true)
+  .addField('Node Version', `${process.version}`, true)
+  .addField('User Count', client.users.size, true)
   .addField('Uptime', `${time(client.uptime)}`);
 
   return message.channel.send(embed);
