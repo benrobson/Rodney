@@ -6,10 +6,11 @@ let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
+  let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
   if (user.hasPermission("MANAGE_MESSAGES")) return errors.cannotPunish(message);
 
-  let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if (!user) return errors.invalidUser(message);
 
   let reason = args.join(" ").slice(22);
@@ -25,24 +26,21 @@ module.exports.run = async (client, message, args) => {
     if (err) console.log(err);
   });
 
+  let createdAtRaw = message.createdAt.toDateString();
+  let createdAt = createdAtRaw.split(" ");
+
   let embed = new Discord.RichEmbed()
   .setTitle('User has been Warned')
   .setColor(config.yellow)
-  .addField('Warned User', `${user} with ID: ${user.id}`)
-  .addField('Warned By:', `${message.author} with ID: ${message.author.id}`)
-  .addField('Warned in Channel:', message.channel)
-  .addField('Number Of Warnings:', `**${warns[user.id].warns}**`)
-  .addField('Time:', message.createdAt)
-  .addField('Reason:', reason);
+  .addField('Warned User', `${user}`, true)
+  .addField('Warned By', `${message.author}`, true)
+  .addField('Warned in Channel', message.channel, true)
+  .addField('Number Of Warnings', `**${warns[user.id].warns}**`, true)
+  .addField('Date', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`, true)
+  .addField('Reason', reason, true);
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) {
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('A `#audit-log` channel channel could not be found, the punishment notification could not be sent.');
-    message.channel.send(embed);
-  }
+  if (!auditlogchannel) return errors.noLogChannel(message);
 
   message.delete().catch(O_o=>{});
   auditlogchannel.send(embed);
@@ -78,17 +76,20 @@ module.exports.run = async (client, message, args) => {
       let embed = new Discord.RichEmbed()
       .setTitle('User has been Unmuted')
       .setColor(config.yellow)
-      .addField('Muted User', `${user} with ID: ${user.id}`)
+      .addField('Muted User', `${user}`)
       auditlogchannel.send(embed);
     }, ms(time))
+
+    let createdAtRaw = message.createdAt.toDateString();
+    let createdAt = createdAtRaw.split(" ");
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Temporarily Muted.')
     .setColor(config.red)
-    .addField('Muted User', `${user} with ID: ${user.id}`)
-    .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
-    .addField('Muted for:', time)
-    .addField('Time:', message.createdAt)
+    .addField('Muted User', `${user}`, true)
+    .addField('Muted By', '**AUTOMATIC ESCALATION SYSTEM**', true)
+    .addField('Muted for', time, true)
+    .addField('Date', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`, true)
     .addField('Reason:', reason);
 
     let auditlogchannel = message.guild.channels.find('name', 'audit-log');
@@ -107,17 +108,20 @@ module.exports.run = async (client, message, args) => {
       let embed = new Discord.RichEmbed()
       .setTitle('User has been Unmuted')
       .setColor(config.yellow)
-      .addField('Muted User', `${user} with ID: ${user.id}`)
+      .addField('Muted User', `${user}`)
       auditlogchannel.send(embed);
     }, ms(time))
+
+    let createdAtRaw = message.createdAt.toDateString();
+    let createdAt = createdAtRaw.split(" ");
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Temporarily Muted.')
     .setColor(config.red)
-    .addField('Muted User', `${user} with ID: ${user.id}`)
-    .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
-    .addField('Muted for:', time)
-    .addField('Time:', message.createdAt)
+    .addField('Muted User', `${user}`, true)
+    .addField('Muted By', '**AUTOMATIC ESCALATION SYSTEM**', true)
+    .addField('Muted for', time, true)
+    .addField('Date', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`, true)
     .addField('Reason:', reason);
 
     auditlogchannel.send(embed);
@@ -134,17 +138,20 @@ module.exports.run = async (client, message, args) => {
       let embed = new Discord.RichEmbed()
       .setTitle('User has been Unmuted')
       .setColor(config.yellow)
-      .addField('Muted User', `${user} with ID: ${user.id}`)
+      .addField('Muted User', `${user}`)
       auditlogchannel.send(embed);
     }, ms(time))
+
+    let createdAtRaw = message.createdAt.toDateString();
+    let createdAt = createdAtRaw.split(" ");
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Temporarily Muted.')
     .setColor(config.red)
-    .addField('Muted User', `${user} with ID: ${user.id}`)
-    .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
-    .addField('Muted for:', time)
-    .addField('Time:', message.createdAt)
+    .addField('Muted User', `${user}`, true)
+    .addField('Muted By', '**AUTOMATIC ESCALATION SYSTEM**', true)
+    .addField('Muted for', time, true)
+    .addField('Date', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`, true)
     .addField('Reason:', reason);
 
     auditlogchannel.send(embed);
@@ -154,13 +161,16 @@ module.exports.run = async (client, message, args) => {
   if (warns[user.id].warns === 5){
     message.guild.member(user).kick(reason);
 
+    let createdAtRaw = message.createdAt.toDateString();
+    let createdAt = createdAtRaw.split(" ");
+
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Kicked.')
     .setColor(config.blue)
-    .addField('Kicked User', `${user} with ID: ${user.id}`)
-    .addField('Kicked By:', '**AUTOMATIC ESCALATION SYSTEM**')
-    .addField('Kicked in Channel:', message.channel)
-    .addField('Time:', message.createdAt)
+    .addField('Kicked User', `${user}`, true)
+    .addField('Kicked By:', '**AUTOMATIC ESCALATION SYSTEM**', true)
+    .addField('Kicked in Channel:', message.channel, true)
+    .addField('Date', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`, true)
     .addField('Reason:', reason);
 
     auditlogchannel.send(embed);
@@ -177,17 +187,20 @@ module.exports.run = async (client, message, args) => {
       let embed = new Discord.RichEmbed()
       .setTitle('User has been Unmuted.')
       .setColor(config.yellow)
-      .addField('Muted User', `${user} with ID: ${user.id}`)
+      .addField('Muted User', `${user}`)
       auditlogchannel.send(embed);
     }, ms(time))
+
+    let createdAtRaw = message.createdAt.toDateString();
+    let createdAt = createdAtRaw.split(" ");
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Temporarily Muted.')
     .setColor(config.red)
-    .addField('Muted User', `${user} with ID: ${user.id}`)
-    .addField('Muted By:', '**AUTOMATIC ESCALATION SYSTEM**')
-    .addField('Muted for:', time)
-    .addField('Time:', message.createdAt)
+    .addField('Muted User', `${user}`, true)
+    .addField('Muted By', '**AUTOMATIC ESCALATION SYSTEM**', true)
+    .addField('Muted for', time, true)
+    .addField('Date', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`, true)
     .addField('Reason:', reason);
 
     auditlogchannel.send(embed);
@@ -195,13 +208,17 @@ module.exports.run = async (client, message, args) => {
 
   // 7th warning will ban the user from the guild
   if (warns[user.id].warns === 7){
+
+    let createdAtRaw = message.createdAt.toDateString();
+    let createdAt = createdAtRaw.split(" ");
+
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Banned.')
     .setColor(config.red)
-    .addField('Banned User', `${user} with ID: ${user.id}`)
-    .addField('Banned By:', '**AUTOMATIC ESCALATION SYSTEM**')
-    .addField('Banned in Channel:', message.channel)
-    .addField('Time:', message.createdAt)
+    .addField('Banned User', `${user}`, true)
+    .addField('Banned By:', '**AUTOMATIC ESCALATION SYSTEM**', true)
+    .addField('Banned in Channel:', message.channel, true)
+    .addField('Date', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`, true)
     .addField('Reason:', reason);
 
     message.guild.member(user).ban(reason);
