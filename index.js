@@ -25,30 +25,33 @@ client.on('ready', async () => {
   let pluralnonpluralusers = (client.users.size > 1) ? 'Users' : 'User';
   console.log(`${client.user.username} is online and is operating on ${client.guilds.size} ${pluralnonpluralservers} for ${client.users.size} ${pluralnonpluralusers}.`);
   client.user.setActivity(`${client.guilds.size} ${pluralnonpluralservers} // ${client.users.size} ${pluralnonpluralusers}`, {type: 'PLAYING'});
-  return
+  return;
 });
 
 // Guild Events
 // Deleted Message Notification Event
 client.on('messageDelete', async message => {
+  let createdAtRaw = message.createdAt.toDateString();
+  let createdAt = createdAtRaw.split(" ");
+
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return
+  if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
   .setTitle('A messsage has been deleted.')
   .setColor(config.yellow)
-  .addField('Sent By', message.author)
-  .addField('Sent At', message.createdAt)
-  .addField('Deleted in', message.channel)
+  .addField('Sent By', message.author, true)
+  .addField('Deleted in', message.channel, true)
+  .addField('Sent At', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`)
   .addField('Message Content', message.content)
   auditlogchannel.send(embed);
-  return
+  return;
 });
 
 // User Join Noticication Event
 client.on('guildMemberAdd', async member => {
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return
+  if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has joined the server!')
@@ -56,13 +59,13 @@ client.on('guildMemberAdd', async member => {
   .addField('Username', member.user.username, true)
   .addField('Tag', member, true)
   auditlogchannel.send(embed);
-  return
+  return;
 });
 
 // User Leave Noticication Event
 client.on('guildMemberRemove', async member => {
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return
+  if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has left the server!')
@@ -70,13 +73,13 @@ client.on('guildMemberRemove', async member => {
   .addField('Username', member.user.username, true)
   .addField('Tag', member, true)
   auditlogchannel.send(embed);
-  return
+  return;
 });
 
 // Channel Create Noticication Event
 client.on('channelCreate', async channel => {
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return
+  if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
   .setTitle('Channel has been created!')
@@ -85,13 +88,13 @@ client.on('channelCreate', async channel => {
   .addField('Channel Type:', `${channel.type}`)
   .addField('Created At:', `${channel.createdAt}`)
   auditlogchannel.send(embed);
-  return
+  return;
 });
 
 // Channel Delete Noticication Event
 client.on('channelDelete', async channel => {
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return
+  if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
   .setTitle('Channel has been deleted!')
@@ -100,7 +103,7 @@ client.on('channelDelete', async channel => {
   .addField('Channel Type:', `${channel.type}`)
   .addField('Deleted At:', `${channel.createdAt}`)
   auditlogchannel.send(embed);
-  return
+  return;
 });
 
 // Message Handler
@@ -127,7 +130,7 @@ client.on('message', async message => {
       .setColor(config.red)
       .setDescription(`${message.author}, you are not allowed to advertise other Discords`);
       message.channel.send(embed);
-      return
+      return;
     };
 
     // Swear Detector
@@ -141,7 +144,7 @@ client.on('message', async message => {
       .setColor(config.red)
       .setDescription(`${message.author}, you can't say that, this is a Christian Minecraft Server!`);
       message.channel.send(embed).then(message => message.delete(3000));
-      return
+      return;
     };
   });
 
