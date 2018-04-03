@@ -19,9 +19,9 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.RichEmbed()
   .setTitle('User has been assigned to a role.')
   .setColor(config.green)
-  .addField('Assigned User:', `${user}`, true)
-  .addField('Assigned By:', `${message.author}`, true)
-  .addField('Assigned Role:', `${role}`, true);
+  .addField('Assigned User', `${user}`, true)
+  .addField('Assigned By', `${message.author}`, true)
+  .addField('Assigned Role', `${role}`, true);
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
