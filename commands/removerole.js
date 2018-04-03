@@ -19,9 +19,9 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.RichEmbed()
   .setTitle('User has been removed from a role.')
   .setColor(config.yellow)
-  .addField('Removed User', `${user}`)
-  .addField('Removed By', `${message.author}`)
-  .addField('Removed Role', `${role}`);
+  .addField('Removed User', `${user}`, true)
+  .addField('Removed By', `${message.author}`, true)
+  .addField('Removed Role', `${role}`, true);
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
