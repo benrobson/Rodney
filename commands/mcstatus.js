@@ -1,9 +1,11 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
 const superagent = require('superagent');
+const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
   let mcIP = args[0];
+  if (!mcIP) return errors.invalidIP(message);
 
   let {body} = await superagent
   .get('http://mcapi.us/server/status?ip=' + mcIP);
@@ -22,6 +24,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'mcstatus',
-  description: 'Displays information about the Minecraft Server.',
+  description: 'Display information about the Minecraft Server.',
   usage: 'mcstatus [ip]'
 };
