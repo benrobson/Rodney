@@ -40,11 +40,11 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.RichEmbed()
   .setTitle('User has been Temporarily Muted')
   .setColor(config.red)
-  .addField('Muted User', `${user}`)
-  .addField('Muted By:', `${message.author}`)
-  .addField('Muted for:', time)
-  .addField('Time:', message.createdAt)
-  .addField('Reason:', reason);
+  .addField('Muted User', `${user}`, true)
+  .addField('Muted By', `${message.author}`, true)
+  .addField('Muted For', time)
+  .addField('Time', message.createdAt)
+  .addField('Reason', reason);
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
