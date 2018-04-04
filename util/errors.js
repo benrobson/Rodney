@@ -121,3 +121,13 @@ module.exports.ownerOnly = (message) => {
 
   message.channel.send(embed);
 };
+
+// Used if Minecraft Server IP is invalid
+module.exports.invalidIP = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('Enter a valid Minecraft IP.')
+  .setColor(config.red);
+
+  message.channel.send(embed);
+};
