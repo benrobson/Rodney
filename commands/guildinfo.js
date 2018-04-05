@@ -34,7 +34,7 @@ module.exports.run = async (client, message, args) => {
   .addField('Guild Name', guild.name, true)
   .addField('Guild ID', guild.id, true)
   .addField('Guild Owner', guild.owner, true)
-  .addField("Created At", `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`, true)
+  .addField('Created At', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`, true)
   .addField('Server Region', guild.region.toUpperCase(), true)
   .addField('Total Members:', guild.memberCount, true)
   .addField('Large', large, true)

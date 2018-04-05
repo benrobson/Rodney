@@ -23,6 +23,7 @@ fs.readdir('./commands/', (err, files) => {
 client.on('ready', async () => {
   let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
   let pluralnonpluralusers = (client.users.size > 1) ? 'Users' : 'User';
+
   console.log(`${client.user.username} is online and is operating on ${client.guilds.size} ${pluralnonpluralservers} for ${client.users.size} ${pluralnonpluralusers}.`);
   client.user.setActivity(`${client.guilds.size} ${pluralnonpluralservers} // ${client.users.size} ${pluralnonpluralusers}`, {type: 'PLAYING'});
   return;
@@ -84,8 +85,8 @@ client.on('channelCreate', async channel => {
   let embed = new Discord.RichEmbed()
   .setTitle('Channel has been created!')
   .setColor(config.green)
-  .addField('Channel Name:', `${channel.name}`)
-  .addField('Channel Type:', `${channel.type}`)
+  .addField('Channel Name:', `${channel.name}`, true)
+  .addField('Channel Type:', `${channel.type}`, true)
   .addField('Created At:', `${channel.createdAt}`)
   auditlogchannel.send(embed);
   return;

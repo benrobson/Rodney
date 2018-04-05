@@ -9,14 +9,17 @@ module.exports.run = async (client, message, args) => {
   let reason = args.slice(1).join(" ");
   if (!reason) return errors.invalidReason(message);
 
+  let createdAtRaw = guild.createdAt.toDateString();
+  let createdAt = createdAtRaw.split(" ");
+
   let embed = new Discord.RichEmbed()
   .setTitle('Incoming Report!')
   .setColor(config.yellow)
-  .addField('Reported User', `${user}`)
-  .addField('Reported By', `${message.author}`)
-  .addField('Reported in Channel', message.channel)
-  .addField('Time', message.createdAt)
-  .addField('Reason', reason);
+  .addField('Reported User', `${user}`, true)
+  .addField('Reported By', `${message.author}`, true)
+  .addField('Reported in Channel', message.channel, true)
+  .addField('Time', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`)
+  .addField('Reason', reason)
 
   let reportschannel = message.guild.channels.find('name', 'reports');
   if (!reportschannel) return errors.noReportChannel(message);
