@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
   let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   if (!user) return errors.invalidUser(message);
 
-  let reason = args.join(' ').slice(22);
+  let reason = args.slice(1).join(" ");
   if (!reason) return errors.invalidReason(message);
 
   if (user.hasPermission('MANAGE_MESSAGES')) return errors.cannotPunish(message);

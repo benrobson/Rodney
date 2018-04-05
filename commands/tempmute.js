@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
   if (!user) return errors.invalidUser(message);
   if (user.hasPermission('MANAGE_MESSAGES')) return errors.cannotPunish(message);
 
-  let reason = args.slice(2).join(' ');
+  let reason = args.slice(1).join(" ");
   if (!reason) return errors.invalidReason(message);
 
   let muterole = message.guild.roles.find('name', 'Muted');

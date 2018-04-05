@@ -1,28 +1,29 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
-const fs = require('fs'); // this is the 'File System' that reads all of the commands in the commands folder
-const ms = require('ms'); // this package allows us to use time
-let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8')); // this links to the warnings.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
+const fs = require('fs');
+const ms = require('ms');
+let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
 
 module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
+
   let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   if (!user) return errors.invalidUser(message);
 
-  if (warns[user.id].warns === 0){
+  if (warns[user.id].warns === null){
     const embed = new Discord.RichEmbed()
     .setTitle('An error has occurred!')
     .setColor(config.red)
     .setDescription('This user has no warnings in the system.');
     message.channel.send(embed);
-    return
+    return;
   };
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Warning Profile for ${user.displayName}`)
   .setColor(config.white)
-  .addField('User', `${user} with ID: ${user.id}`)
-  .addField('Number Of Warnings:', `**${warns[user.id].warns}**`)
+  .addField('User', `${user}`, true)
+  .addField('Number Of Warnings', `**${warns[user.id].warns}**`, true)
   message.channel.send(embed);
   return
 };
