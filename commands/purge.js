@@ -12,17 +12,20 @@ module.exports.run = async (client, message, args) => {
     .setTitle('Messages Cleared!')
     .setColor(config.green)
     .setDescription(`Deleted ${args[0]} messages.`)
-    message.channel.send(embed).then(msg => msg.delete(5000));
+    message.channel.send(embed).then(message.delete(5000));
     return
   })
+
+  let createdAtRaw = guild.createdAt.toDateString();
+  let createdAt = createdAtRaw.split(' ');
 
   let embed = new Discord.RichEmbed()
   .setTitle('Messages Purged!')
   .setColor(config.green)
-  .addField('Purged By:', `${message.author}`)
-  .addField('Number of Messages:', args)
-  .addField('Channel:', message.channel)
-  .addField('Time:', message.createdAt)
+  .addField('Purged By', `${message.author}`, true)
+  .addField('Number of Messages', args, true)
+  .addField('Channel', message.channel, true)
+  .addField('Time', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`)
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);

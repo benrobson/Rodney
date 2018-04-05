@@ -13,14 +13,17 @@ module.exports.run = async (client, message, args) => {
 
   if (user.hasPermission('MANAGE_MESSAGES')) return errors.cannotPunish(message);
 
+  let createdAtRaw = guild.createdAt.toDateString();
+  let createdAt = createdAtRaw.split(" ");
+
   let embed = new Discord.RichEmbed()
   .setTitle('User has been banned')
   .setColor(config.red)
-  .addField('Banned User', `${user}`)
-  .addField('Banned By:', `${message.author}`)
-  .addField('Banned in Channel:', message.channel)
-  .addField('Time:', message.createdAt)
-  .addField('Reason:', reason);
+  .addField('Banned User', `${user}`, true)
+  .addField('Banned By', `${message.author}`, true)
+  .addField('Banned in Channel', message.channel)
+  .addField('Time', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`, true)
+  .addField('Reason', reason);
 
   message.guild.member(user).ban(reason);
 

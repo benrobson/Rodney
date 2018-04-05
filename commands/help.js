@@ -9,6 +9,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'help',
-  description: 'Displays all commands.',
-  usage: 'help [command]'
+  description: 'Displays all commands and descriptions.',
+  usage: 'help'
 };

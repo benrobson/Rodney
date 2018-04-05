@@ -1,6 +1,6 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
-const package = require('../package.json'); // this links to the package.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
+const package = require('../package.json');
 
 module.exports.run = async (client, message, args) => {
   let icon = client.user.displayAvatarURL;
