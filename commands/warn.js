@@ -6,7 +6,7 @@ let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
-  let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  let user = message.guild.member(message.mentions.members.first());
 
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
   if (user.hasPermission("MANAGE_MESSAGES")) return errors.cannotPunish(message);

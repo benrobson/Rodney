@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
 
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
 
-  let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
   if (user.hasPermission('MANAGE_MESSAGES')) return errors.cannotPunish(message);
 

@@ -5,7 +5,7 @@ const errors = require('../util/errors.js');
 module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message);
 
-  let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+  let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
 
   let reason = args.slice(1).join(" ");
