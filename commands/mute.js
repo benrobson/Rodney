@@ -65,7 +65,7 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: 'tempmute',
+  name: 'mute',
   description: 'Temporarily mutes a user.',
-  usage: 'tempmute [@user] [time h/m/s] [reason]'
+  usage: 'mute [@user] [time h/m/s] [reason]'
 };
