@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
     return
   })
 
-  let createdAtRaw = guild.createdAt.toDateString();
+  let createdAtRaw = message.createdAt.toDateString();
   let createdAt = createdAtRaw.split(' ');
 
   let embed = new Discord.RichEmbed()

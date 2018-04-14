@@ -1,6 +1,6 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
-const token = require('../token.json'); // this links to an external file where I keep my tokens for development purposes.
+const Discord = require('discord.js');
+const config = require('../config.json');
+const token = require('../token.json');
 const Fortnite = require('fortnite');
 const stats = new Fortnite(token.fortniteapi);
 
