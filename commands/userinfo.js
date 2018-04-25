@@ -11,8 +11,10 @@ module.exports.run = async (client, message, args) => {
   let icon = user.user.displayAvatarURL;
 
   let nickname = user.nickname;
-  if (!nickname) {
-    nickname = user.user.username;
+  if (nickname) {
+    nickname = user.nickname;
+  } else {
+    nickname = 'None'
   };
 
   let createdAtRaw = user.user.createdAt.toDateString();
@@ -32,6 +34,7 @@ module.exports.run = async (client, message, args) => {
   .setColor(config.red)
   .setThumbnail(icon)
   .addField('Username', user.user.tag, true)
+  .addField('Nickname', nickname, true)
   .addField('User ID', user.id, true)
   .addField('Status', user.presence.status, true)
   .addField('Playing Status', playingStatus, true)
