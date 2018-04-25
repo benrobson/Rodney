@@ -1,5 +1,5 @@
 const { RichEmbed } = require('discord.js');
-const { red } = require('../config.json');
+const { red. purple } = require('../config.json');
 const { fortniteapi } = require('../token.json');
 const { Client } = require('fortnite');
 const stats = new Client(fortniteapi);
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args, tools) => {
 			const embed = new RichEmbed()
 				.setTitle(`Fortnite Stats for ${data.username}`)
 				.setThumbnail('https://i.imgur.com/SudHnUn.png')
-				.setColor(config.purple)
+				.setColor(purple)
 				.addField('Top Placement Top 3s:', `${data.lifetimeStats[0].value}`, true)
 				.addField('Top Placement Top 5s:', `${data.lifetimeStats[1].value}`, true)
 				.addField('Top Placement Top 6s:', `${data.lifetimeStats[3].value}`, true)
