@@ -32,6 +32,7 @@ client.on('ready', async () => {
 // Guild Events
 // Deleted Message Notification Event
 client.on('messageDelete', async message => {
+  if (!config.messageDelete) return;
   let createdAtRaw = message.createdAt.toDateString();
   let createdAt = createdAtRaw.split(" ");
 
@@ -51,6 +52,7 @@ client.on('messageDelete', async message => {
 
 // User Join Noticication Event
 client.on('guildMemberAdd', async member => {
+  if (!config.guildMemberAdd) return;
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return;
 
@@ -65,6 +67,7 @@ client.on('guildMemberAdd', async member => {
 
 // User Leave Noticication Event
 client.on('guildMemberRemove', async member => {
+  if (!config.guildMemberRemove) return;
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return;
 
@@ -79,7 +82,8 @@ client.on('guildMemberRemove', async member => {
 
 // Channel Create Noticication Event
 client.on('channelCreate', async channel => {
-  let auditlogchannel = member.guild.channels.find('name', 'audit-log');
+  if (!config.channelCreate) return;
+  let auditlogchannel = channel.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
@@ -94,7 +98,8 @@ client.on('channelCreate', async channel => {
 
 // Channel Delete Noticication Event
 client.on('channelDelete', async channel => {
-  let auditlogchannel = member.guild.channels.find('name', 'audit-log');
+  if (!config.channelDelete) return;
+  let auditlogchannel = channel.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
