@@ -1,5 +1,5 @@
 const { RichEmbed } = require('discord.js');
-const { red. purple } = require('../config.json');
+const { red, purple } = require('../config.json');
 const { fortniteapi } = require('../token.json');
 const { Client } = require('fortnite');
 const stats = new Client(fortniteapi);
