@@ -24,24 +24,47 @@ module.exports.run = async (client, message, args, tools) => {
 		try {
 			const data = await stats.user(username, platform);
 			const embed = new RichEmbed()
-				.setTitle(`Fortnite Stats for ${data.username}`)
-				.setThumbnail('https://i.imgur.com/SudHnUn.png')
+				.setTitle(`Stats of ${data.username} | Platform: ${data.platform}`)
+				.setURL(data.url)
+				.setThumbnail('https://d1u5p3l4wpay3k.cloudfront.net/fortnite_gamepedia/6/64/Favicon.ico')
+				.setDescription(`
+Solo Info
+---------------
+Score/Kills: ${data.solo.score}/${data.solo.kills}
+KD: ${data.solo.kills}
+Scores/Kills Per Match: ${data.solo.kills_per_match}/${data.solo.score_per_match}
+Matches/Wins: ${data.solo.matches}/${data.solo.wins}
+Top 3s: ${data.solo.top_3}
+Top 5s: ${data.solo.top_5}
+Top 6s: ${data.solo.top_6}
+Top 12s: ${data.solo.top_12}
+Top 25s: ${data.solo.top25} 
+
+Duo Info
+---------------
+Score/Kills: ${data.duo.score}/${data.duo.kills}
+KD: ${data.duo.kills}
+Scores/Kills Per Match: ${data.duo.kills_per_match}/${data.duo.score_per_match}
+Matches/Wins: ${data.duo.matches}/${data.duo.wins}
+Top 3s: ${data.duo.top_3}
+Top 5s: ${data.duo.top_5}
+Top 6s: ${data.duo.top_6}
+Top 12s: ${data.duo.top_12}
+Top 25s: ${data.duo.top25}
+
+Squad Info
+---------------
+Score/Kills: ${data.squad.score}/${data.squad.kills}
+KD: ${data.squad.kills}
+Scores/Kills Per Match: ${data.squad.kills_per_match}/${data.squad.score_per_match}
+Matches/Wins: ${data.squad.matches}/${data.squad.wins}
+Top 3s: ${data.squad.top_3}
+Top 5s: ${data.squad.top_5}
+Top 6s: ${data.squad.top_6}
+Top 12s: ${data.squad.top_12}
+Top 25s: ${data.squad.top25} 
+				`)
 				.setColor(purple)
-				.addField('Top Placement Top 3s:', `${data.lifetimeStats[0].value}`, true)
-				.addField('Top Placement Top 5s:', `${data.lifetimeStats[1].value}`, true)
-				.addField('Top Placement Top 6s:', `${data.lifetimeStats[3].value}`, true)
-				.addField('Top Placement Top 12s:', `${data.lifetimeStats[4].value}`, true)
-				.addField('Top Placement Top 25s:', `${data.lifetimeStats[5].value}`, true)
-				.addField('Total Score:', data.lifetimeStats[6].value, true)
-				.addField('Matches Played:', data.lifetimeStats[7].value, true)
-				.addField('Wins:', data.lifetimeStats[8].value, true)
-				.addField('Win Percentage:', data.lifetimeStats[9].value, true)
-				.addField('Kills:', data.lifetimeStats[10].value, true)
-				.addField('K/D Ratio:', data.lifetimeStats[11].value, true)
-				.addField('Kills per Minute:', data.lifetimeStats[12].value, true)
-				.addField('Time Played:', data.lifetimeStats[13].value, true)
-				.addField('K/D Ratio:', data.lifetimeStats[11].value, true)
-				.addField('Average Survival Time:', data.lifetimeStats[14].value, true)
 			return message.channel.send(embed);
 		} catch (error) {
 			return message.reply(`Invalid User...`);
