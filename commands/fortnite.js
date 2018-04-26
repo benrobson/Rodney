@@ -1,69 +1,43 @@
-const Discord = require('discord.js');
-const config = require('../config.json');
-const token = require('../token.json');
-const Fortnite = require('fortnite');
-const stats = new Fortnite(token.fortniteapi);
+const { RichEmbed } = require('discord.js');
+const { red, purple } = require('../config.json');
+const { fortniteapi } = require('../token.json');
+const { Client } = require('fortnite');
+const stats = new Client(fortniteapi);
+const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args, tools) => {
-  let platform;
-  let username;
+	if (args[0] === undefined || args[1] === undefined) {
+		const embed = new RichEmbed()
+			.setTitle(`:warning: Error :warning:`)
+			.setColor(red)
+			.setDescription(`Please include a platform and username in your arguments.`)
+		return message.channel.send(embed)
+	} else if (/(pc|xbl|psn)/.test(args[0].toLowerCase()) === false) {
+		return errors.invalidPlatform(message);
+	} else {
+		const platform = args[0].toLowerCase().match(/(pc|xbl|psn)/)[0];
+		const username = args.slice(1).join(' ');
 
-  if (!['pc','xbl','psn'].includes(args[0])){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('Please include a platform in your arguments.');
-    message.channel.send(embed);
-    return
-  };
-  if (!args[1]){
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('Please include a username in your arguments.');
-    message.channel.send(embed);
-    return
-  };
-
-  platform = args.shift();
-  username = args.join(' ');
-
-  stats.getInfo(username, platform).then(data => {
-    let embed = new Discord.RichEmbed()
-    .setTitle(`Fortnite Stats for ${data.username}`)
-    .setThumbnail('https://i.imgur.com/SudHnUn.png')
-    .setColor(config.purple)
-    .addField('Top Placement Top 3s:', `${data.lifetimeStats[0].value}`, true)
-    .addField('Top Placement Top 5s:', `${data.lifetimeStats[1].value}`, true)
-    .addField('Top Placement Top 6s:', `${data.lifetimeStats[3].value}`, true)
-    .addField('Top Placement Top 12s:', `${data.lifetimeStats[4].value}`, true)
-    .addField('Top Placement Top 25s:', `${data.lifetimeStats[5].value}`, true)
-    .addField('Total Score:', data.lifetimeStats[6].value, true)
-    .addField('Matches Played:', data.lifetimeStats[7].value, true)
-    .addField('Wins:', data.lifetimeStats[8].value, true)
-    .addField('Win Percentage:', data.lifetimeStats[9].value, true)
-    .addField('Kills:', data.lifetimeStats[10].value, true)
-    .addField('K/D Ratio:', data.lifetimeStats[11].value, true)
-    .addField('Kills per Minute:', data.lifetimeStats[12].value, true)
-    .addField('Time Played:', data.lifetimeStats[13].value, true)
-    .addField('K/D Ratio:', data.lifetimeStats[11].value, true)
-    .addField('Average Survival Time:', data.lifetimeStats[14].value, true)
-    message.channel.send(embed);
-    return
-  })
-
-  .catch(error => {
-    let embed = new Discord.RichEmbed()
-    .setTitle('An error has occurred!')
-    .setColor(config.red)
-    .setDescription('This username was not found.');
-    message.channel.send(embed);
-    return
-  });
+		try {
+			const data = await stats.user(username, platform);
+			const embed = new RichEmbed()
+				.setTitle(`Stats of ${data.username} | Platform: ${data.platform}`)
+				.setURL(data.url)
+				.setThumbnail('https://d1u5p3l4wpay3k.cloudfront.net/fortnite_gamepedia/6/64/Favicon.ico')
+				.addField('Solo Info', `Score/Kills: ${data.stats.solo.score}/${data.stats.solo.kills}\nKD: ${data.stats.solo.kills}\nMatches/Wins: ${data.stats.solo.matches}/${data.stats.solo.wins}\nTop 3s: ${data.stats.solo.top_3}\nTop 5s: ${data.stats.solo.top_5}\nTop 6s: ${data.stats.solo.top_6}\nTop 12s: ${data.stats.solo.top_12}\nTop 25s: ${data.stats.solo.top_25}`)
+				.addField('Duo Info', `Score/Kills: ${data.stats.duo.score}/${data.stats.duo.kills}\nKD: ${data.stats.duo.kills}\nScores/Kills Per Match: ${data.stats.duo.kills_per_match}/${data.stats.duo.score_per_match}\nMatches/Wins: ${data.stats.duo.matches}/${data.stats.duo.wins}\nTop 3s: ${data.stats.duo.top_3}\nTop 5s: ${data.stats.duo.top_5}\nTop 6s: ${data.stats.duo.top_6}\nTop 12s: ${data.stats.duo.top_12}\nTop 25s: ${data.stats.duo.top_25}`)
+				.addField('Squad Info', `Score/Kills: ${data.stats.squad.score}/${data.stats.squad.kills}\nKD: ${data.stats.squad.kills}\nScores/Kills Per Match: ${data.stats.squad.kills_per_match}/${data.stats.squad.score_per_match}\nMatches/Wins: ${data.stats.squad.matches}/${data.stats.squad.wins}\nTop 3s: ${data.stats.squad.top_3}\nTop 5s: ${data.stats.squad.top_5}\nTop 6s: ${data.stats.squad.top_6}\nTop 12s: ${data.stats.squad.top_12}\nTop 25s: ${data.stats.squad.top_25}`)
+				.setColor(purple)
+			return message.channel.send(embed);
+		} catch (error) {
+			console.log(error);
+			return errors.invalidUser(message);
+		}
+	}
 };
 
 module.exports.help = {
-  name: 'fortnite',
-  description: 'Displays stats for a user on the game Fortnite.',
-  usage: 'fortnite [pc | xbl | psn] [username]'
+	name: 'fortnite',
+	description: 'Displays stats for a user on the game Fortnite.',
+	usage: 'fortnite [pc | xbl | psn] [username]'
 };
