@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args, tools) => {
 			.setTitle('Known Bug')
 			.setColor(yellow)
 			.setDescription('There is a known bug that some of the fields are incorrect.\nUse the hyperlink to goto your Fortnite Tracker profile.')
-		message.channel.send(embed).then(message => message.delete(5000));
+		message.channel.send(embed);
 
 		try {
 			const data = await stats.user(username, platform);
