@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args, tools) => {
 		const embed = new RichEmbed()
 			.setTitle('Known Bug')
 			.setColor(yellow)
-			.setDescription('There is a known bug that some of the fields are incorrect.\nUse the hyperlink to goto your Fortnite Tracker profile.')
+			.setDescription('There is a known bug that some of the fields are incorrect.\nThe field that we know that is incorrect is the `KD` field.\nUse the hyperlink to goto your Fortnite Tracker profile.')
 		message.channel.send(embed);
 
 		try {
