@@ -140,3 +140,13 @@ module.exports.invalidIP = (message) => {
 
   message.channel.send(embed);
 };
+
+// Used if the client ID is blank.
+module.exports.invalidClientID = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('Please specify a client ID, the field cannot be left blank.')
+  .setColor(config.red);
+
+  message.channel.send(embed);
+};
