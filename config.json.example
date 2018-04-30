@@ -5,11 +5,6 @@
 
   "swearfilter": false,
   "discordinvite": true,
-  "messageDelete": true,
-  "channelCreate": true,
-  "channelDelete": true,
-  "guildMemberAdd": true,
-  "guildMemberRemove": true,
 
   "white": "#ffffff",
   "red": "#ff0000",
