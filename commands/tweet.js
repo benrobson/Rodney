@@ -1,6 +1,8 @@
 const twit = require('twit');
 const errors = require('../util/errors.js');
+const config = require('../config.json');
 const token = require('../token.json');
+const Discord = require('discord.js');
 
 module.exports.run = async (client, message, args) => {
   if (!config.tweetcommand) return
@@ -24,6 +26,11 @@ module.exports.run = async (client, message, args) => {
       twitter.post('statuses/update', { status: `${inputmessage}` }, function(err, data, response) {
           console.log('Tweet Successfully Tweeted!');
           console.log(`${message.author.username} has just Tweeted "${inputmessage}"`);
+
+          let embed = new Discord.RichEmbed()
+          .setTitle('Tweet Successfully Tweeted!')
+          .setColor(config.green)
+          .setDescription(`Message Content: ${inputmessage}`);
       })} else {
         let inputmessage = args.join(' ');
         return errors.incorrectChannel(message);
@@ -32,5 +39,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'tweet',
+  description: 'Tweet from your Discord client to a Twitter account (if configured).',
   usage: 'tweet [message]'
 };
