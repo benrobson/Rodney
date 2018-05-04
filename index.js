@@ -12,14 +12,15 @@ fs.readdir('./commands/', (err, files) => {
   let jsfile = files.filter(f => f.split(".").pop() === 'js')
   if (jsfile.length <= 0) {
     console.log('Couldn\'t find commands.');
-    return;
+    return
   }
 
-  jsfile.forEach((files, i) => {
+jsfile.forEach((files, i) => {
     let props = require(`./commands/${files}`);
     console.log(`${files} has been loaded.`);
     client.commands.set(props.help.name, props);
-  })});
+  })
+});
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
   let newUserChannel = newMember.voiceChannel;

@@ -5,7 +5,7 @@ client.commands = new Discord.Collection();
 
 module.exports = message => {
   if (message.author.bot) return;
-  if (message.channel.type === 'dm') return;
+  if (message.channel.type === "dm") return;
 
   let prefix = config.prefix;
   let messageArray = message.content.split(' ');

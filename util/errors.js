@@ -150,3 +150,33 @@ module.exports.invalidClientID = (message) => {
 
   message.channel.send(embed);
 };
+
+// Used if there is no #tweet channel in the Guild
+module.exports.noTweetChannel = (message, perm) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setColor(config.red)
+  .setDescription('Sorry, I could not find the `#tweet` channel.');
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
+
+// Used if a user does not a message to Tweet
+module.exports.emptyMessage = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('Please specify the message you would like to tweet, you cannot send an empty tweet.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
+
+// Used if a user attempts to send a tweet command that is not in the #tweet channel
+module.exports.incorrectChannel = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('You have sent this command in the wrong channel, try `#tweet`.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
