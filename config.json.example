@@ -5,6 +5,7 @@
 
   "swearfilter": false,
   "discordinvite": true,
+  "tweetcommand": false,
 
   "white": "#ffffff",
   "red": "#ff0000",
