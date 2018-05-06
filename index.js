@@ -24,36 +24,19 @@ jsfile.forEach((files, i) => {
 
 // Voice Channel assign Role
 client.on('voiceStateUpdate', (oldMember, newMember) => {
-  let newUserChannel = newMember.voiceChannel;
-  let oldUserChannel = oldMember.voiceChannel;
+  let newUserChannel = newMember.voiceChannel
+  let oldUserChannel = oldMember.voiceChannel
 
   if (oldUserChannel === undefined && newUserChannel !== undefined) {
-    // User Joins a voice channel
-    console.log('User has joined a channel.');
+    console.log('User Joins a voice channel');
 
-    let voicerole = message.guild.roles.find('name', 'Voice');
-    if (!voicerole) {
-      try {
-        voicerole = message.guild.createRole({
-          name: 'Voice',
-          color: "#000000",
-          permissions:[]
-        })
-        message.guild.channels.forEach((channel, id) => {
-          channel.overwritePermissions(voicerole, {
-            SEND_MESSAGES: false,
-            ADD_REACTIONS: false,
-            SPEAK: false
-          });
-        });
-      } catch(e) {
-        console.log(e.stack);
-      }
-    }
-  } else if (newUserChannel === undefined) {
-    // User leaves a voice channel
-    console.log('User has left a channel.');
-  }});
+    let guildRole = voicechannel.guild.roles.find('name', 'Voice');
+    await (user.addRole(guildRole.id));
+
+  } else if (newUserChannel === undefined){
+    console.log('User leaves a voice channel');
+  }
+});
 
 // Message Guild Event
 client.on('message', (message) => {
@@ -61,6 +44,7 @@ client.on('message', (message) => {
   if (message.channel.type === "dm") return;
 
   let prefix = config.prefix;
+  if (!prefix) return;
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);

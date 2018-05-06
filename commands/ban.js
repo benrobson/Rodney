@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
   if (user.hasPermission('MANAGE_MESSAGES')) return errors.cannotPunish(message);
 
   let createdAtRaw = guild.createdAt.toDateString();
-  let createdAt = createdAtRaw.split(" ");
+  let createdAt = createdAtRaw.split(' ');
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has been banned')

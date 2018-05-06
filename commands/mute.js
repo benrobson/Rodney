@@ -67,5 +67,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
   name: 'mute',
   description: 'Temporarily mutes a user.',
-  usage: 'mute [@user] [time h/m/s] [reason]'
+  usage: 'mute [@user] [h/m/s] [reason]'
 };
