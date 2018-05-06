@@ -16,6 +16,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'invite',
-  description: '',
+  description: 'Generate an instant invite to your guild.',
   usage: 'invite'
 };
