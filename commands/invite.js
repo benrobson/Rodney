@@ -4,12 +4,12 @@ const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
   message.channel.createInvite()
-    .then((i) => {
+    .then((invite) => {
       let embed = new Discord.RichEmbed()
       .setTitle('Instant Invite Created!')
       .setColor(config.yellow)
-      .setURL(`https://discord.gg/${i.code}`)
-      .setDescription(`Successfully created an invite!\nhttps://discord.gg/${i.code}`)
+      .setURL(`https://discord.gg/${invite.code}`)
+      .setDescription(`Successfully created an invite!\nhttps://discord.gg/${invite.code}`)
       message.channel.send(embed);
     });
 };

@@ -3,7 +3,7 @@ const config = require('../config.json');
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
-  if (!message.member.hasPermission('BAN_MEMBERS'))return errors.noPermissions(message, 'BAN_MEMBERS');
+  if (!message.member.hasPermission('BAN_MEMBERS')) return errors.noPermissions(message, 'BAN_MEMBERS');
 
   let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
