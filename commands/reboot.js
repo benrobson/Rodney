@@ -8,17 +8,17 @@ module.exports.run = async (client, message, args) => {
 
   if (message.author.id == `${config.ownerid}`){
     let embed = new Discord.RichEmbed()
-    .setTitle('Restarting...')
+    .setTitle('Rebooting...')
     .setColor(config.red);
-
     message.channel.send(embed)
+    
     .then(message => client.destroy())
     .then(() => client.login(token.token))
   }
 }
 
 module.exports.help = {
-  name: 'restart',
-  description: 'This will restart the bot instance.',
-  usage: 'restart'
+  name: 'reboot',
+  description: 'This will reboot the bot instance.',
+  usage: 'reboot'
 };
