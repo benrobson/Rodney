@@ -15,17 +15,8 @@ module.exports.run = async (client, message, args) => {
   channel.type === "text" ? textChannels++ : voiceChannels++;
   });
 
-  let emojis = [];
-  guild.emojis.forEach(emoji => {
-  emojis.push(`\`${emoji.name}\``);
-  });
-  emojis.length === 0 ? emojis = "None" : emojis = emojis.join(", ");
-
-  let roles = [];
-  guild.roles.forEach(role => {
-    roles.push(`\`${role.name}\``);
-  });
-  roles = roles.join(", ");
+  const emojis = message.guild.emojis.map(e => e.toString()).join(" ");
+  const roles = message.guild.roles.map(e => e.toString()).join(" ");
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Information about ${message.guild.name}`)
@@ -39,11 +30,11 @@ module.exports.run = async (client, message, args) => {
   .addField('Members', message.guild.members.filter(member => !member.user.bot).size, true)
   .addField('Bots', message.guild.members.filter(member => member.user.bot).size, true)
   .addField('Large', large, true)
-  .addField('Verification Level', guild.verificationLevel, true)
+  //.addField('Verification Level', guild.verificationLevel, true)
   .addField('Text Channels', textChannels, true)
   .addField('Text Channels', voiceChannels, true)
-  .addField('Roles', `${guild.roles.size}`, true)
-  .addField('Emojis', `${guild.emojis.size}`, true)
+  .addField('Roles', roles, true)
+  .addField('Emojis', emojis, true)
 
   return message.channel.send(embed);
 }
