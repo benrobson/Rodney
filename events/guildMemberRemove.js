@@ -3,7 +3,7 @@ const config = require('../config.json');
 
 module.exports = member => {
   let auditlogchannel = member.guild.channels.find('name', 'audit-log');
-  if (!auditlogchannel) return;
+  if (!auditlogchannel) return
 
   let embed = new Discord.RichEmbed()
   .setTitle('User has left the server!')
@@ -11,5 +11,5 @@ module.exports = member => {
   .addField('Username', member.user.username, true)
   .addField('Tag', member, true)
   auditlogchannel.send(embed);
-  return;
+  return
 }
