@@ -5,7 +5,8 @@ const errors = require('../util/errors.js');
 module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
 
-  if (!args[0]) return errors.provideNumber(message);
+  if (isNaN(args[0])) return errors.provideNumber(message);
+  if (args[0] > 100) return errors.anotherNumber(message);
 
   message.channel.bulkDelete(args[0]).then(() => {
     let embed = new Discord.RichEmbed()
@@ -37,5 +38,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
   name: 'purge',
   description: 'This allows messages to be deleted from a channel.',
-  usage: 'purge [number of messages]'
+  usage: 'purge [number of messages [max 100]]'
 };

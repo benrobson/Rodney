@@ -13,7 +13,7 @@ module.exports = (channel, message) => {
   .setColor(config.red)
   .addField('Channel Name', `${channel.name}`, true)
   .addField('Channel Type', `${channel.type}`, true)
-  .addField('Created At', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`)
+  .addField('Deleted At', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`)
   auditlogchannel.send(embed);
   return;
 }
