@@ -24,14 +24,11 @@ jsfile.forEach((files, i) => {
 
 // Voice Channel assign Role
 client.on('voiceStateUpdate', (oldMember, newMember) => {
-  let newUserChannel = newMember.voiceChannel
-  let oldUserChannel = oldMember.voiceChannel
+  let oldUserChannel = oldMember.voiceChannel;
+  let newUserChannel = newMember.voiceChannel;
 
   if (oldUserChannel === undefined && newUserChannel !== undefined) {
     console.log('User Joins a voice channel');
-
-    let guildRole = voicechannel.guild.roles.find('name', 'Voice');
-    await (user.addRole(guildRole.id));
 
   } else if (newUserChannel === undefined){
     console.log('User leaves a voice channel');
@@ -44,7 +41,6 @@ client.on('message', (message) => {
   if (message.channel.type === "dm") return;
 
   let prefix = config.prefix;
-  if (!prefix) return;
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);

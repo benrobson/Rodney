@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
   return
 };
 
-  module.exports.help = {
+module.exports.help = {
     name: 'avatar',
     description: 'This will display your avatar.',
     usage: 'avatar [@user]'

@@ -180,3 +180,13 @@ module.exports.incorrectChannel = (message) => {
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
 };
+
+// Used if a user attempts to send a tweet command that is not in the #tweet channel
+module.exports.noCommandName = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('Must provide a command name to reload.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
