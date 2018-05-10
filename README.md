@@ -17,6 +17,7 @@ If you are having troubles and/or issues setting up the bot, please leave an iss
 ## Contributors
 - `CM|T Frosty#9889` for helping out with the [mojangapi](https://github.com/shadowolfyt/RodneyTheDiscordBot/blob/master/commands/mojangapi.js) command.
 - `Stonic#2329` for helping out with the [fortnite](https://github.com/shadowolfyt/RodneyTheDiscordBot/blob/master/commands/fortnite.js) command.
+- `Stonic#2329` for helping out with general grammar and clean up.
 
 ## Useful Resources
 - [An Idiots Guide Discord](https://discord.gg/gkZCQtH) [these guys were helpful in little code issues]
