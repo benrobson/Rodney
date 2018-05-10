@@ -8,12 +8,12 @@ module.exports.run = async (client, message, args) => {
   let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
 
-  let reason = args.slice(1).join(" ");
+  let reason = args.slice(1).join(' ');
   if (!reason) return errors.invalidReason(message);
 
   if (user.hasPermission('MANAGE_MESSAGES')) return errors.cannotPunish(message);
 
-  let createdAtRaw = guild.createdAt.toDateString();
+  let createdAtRaw = message.createdAt.toDateString();
   let createdAt = createdAtRaw.split(' ');
 
   let embed = new Discord.RichEmbed()
@@ -25,13 +25,13 @@ module.exports.run = async (client, message, args) => {
   .addField('Time', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`, true)
   .addField('Reason', reason);
 
-  message.guild.member(user).ban(reason);
-
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
 
   auditlogchannel.send(embed);
-  console.log(`[${message.guild}] ${message.author} has banned ${user.user.username} from ${message.guild} for ${reason}.`);
+  message.member(user).ban(reason);
+
+  console.log(`[${message.guild}] ${message.author.username} has banned ${user.user.username} from ${message.guild} for ${reason}.`);
   return
 };
 
