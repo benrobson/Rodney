@@ -22,6 +22,7 @@ module.exports.run = async (client, message, args) => {
       .addField(`${Object.keys(body[5])[0]}`,`${body[5]['api.mojang.com'] ==="green"? '**Up And Online!** :white_check_mark: ' : '**Looks like the servers are having issues right now :x:**'}`)//api.mojang.com
       .addField(`${Object.keys(body[6])[0]}`,`${body[6]['textures.minecraft.net'] ==="green"? '**Up And Online!** :white_check_mark: ' : '**Looks like the servers are having issues right now :x:**'}`)//textures.minecraft.net
       .addField(`${Object.keys(body[7])[0]}`,`${body[7]['mojang.com'] ==="green"? '**Up And Online!** :white_check_mark: ' : '**Looks like the servers are having issues right now :x:**'}`)//mojang.com
+      .setThumbnail('https://vignette.wikia.nocookie.net/logopedia/images/d/d6/Mojang_ab_logo_vector.png/revision/latest?cb=20120306163913')
       .setColor(config.green)
       message.channel.send(embed);
   });
