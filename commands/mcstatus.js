@@ -18,8 +18,10 @@ module.exports.run = async (client, message, args) => {
   .addField('Server Online', status)
   .addField('Players On', body.players.now, true)
   .addField('Max Players', body.players.max, true);
+  message.channel.send(embed);
 
-  return message.channel.send(embed);
+  console.log(`[${message.guild}] ${message.author.username} requested the Minecraft Server status for ${mcIP}`);
+  return
 };
 
 module.exports.help = {

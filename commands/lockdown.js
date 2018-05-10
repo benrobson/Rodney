@@ -19,6 +19,7 @@ module.exports.run = async (client, message, args) => {
       .setColor(config.green)
       .setDescription('Lockdown has been lifted.')
       message.channel.send(embed);
+      console.log(`[${message.guild}] The lockdown on ${message.channel.name} has been lifted.`);
 
       clearTimeout(client.lockit[message.channel.id]);
       delete client.lockit[message.channel.id];
@@ -34,6 +35,7 @@ module.exports.run = async (client, message, args) => {
       .setColor(config.red)
       .setDescription(`${message.channel} has been **locked down** for ${ms(ms(time), { long:true })}`)
       message.channel.send(embed);
+      console.log(`[${message.guild}] ${message.author.username} has locked down ${message.channel.name}.`);
 
       client.lockit[message.channel.id] = setTimeout(() => {
         message.channel.overwritePermissions(message.guild.id, {
@@ -44,6 +46,7 @@ module.exports.run = async (client, message, args) => {
         .setColor(config.green)
         .setDescription('Lockdown has been lifted.')
         message.channel.send(embed);
+        console.log(`[${message.guild}] The lockdown on ${message.channel.name} has been lifted.`);
 
         delete client.lockit[message.channel.id];
       }, ms(time));
