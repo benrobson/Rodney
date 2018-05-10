@@ -45,6 +45,7 @@ client.on('message', (message) => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  if (!cmd.startsWith(prefix)) return;
   let commandfile = client.commands.get(cmd.slice(prefix.length));
   if (commandfile) commandfile.run(client,message,args);
 
@@ -59,6 +60,8 @@ client.on('message', (message) => {
     .setColor(config.red)
     .setDescription(`${message.author}, you are not allowed to advertise other Discords`);
     message.channel.send(embed);
+    
+    console.log(`[${message.guild}] ${message.author.username} advertised a Discord in their message.`);
     return;
   };
 
@@ -76,6 +79,5 @@ client.on('message', (message) => {
     return;
   };
 });
-
 
 client.login(token.token);
