@@ -50,7 +50,8 @@ module.exports.run = async (client, message, args) => {
   if (!auditlogchannel) return errors.noLogChannel(message);
 
   message.delete().catch(O_o=>{});
-  auditlogchannel.send(embed)
+  auditlogchannel.send(embed);
+  console.log(`[${message.guild}] ${message.author.username} has muted ${user.user.username} in ${message.guild} for ${time} for ${reason}.`);
 
   await(user.addRole(muterole.id));
 

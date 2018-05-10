@@ -11,6 +11,7 @@ module.exports.run = async (client, message, args) => {
   if (!user) return errors.invalidUser(message);
 
   let muterole = message.guild.roles.find('name', 'Muted');
+  if (user !== !muterole) return errors.userNotMuted(message);
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
@@ -21,7 +22,7 @@ module.exports.run = async (client, message, args) => {
     .setColor(config.yellow)
     .addField('Muted User', `${user}`)
     auditlogchannel.send(embed);
-  ms(time);
+    console.log(`[${message.guild}] ${user.user.username} has been unmuted in ${message.guild}.`);
 };
 
 module.exports.help = {

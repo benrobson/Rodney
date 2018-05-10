@@ -10,6 +10,7 @@ module.exports.run = async (client, message, args) => {
   .setColor(config.yellow)
   .setDescription(`${args}`.split(',').join(' '));
 
+  console.log(`[${message.guild}] ${message.author.username} has created a poll with the question: ${args}.`);
   return message.channel.send(embed).then(message.delete())
 
   .then(function (message, str) {

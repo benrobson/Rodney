@@ -13,11 +13,12 @@ module.exports.run = async (client, message, args) => {
     .setColor(config.green);
 
     message.channel.send(embed);
+    console.log(`The ${args[0]} command has been reloaded`);
   } else return errors.ownerOnly(message);
 };
 
 module.exports.help = {
     name: 'reload',
-    description: '',
+    description: 'Reload commands.',
     usage: 'reload [command]'
 };

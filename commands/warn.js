@@ -44,6 +44,7 @@ module.exports.run = async (client, message, args) => {
 
   message.delete().catch(O_o=>{});
   auditlogchannel.send(embed);
+  console.log(`[${message.guild}] ${message.author.username} has been warned by ${user.user.username} for: ${reason}.`);
 
   // Punishments
   // 2nd warning is user is Muted for 5 minutes

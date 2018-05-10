@@ -32,6 +32,7 @@ module.exports.run = async (client, message, args) => {
   if (!auditlogchannel) return errors.noLogChannel(message);
 
   auditlogchannel.send(embed);
+  console.log(`[${message.guild}] ${args} messages have been purged from ${message.channel.name} by ${message.author.username}`);
   return
 };
 

@@ -17,6 +17,6 @@ module.exports = (message) => {
   .addField('Message Content', message.content)
   auditlogchannel.send(embed);
 
-  console.log(`[${message.guild}] A message sent by ${message.author.username} has been deleted: ${message.content}`);
+  console.log(`[${message.guild}] A message sent by ${message.author.username} has been deleted: ${message.content}.`);
   return
 }

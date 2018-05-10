@@ -23,19 +23,20 @@ module.exports.run = async (client, message, args) => {
     let inputmessage = args.join(' ');
     if (!inputmessage) return errors.emptyMessage(message);
     if (message.channel === tweetchannel)
-      twitter.post('statuses/update', { status: `${inputmessage}` }, function(err, data, response) {
-          console.log(`${message.author.username} has tweeted "${inputmessage}"`);
 
-          let embed = new Discord.RichEmbed()
-            .setTitle('Tweet Successfully Tweeted!')
-            .setColor(config.green)
-            .addField('Message Content', `${inputmessage}`)
-            .addField('Tweeted By', `${message.author.username}`)
-          message.channel.send(embed);
-      })} else {
-        let inputmessage = args.join(' ');
-        return errors.incorrectChannel(message);
-      };
+    twitter.post('statuses/update', { status: `${inputmessage}` }, function (err, data, response) {
+      console.log(`[${message.guild}] ${message.author.username} has tweeted "${inputmessage}"`);
+
+      let embed = new Discord.RichEmbed()
+      .setTitle('Tweet Successfully Tweeted!')
+      .setColor(config.green)
+      .addField('Message Content', `${inputmessage}`)
+      .addField('Tweeted By', `${message.author.username}`)
+      message.channel.send(embed);
+    })} else {
+      let inputmessage = args.join(' ');
+      return errors.incorrectChannel(message);
+    };
 };
 
 module.exports.help = {

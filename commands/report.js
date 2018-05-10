@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
   let reason = args.slice(1).join(" ");
   if (!reason) return errors.invalidReason(message);
 
-  let createdAtRaw = guild.createdAt.toDateString();
+  let createdAtRaw = message.createdAt.toDateString();
   let createdAt = createdAtRaw.split(" ");
 
   let embed = new Discord.RichEmbed()
@@ -26,6 +26,7 @@ module.exports.run = async (client, message, args) => {
 
   message.delete().catch(O_o=>{});
   reportschannel.send(embed);
+  console.log(`[${message.guild}] ${message.author.username} has reported ${user.user.username} for: ${reason}.`);
   return;
 }
 
