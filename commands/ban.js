@@ -31,7 +31,8 @@ module.exports.run = async (client, message, args) => {
   if (!auditlogchannel) return errors.noLogChannel(message);
 
   auditlogchannel.send(embed);
-  return;
+  console.log(`[${message.guild}] ${message.author} has banned ${user.user.username} from ${message.guild} for ${reason}.`);
+  return
 };
 
 module.exports.help = {

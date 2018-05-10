@@ -27,6 +27,8 @@ module.exports.run = async (client, message, args) => {
   if (!auditlogchannel) return errors.noLogChannel(message);
 
   auditlogchannel.send(embed);
+
+  console.log(`[${message.guild}] ${message.author.username} has assigned the role ${guildRole.name} to ${user.user.username}.`);
   return
 };
 
