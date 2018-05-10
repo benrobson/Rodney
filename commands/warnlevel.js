@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 const fs = require('fs');
 const ms = require('ms');
+const errors = require('../util/errors.js');
 let warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
 
 module.exports.run = async (client, message, args) => {
@@ -16,8 +17,8 @@ module.exports.run = async (client, message, args) => {
     .setColor(config.red)
     .setDescription('This user has no warnings in the system.');
     message.channel.send(embed);
-    return;
-  };
+    return
+  }
 
   let embed = new Discord.RichEmbed()
   .setTitle(`Warning Profile for ${user.displayName}`)

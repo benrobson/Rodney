@@ -11,7 +11,7 @@ function setActivity() {
   var info = Gameinfo[Math.floor(Math.random() * Gameinfo.length)];
 
   client.user.setActivity(info);
-  console.log(`[ LOG ] Activity set to (${info})`);
+  console.log(`[ ACTIVITY LOG ] Activity set to (${info})`);
 }
 
 setInterval(setActivity, 120000);
