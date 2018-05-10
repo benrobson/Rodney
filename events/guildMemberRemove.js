@@ -11,5 +11,11 @@ module.exports = member => {
   .addField('Username', member.user.username, true)
   .addField('Tag', member, true)
   auditlogchannel.send(embed);
+
+  console.log(`[${member.guild}] ${member.user.username} has left the ${member.guild} Discord.`);
+
+  if (!config.stats) return;
+  if (!config.userid) return;
+  member.guild.channels.get(config.userid).setName(`Users: ${member.guild.memberCount}`);
   return
 }
