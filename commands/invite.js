@@ -11,6 +11,8 @@ module.exports.run = async (client, message, args) => {
       .setURL(`https://discord.gg/${invite.code}`)
       .setDescription(`Successfully created an invite!\nhttps://discord.gg/${invite.code}`)
       message.channel.send(embed);
+
+      console.log(`[${message.guild}] ${message.author.username} has generated an invite to the guild ${message.guild}: https://discord.gg/${invite.code}`);
     });
 };
 
