@@ -2,5 +2,5 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 
 module.exports = guild => {
-  console.log(`[Console] ${client.user.username} left ${guild.name}.`);
+  console.log(`[Console] Left the guild ${guild.name}.`);
 };
