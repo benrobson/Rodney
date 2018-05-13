@@ -7,7 +7,7 @@ module.exports = client => {
   console.log(`${client.user.username} is online and is operating on ${client.guilds.size} ${pluralnonpluralservers} for ${client.users.size} ${pluralnonpluralusers}.`);
 
 function setActivity() {
-  const Gameinfo = [`Running on ${client.guilds.size} ${pluralnonpluralservers}`, `Running for ${client.users.size} ${pluralnonpluralusers}`, `Use ${config.prefix}help for help`, `Using ${(((process.memoryUsage().heapUsed)/1024)/1024).toFixed(0)}MBs of RAM`, `Developer: shadowolf#9212`];
+  const Gameinfo = [`Running on ${client.guilds.size} ${pluralnonpluralservers}`, `Running for ${client.users.size} ${pluralnonpluralusers}`, `Use ${config.prefix}help for help`, `Using ${(((process.memoryUsage().heapUsed)/1024)/1024).toFixed(0)}MBs of RAM`, `Developer: shadowolf#9212`, `My Name JEFF!`];
   var info = Gameinfo[Math.floor(Math.random() * Gameinfo.length)];
 
   client.user.setActivity(info);
