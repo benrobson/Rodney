@@ -16,6 +16,6 @@ module.exports = (channel, message) => {
   .addField('Created At', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`)
   auditlogchannel.send(embed);
 
-  console.log(`[${channel.guild}] ${channel.name} has been created.`);
+  console.log(`[${channel.guild}] The channel ${channel.name} has been created.`);
   return
 }

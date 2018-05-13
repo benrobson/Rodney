@@ -16,6 +16,6 @@ module.exports = (channel, message) => {
   .addField('Deleted At', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]}`)
   auditlogchannel.send(embed);
 
-  console.log(`[${channel.guild}] ${channel.name} has been deleted.`);
+  console.log(`[${channel.guild}] The channel ${channel.name} has been deleted.`);
   return
 }
