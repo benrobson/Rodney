@@ -210,3 +210,13 @@ module.exports.userNotMuted = (message) => {
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
 };
+
+// Used if a user attempts to send a tweet command that is not in the #tweet channel
+module.exports.noFortniteAPIKey = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('A fortnite API key is not available.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};

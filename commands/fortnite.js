@@ -7,6 +7,7 @@ const stats = new Client(fortniteapi);
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args, tools) => {
+	if (fortniteapi === 'API KEY') return errors.noFortniteAPIKey(message);
 	if (args[0] === undefined || args[1] === undefined) {
 		const embed = new RichEmbed()
 			.setTitle(`:warning: Error :warning:`)
