@@ -205,7 +205,7 @@ module.exports.userNotMuted = (message) => {
 module.exports.noAPIKey = (message) => {
   let embed = new Discord.RichEmbed()
   .setTitle('An error has occurred!')
-  .setDescription('A API key is not available or could not be found, please check your `token.json` file.')
+  .setDescription('An API key is not available or could not be found, please check your `token.json` file.')
   .setColor(config.red);
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
