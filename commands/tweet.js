@@ -5,7 +5,7 @@ const token = require('../token.json');
 const Discord = require('discord.js');
 
 module.exports.run = async (client, message, args) => {
-  if (!config.tweetcommand) return
+  if (!config.tweetcommand) return 
 
   // Twitter API Credentials & Information
   const twitter = new twit ({
