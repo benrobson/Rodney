@@ -205,7 +205,7 @@ module.exports.userNotMuted = (message) => {
 module.exports.noAPIKey = (message) => {
   let embed = new Discord.RichEmbed()
   .setTitle('An error has occurred!')
-  .setDescription('A API key is not available or could not be found.')
+  .setDescription('A API key is not available or could not be found, please check your `token.json` file.')
   .setColor(config.red);
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
@@ -217,6 +217,16 @@ module.exports.invalidPlatform = (message) => {
   .setTitle('An error has occurred!')
   .setDescription('Please include a platform and username in your arguments.')
   .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
+
+// Used if a user attempts to send a tweet command that is not in the #tweet channel
+module.exports.commandNotEnabled = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('This command is not enabled, you can turn this on via the `config.json` file.')
+  .setColor(config.yellow);
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
 };
