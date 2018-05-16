@@ -230,3 +230,13 @@ module.exports.commandNotEnabled = (message) => {
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
 };
+
+// Used if a user does not specify a number of messages to purge
+module.exports.emptyCode = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('Please specify the code you would like to send.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
