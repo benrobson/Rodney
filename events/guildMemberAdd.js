@@ -13,4 +13,7 @@ module.exports = member => {
   auditlogchannel.send(embed)
 
   console.log(`[${member.guild}] ${member.user.username} has joined the ${member.guild} Discord.`);
+
+  if (!config.userchannel) return
+  member.guild.channels.get(config.userchannel).setName(`Total Users: ${member.guild.memberCount}`);
 };
