@@ -20,6 +20,7 @@
     "discord.js": "^11.3.2",
     "fortnite": "^4.0.1",
     "isgd": "^1.1.3",
+    "memejs": "^1.0.7",
     "ms": "^2.1.1",
     "request": "^2.85.0",
     "snekfetch": "^4.0.0",
