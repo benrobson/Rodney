@@ -35,6 +35,7 @@ module.exports.run = async (client, message, args) => {
   .addField('Guild Count', client.guilds.size, true)
   .addField('Discord.js Version', `v${version}`, true)
   .addField('Node Version', `${process.version}`, true)
+  .addField('Memory Usage', `${(((process.memoryUsage().heapUsed)/1024)/1024).toFixed(0)}MBs of RAM`, true)
   .addField('User Count', client.users.size, true)
   .addField('Uptime', `${time(client.uptime)}`);
 
