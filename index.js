@@ -61,11 +61,7 @@ client.on('message', (message) => {
     .setDescription(`${message.author}, you are not allowed to advertise other Discords`);
     message.channel.send(embed);
 
-<<<<<<< HEAD
-    console.log(`[${message.guild}] ${message.author.username} advertised a Discord in their message.`);
-=======
     console.log(`[${message.guild}] ${message.author.username} advertised a Discord server in their message.`);
->>>>>>> 937e64dae75e226eed803129f1513c99151bbcd9
     return;
   };
 
