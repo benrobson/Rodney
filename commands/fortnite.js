@@ -7,18 +7,15 @@ const stats = new Client(fortniteapi);
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args, tools) => {
+	if (fortniteapi === 'API KEY') return errors.noAPIKey(message);
 	if (args[0] === undefined || args[1] === undefined) {
-		const embed = new RichEmbed()
-			.setTitle(`:warning: Error :warning:`)
-			.setColor(red)
-			.setDescription(`Please include a platform and username in your arguments.`)
-		return message.channel.send(embed)
+		return errors.invalidPlatform(message);
 	} else if (/(pc|xbl|psn)/.test(args[0].toLowerCase()) === false) {
 		return errors.invalidPlatform(message);
 	} else {
 		const platform = args[0].toLowerCase().match(/(pc|xbl|psn)/)[0];
 		const username = args.slice(1).join(' ');
-
+		
 		const embed = new RichEmbed()
 			.setTitle('Known Bug')
 			.setColor(yellow)

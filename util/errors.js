@@ -1,5 +1,5 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
 
 // Used if there is no #audit-log channel in the guild
 module.exports.noLogChannel = (message, perm) => {
@@ -36,16 +36,6 @@ module.exports.invalidUser = (message) => {
   let embed = new Discord.RichEmbed()
   .setTitle('An error has occurred!')
   .setDescription('This user could not be found or does not exist!')
-  .setColor(config.red);
-
-  message.channel.send(embed).then(message => message.delete(config.errortimeout));
-};
-
-// Used if no valid platform has been specified
-module.exports.invalidPlatform = (message) => {
-  let embed = new Discord.RichEmbed()
-  .setTitle('An error has occurred!')
-  .setDescription('Invalid platform, try using PC, XBL, or PSN')
   .setColor(config.red);
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
@@ -207,6 +197,36 @@ module.exports.userNotMuted = (message) => {
   .setTitle('An error has occurred!')
   .setDescription('This user is not muted.')
   .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
+
+// Used if a user attempts to send a tweet command that is not in the #tweet channel
+module.exports.noAPIKey = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('An API key is not available or could not be found, please check your `token.json` file.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
+
+// Used if a user attempts to send a tweet command that is not in the #tweet channel
+module.exports.invalidPlatform = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('Please include a platform and username in your arguments.')
+  .setColor(config.red);
+
+  message.channel.send(embed).then(message => message.delete(config.errortimeout));
+};
+
+// Used if a user attempts to send a tweet command that is not in the #tweet channel
+module.exports.commandNotEnabled = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('This command is not enabled, you can turn this on via the `config.json` file.')
+  .setColor(config.yellow);
 
   message.channel.send(embed).then(message => message.delete(config.errortimeout));
 };

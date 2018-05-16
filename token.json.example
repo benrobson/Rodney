@@ -1,6 +1,6 @@
 {
   "token": "INSERT BOT TOKEN HERE",
-  "fortniteapi": "INSERT FORTNITE TOKEN HERE",
+  "fortniteapi": "API KEY",
 
   "consumer_key": "KEY",
   "consumer_secret": "KEY",
