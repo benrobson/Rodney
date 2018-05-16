@@ -60,7 +60,7 @@ client.on('message', (message) => {
     .setColor(config.red)
     .setDescription(`${message.author}, you are not allowed to advertise other Discords`);
     message.channel.send(embed);
-    
+
     console.log(`[${message.guild}] ${message.author.username} advertised a Discord in their message.`);
     return;
   };
