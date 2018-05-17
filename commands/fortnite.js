@@ -15,12 +15,6 @@ module.exports.run = async (client, message, args, tools) => {
 	} else {
 		const platform = args[0].toLowerCase().match(/(pc|xbl|psn)/)[0];
 		const username = args.slice(1).join(' ');
-		
-		const embed = new RichEmbed()
-			.setTitle('Known Bug')
-			.setColor(yellow)
-			.setDescription('There is a known bug that some of the fields are incorrect.\nThe field that we know that is incorrect is the `KD` field.\nUse the hyperlink to goto your Fortnite Tracker profile.')
-		message.channel.send(embed);
 
 		try {
 			const data = await stats.user(username, platform);
@@ -29,9 +23,9 @@ module.exports.run = async (client, message, args, tools) => {
 				.setColor(purple)
 				.setURL(data.url)
 				.setThumbnail('https://d1u5p3l4wpay3k.cloudfront.net/fortnite_gamepedia/6/64/Favicon.ico')
-				.addField('Solo Info', `Score/Kills: ${data.stats.solo.score}/${data.stats.solo.kills}\nKD: ${data.stats.solo.kills}\nMatches: ${data.stats.solo.matches}\nWins: ${data.stats.solo.wins}\nTop 3s: ${data.stats.solo.top_3}\nTop 5s: ${data.stats.solo.top_5}\nTop 6s: ${data.stats.solo.top_6}\nTop 12s: ${data.stats.solo.top_12}\nTop 25s: ${data.stats.solo.top_25}`)
-				.addField('Duo Info', `Score/Kills: ${data.stats.duo.score}/${data.stats.duo.kills}\nKD: ${data.stats.duo.kills}\nScores/Kills Per Match: ${data.stats.duo.kills_per_match}/${data.stats.duo.score_per_match}\nMatches: ${data.stats.duo.matches}\nWins: ${data.stats.duo.wins}\nTop 3s: ${data.stats.duo.top_3}\nTop 5s: ${data.stats.duo.top_5}\nTop 6s: ${data.stats.duo.top_6}\nTop 12s: ${data.stats.duo.top_12}\nTop 25s: ${data.stats.duo.top_25}`)
-				.addField('Squad Info', `Score/Kills: ${data.stats.squad.score}/${data.stats.squad.kills}\nKD: ${data.stats.squad.kills}\nScores/Kills Per Match: ${data.stats.squad.kills_per_match}/${data.stats.squad.score_per_match}\nMatches: ${data.stats.squad.matches}\nWins: ${data.stats.squad.wins}\nTop 3s: ${data.stats.squad.top_3}\nTop 5s: ${data.stats.squad.top_5}\nTop 6s: ${data.stats.squad.top_6}\nTop 12s: ${data.stats.squad.top_12}\nTop 25s: ${data.stats.squad.top_25}`)
+				.addField('Solo Info', formatInfo('solo'))
+				.addField('Duo Info', formatInfo('duo'))
+				.addField('Squad Info', formatInfo('squad'))
 			return message.channel.send(embed);
 		} catch (error) {
 			console.log(error);
@@ -45,3 +39,24 @@ module.exports.help = {
 	description: 'Displays stats for a user on the game Fortnite.',
 	usage: 'fortnite [pc | xbl | psn] [username]'
 };
+
+
+/**
+ * Format info for the mode
+ * @param {string} mode solo, duo, or squad
+ */
+function formatInfo(mode) {
+	return `Matches: ${data.stats[mode].matches}
+Kills: ${data.stats[mode].kills}
+Score: ${data.stats[mode].score}
+Score/Kills: ${data.stats[mode].score/data.stats[mode].kills}
+Score/Match: ${data.stats[mode].score_per_match}
+Score/Kills Per Match: ${data.stats[mode].score_per_match/data.stats[mode].kills}
+K/D: ${data.stats[mode].kd}
+Wins: ${data.stats[mode].wins}
+Top 3s: ${data.stats[mode].top_3}
+Top 5s: ${data.stats[mode].top_5}
+Top 6s: ${data.stats[mode].top_6}
+Top 12s: ${data.stats[mode].top_12}
+Top 25s: ${data.stats[mode].top_25}`;
+}
