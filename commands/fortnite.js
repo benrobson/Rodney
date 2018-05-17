@@ -51,7 +51,7 @@ Kills: ${data.stats[mode].kills}
 Score: ${data.stats[mode].score}
 Score/Kills: ${data.stats[mode].score/data.stats[mode].kills}
 Score/Match: ${data.stats[mode].score_per_match}
-Score/Kills Per Match: ${data.stats[mode].score_per_match/data.stats[mode].kills_per_match}
+Score/Kills Per Match: ${data.stats[mode].score_per_match/data.stats[mode].kills}
 K/D: ${data.stats[mode].kd}
 Wins: ${data.stats[mode].wins}
 Top 3s: ${data.stats[mode].top_3}
