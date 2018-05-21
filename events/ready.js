@@ -1,4 +1,6 @@
+const token = require('../token.json');
 const config = require('../config.json');
+const superagent = require('superagent');
 
 module.exports = client => {
   let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
@@ -12,7 +14,18 @@ function setActivity() {
 
   client.user.setActivity(info);
   console.log(`[Console] Activity set to (${info})`);
-}
+};
+
+/*
+Search for how many youtube subscribers the user has.
+
+const channel_id = 'UC23H6E9ZnXtBKbTuitExc5Q';
+const your_key = 'AIzaSyCPFCOZCvyTHEOJ2hyM1SKiDFCq7UQ10YI';
+let {body} = superagent
+.get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channel_id}&key=${your_key}`);
+
+console.log(body.items);
+*/
 
 setInterval(setActivity, 120000);
 };
