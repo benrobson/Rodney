@@ -20,7 +20,7 @@ function setActivity() {
 Search for how many youtube subscribers the user has.
 
 const channel_id = 'UC23H6E9ZnXtBKbTuitExc5Q';
-const your_key = 'AIzaSyCPFCOZCvyTHEOJ2hyM1SKiDFCq7UQ10YI';
+const your_key = '';
 let {body} = superagent
 .get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channel_id}&key=${your_key}`);
 
