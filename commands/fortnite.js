@@ -23,9 +23,9 @@ module.exports.run = async (client, message, args, tools) => {
 				.setColor(purple)
 				.setURL(data.url)
 				.setThumbnail('https://d1u5p3l4wpay3k.cloudfront.net/fortnite_gamepedia/6/64/Favicon.ico')
-				.addField('Solo Info', formatInfo('solo'))
-				.addField('Duo Info', formatInfo('duo'))
-				.addField('Squad Info', formatInfo('squad'))
+				.addField('Solo Info', formatInfo(data, 'solo'))
+				.addField('Duo Info', formatInfo(data, 'duo'))
+				.addField('Squad Info', formatInfo(data, 'squad'))
 			return message.channel.send(embed);
 		} catch (error) {
 			console.log(error);
@@ -43,9 +43,10 @@ module.exports.help = {
 
 /**
  * Format info for the mode
+ * @param {Object} data Fortnite data object
  * @param {string} mode solo, duo, or squad
  */
-function formatInfo(mode) {
+function formatInfo(data, mode) {
 	return `Matches: ${data.stats[mode].matches}
 Kills: ${data.stats[mode].kills}
 Score: ${data.stats[mode].score}
