@@ -13,8 +13,6 @@ module.exports.run = async (client, message, args) => {
   let guildRole = message.guild.roles.find('name', role);
   if (!role) return message.reply('Couldn\'t find that role.');
 
-  if (!args[1]) return message.channel.send('Add Args [Add or Remove]');
-
   if (message.content === 'add') {
     if (user.roles.has(guildRole.id)) return message.reply('That role does exist!');
     await (user.addRole(guildRole.id));
@@ -25,7 +23,6 @@ module.exports.run = async (client, message, args) => {
     .addField('Assigned User', `${user}`, true)
     .addField('Assigned By', `${message.author}`, true)
     .addField('Assigned Role', `${role}`, true);
-
     message.channel.send(embed);
 
     console.log(`[${message.guild}] ${message.author.username} has assigned the role ${guildRole.name} to ${user.user.username}.`);
@@ -41,7 +38,6 @@ module.exports.run = async (client, message, args) => {
     .addField('Assigned User', `${user}`, true)
     .addField('Assigned By', `${message.author}`, true)
     .addField('Assigned Role', `${role}`, true);
-
     message.channel.send(embed);
 
     console.log(`[${message.guild}] ${message.author.username} has assigned the role ${guildRole.name} to ${user.user.username}.`);
