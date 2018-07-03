@@ -13,9 +13,9 @@ module.exports.run = async (client, message, args) => {
   let guildRole = message.guild.roles.find('name', role);
   if (!role) return message.reply('Couldn\'t find that role.');
 
-  if (!args[2]) return message.channel.send('Add Args [Add or Remove]');
+  if (!args[1]) return message.channel.send('Add Args [Add or Remove]');
 
-  if (args[2] === 'add') {
+  if (args[1] === 'add') {
     if (user.roles.has(guildRole.id)) return message.reply('That role does exist!');
     await (user.addRole(guildRole.id));
 
@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
     console.log(`[${message.guild}] ${message.author.username} has assigned the role ${guildRole.name} to ${user.user.username}.`);
   };
 
-  if (args[2] === 'remove') {
+  if (args[1] === 'remove') {
     if (user.roles.has(guildRole.id)) return message.reply('That role does exist!');
     await (user.addRole(guildRole.id));
 
