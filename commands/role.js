@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
 
   if (!args[1]) return message.channel.send('Add Args [Add or Remove]');
 
-  if (args[1] === 'add') {
+  if (message.content === 'add') {
     if (user.roles.has(guildRole.id)) return message.reply('That role does exist!');
     await (user.addRole(guildRole.id));
 
@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
     console.log(`[${message.guild}] ${message.author.username} has assigned the role ${guildRole.name} to ${user.user.username}.`);
   };
 
-  if (args[1] === 'remove') {
+  if (message.content === 'remove') {
     if (user.roles.has(guildRole.id)) return message.reply('That role does exist!');
     await (user.addRole(guildRole.id));
 
