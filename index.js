@@ -21,19 +21,6 @@ jsfile.forEach((files, i) => {
   })
 });
 
-// Voice Channel assign Role
-client.on('voiceStateUpdate', (oldMember, newMember) => {
-  let oldUserChannel = oldMember.voiceChannel;
-  let newUserChannel = newMember.voiceChannel;
-
-  if (oldUserChannel === undefined && newUserChannel !== undefined) {
-    console.log('User Joins a voice channel');
-
-  } else if (newUserChannel === undefined){
-    console.log('User leaves a voice channel');
-  }
-});
-
 // Message Guild Event
 client.on('message', (message) => {
   if (message.author.bot) return;
