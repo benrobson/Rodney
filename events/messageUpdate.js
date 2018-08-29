@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
 
-module.exports = (oldmsg, newmsg) => {
+module.exports = (oldMessage, newMessage) => {
   let auditlogchannel = omsg.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
-  .addField(`Message Edited in ${newmsg.channel.name}.`, `${newmsg.author.username}:\n Old Message: ${oldmsg.content}\n ${newmsg.content}`)
+  .addField(`Message Edited in ${newMessage.channel.name}.`, `${newMessage.author.username}:\n Old Message: ${oldMessage.content}\n ${newMessage.content}`)
   auditlogchannel.send(embed);
 
-  console.log(`[${newmsg.guild}] A message sent by ${newmsg.author.username} has been deleted: ${newmsg.content}.`);
+  console.log(`[${newMessage.guild}] A message sent by ${newMessage.author.username} has been deleted: ${newMessage.content}.`);
   return
 }
