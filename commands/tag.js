@@ -13,3 +13,7 @@ module.exports.run = async (client, message, args) => {
     message.channel.send("Guys, this is so sad, can we get 10 likes.");
   }
 };
+
+module.exports.help = {
+  name: 'tag'
+};
