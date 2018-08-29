@@ -1,4 +1,7 @@
-# Rodney
+<p align="center">
+  <img height="300" src="https://i.imgur.com/c5oaTfE.png">
+</p>
+
 A Discord bot developed in JavaScript using the discord.js Library.
 At this point in time the bot will not be supporting multiple guilds at once during the development period of the Beta process.
 
