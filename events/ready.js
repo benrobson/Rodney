@@ -1,6 +1,7 @@
 const token = require('../token.json');
 const config = require('../config.json');
 const superagent = require('superagent');
+const rpcclient = require('discord-rich-presence')('419055297395556355');
 
 module.exports = client => {
   let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
@@ -8,6 +9,17 @@ module.exports = client => {
 
   console.log(`${client.user.username} is online and is operating on ${client.guilds.size} ${pluralnonpluralservers} for ${client.users.size} ${pluralnonpluralusers}.`);
 
+  rpcclient.updatePresence({
+    state: 'slithering',
+    details: '🐍',
+    startTimestamp: Date.now(),
+    endTimestamp: Date.now() + 1337,
+    largeImageKey: 'discord_large',
+    smallImageKey: 'discord_small',
+    instance: true,
+  });
+
+/*
 function setActivity() {
   const Gameinfo = [`Using ${(((process.memoryUsage().heapUsed)/1024)/1024).toFixed(0)}MBs of RAM`, 'Source: http://bit.ly/rodneybotsource', 'Developer: shadowolf#9212', 'Discord: http://bit.ly/mancavediscord', 'Invite: http://bit.ly/inviterodney', `Running on ${client.guilds.size} ${pluralnonpluralservers}`, `Running for ${client.users.size} ${pluralnonpluralusers}`, `Use ${config.prefix}help`];
   var info = Gameinfo[Math.floor(Math.random() * Gameinfo.length)];
@@ -15,6 +27,7 @@ function setActivity() {
   client.user.setActivity(info);
   console.log(`[Console] Activity set to (${info})`);
 };
+*/
 
 /*
 Search for how many youtube subscribers the user has.
