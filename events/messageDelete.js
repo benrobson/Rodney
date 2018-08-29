@@ -6,7 +6,7 @@ module.exports = (message) => {
   if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
-  .addField(`Message Deleted in ${message.channel}.`, `${message.author.username}: ${message.content}`)
+  .addField(`Message Deleted in ${message.channel.name}.`, `${message.author.username}: ${message.content}`)
   auditlogchannel.send(embed);
 
   console.log(`[${message.guild}] A message sent by ${message.author.username} has been deleted: ${message.content}.`);
