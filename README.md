@@ -1,5 +1,6 @@
 <p align="center">
-  <img height="300" src="https://i.imgur.com/c5oaTfE.png">
+  <img height="250" src="https://i.imgur.com/c5oaTfE.png">
+  <h1>Rodney</h1>
 </p>
 
 A Discord bot developed in JavaScript using the discord.js Library.
