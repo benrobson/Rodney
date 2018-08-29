@@ -9,7 +9,7 @@ module.exports = (client) => {
   client.on('messageDelete', reqEvent('messageDelete'));
 	client.on('guildCreate', reqEvent('guildCreate'));
 	client.on('guildDelete', reqEvent('guildDelete'));
-	client.on('guildDelete', reqEvent('messageUpdate'));
+	client.on('messageUpdate', reqEvent('messageUpdate'));
 
 /*
 	client.on('guildBanAdd', reqEvent('guildBanAdd'));
