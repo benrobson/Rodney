@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args) => {
   }
 
   let embed = new Discord.RichEmbed()
-  .setTitle(`Information about ${user.username}`)
+  .setTitle(`Information about ${user.user.username}`)
   .setColor(config.red)
   .setThumbnail(icon)
   .addField('Username', user.user.tag, true)
