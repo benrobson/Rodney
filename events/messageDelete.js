@@ -2,9 +2,6 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 
 module.exports = (message) => {
-  let createdAtRaw = message.createdAt.toDateString();
-  let createdAt = createdAtRaw.split(" ");
-
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return;
 
