@@ -1,8 +1,8 @@
 <p align="center">
   <img height="250" src="https://i.imgur.com/c5oaTfE.png">
-  <h1>Rodney</h1>
 </p>
 
+# Rodney
 A Discord bot developed in JavaScript using the discord.js Library.
 At this point in time the bot will not be supporting multiple guilds at once during the development period of the Beta process.
 
@@ -14,7 +14,6 @@ If you are having troubles and/or issues setting up the bot, please leave an iss
 
 ## Links
 - [Development Roadmap / Issue Tracker](https://github.com/shadowolfyt/RodneyTheDiscordBot/issues)
-- [Version History](https://github.com/shadowolfyt/RodneyTheDiscordBot/wiki/Version-History)
 
 ## Contributors
 - [jasoryeh](https://github.com/jasoryeh) for helping out with general grammar and clean up.
