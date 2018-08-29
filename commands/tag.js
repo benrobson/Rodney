@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
     message.channel.send('Where are the args?')
   }
 
-  if (args[1] == 'xd'){
+  if (args[1] == 'xd') {
     message.channel.send("CAN WE GET AN XD IN THE CHAT BOIS");
   } else if (args[1] == 'sad') {
     message.channel.send("Guys, this is so sad, can we get 10 likes.");
@@ -15,5 +15,6 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.help = {
-  name: 'tag'
+  name: 'tag',
+  usage: 'tag'
 };
