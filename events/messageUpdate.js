@@ -6,7 +6,8 @@ module.exports = (oldMessage, newMessage) => {
   if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
-  .addField(`Message Edited in ${newMessage.channel.name}.`, `${newMessage.author.username}:\n Old Message: ${oldMessage.content}\n ${newMessage.content}`)
+  .setColor(orange)
+  .addField(`Message Edited in #${newMessage.channel.name}.`, `${newMessage.author.username}\n Old Message: ${oldMessage.content} -> ${newMessage.content}`)
   auditlogchannel.send(embed);
 
   console.log(`[${newMessage.guild}] A message sent by ${newMessage.author.username} has been deleted: ${newMessage.content}.`);
