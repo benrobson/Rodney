@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
     return
   };
 
-  if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
+  if (!message.member.hasPermission(`${module.exports.help.permission}`)) return errors.noPermissions(message, `${module.exports.help.permission}`);
 
   if (!client.lockit) client.lockit = [];
   let time = args.join(' ');

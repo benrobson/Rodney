@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
     return
   };
 
-  if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
+  if (!message.member.hasPermission(`${module.exports.help.permission}`)) return errors.noPermissions(message, `${module.exports.help.permission}`);
 
   if (isNaN(args[0])) return errors.provideNumber(message);
   if (args[0] > 100) return errors.anotherNumber(message);

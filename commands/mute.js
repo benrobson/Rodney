@@ -15,11 +15,11 @@ module.exports.run = async (client, message, args) => {
     return
   };
 
-  if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
+  if (!message.member.hasPermission(`${module.exports.help.permission}`)) return errors.noPermissions(message, `${module.exports.help.permission}`);
 
   let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
-  if (user.hasPermission('MANAGE_MESSAGES')) return errors.cannotPunish(message);
+  if (user.hasPermission(`${module.exports.help.permission}`)) return errors.cannotPunish(message);
 
   let reason = args.slice(1).join(" ");
   if (!reason) return errors.invalidReason(message);

@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
       return
     };
 
-  if (!message.member.hasPermission('ADMINISTRATOR')) return errors.noPermissions(message, 'ADMINISTRATOR');
+  if (!message.member.hasPermission(`${module.exports.help.permission}`)) return errors.noPermissions(message, `${module.exports.help.permission}`);
 
   if (!args[0]) return errors.emptyMessage(message);
   let inputmessage = args.join(' ');
