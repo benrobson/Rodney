@@ -4,6 +4,16 @@ const ms = require('ms');
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+    .addField('Permission', `${module.exports.help.permission}`, true)
+    .setColor(config.cyan)
+    message.channel.send(embed);
+    return
+  };
 
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
 
@@ -28,5 +38,6 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
   name: 'unmute',
   description: 'Unmutes a user.',
+  permission: 'MANAGE_MESSAGES',
   usage: 'unmute [@user]'
 };

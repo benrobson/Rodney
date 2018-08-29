@@ -1,9 +1,19 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
+const Discord = require('discord.js');
 const { version } = require('discord.js');
-const config = require('../config.json'); // this links to the config.json file
-const package = require('../package.json'); // this links to the package.json file
+const config = require('../config.json');
+const package = require('../package.json');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+    .setColor(config.cyan)
+    message.channel.send(embed);
+    return
+  };
+
   function time( milliseconds ) {
     let day, hour, minute, seconds;
 

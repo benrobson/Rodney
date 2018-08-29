@@ -3,6 +3,17 @@ const config = require('../config.json');
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+    .addField('Permission', `${module.exports.help.permission}`, true)
+    .setColor(config.cyan)
+    message.channel.send(embed);
+    return
+  };
+
   if (!message.member.hasPermission('BAN_MEMBERS')) return errors.noPermissions(message, 'BAN_MEMBERS');
 
   let user = message.guild.member(message.mentions.members.first());
@@ -37,6 +48,7 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'ban',
-  description: 'This will permanently ban a user from the guild.',
+  description: 'This will permanently bans a user from the guild with the reason provided.',
+  permission: 'BAN_MEMBERS',
   usage: 'ban [@user] [reason]'
 };

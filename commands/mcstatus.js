@@ -4,6 +4,16 @@ const superagent = require('superagent');
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+      let embed = new Discord.RichEmbed()
+      .setTitle(`${module.exports.help.name} Command Information`)
+      .setDescription(`${module.exports.help.description}`)
+      .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+      .setColor(config.cyan)
+      message.channel.send(embed);
+      return
+    };
+
   let mcIP = args[0];
   if (!mcIP) return errors.invalidIP(message);
 
@@ -26,6 +36,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'mcstatus',
-  description: 'Display information about the Minecraft Server.',
+  description: 'Display information about a Minecraft Server.',
   usage: 'mcstatus [ip]'
 };

@@ -4,6 +4,16 @@ const superagent = require('superagent');
 const request = require('request');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+      let embed = new Discord.RichEmbed()
+      .setTitle(`${module.exports.help.name} Command Information`)
+      .setDescription(`${module.exports.help.description}`)
+      .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+      .setColor(config.cyan)
+      message.channel.send(embed);
+      return
+    };
+
   const url = 'https://status.mojang.com/check';
   const testOffline = '[{"minecraft.net":"red"},{"session.minecraft.net":"green"},{"account.mojang.com":"green"},{"authserver.mojang.com":"red"},{"sessionserver.mojang.com":"green"},{"api.mojang.com":"green"},{"textures.minecraft.net":"red"},{"mojang.com":"red"}]';
   request(url, function (err, response, body) {
@@ -30,6 +40,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'mojangapi',
-  description: '',
+  description: 'This command allows users to check the status of the Mojang APIs.',
   usage: 'mojangapi'
 };

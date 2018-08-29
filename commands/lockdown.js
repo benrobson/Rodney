@@ -4,6 +4,17 @@ const errors = require('../util/errors.js');
 const ms = require('ms');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+    .addField('Permission', `${module.exports.help.permission}`, true)
+    .setColor(config.cyan)
+    message.channel.send(embed);
+    return
+  };
+
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
 
   if (!client.lockit) client.lockit = [];
@@ -19,7 +30,7 @@ module.exports.run = async (client, message, args) => {
       .setColor(config.green)
       .setDescription('Lockdown has been lifted.')
       message.channel.send(embed);
-      console.log(`[${message.guild}] The lockdown on ${message.channel.name} has been lifted.`);
+      console.log(`[${message.guild}] The lockdown on #${message.channel.name} has been lifted.`);
 
       clearTimeout(client.lockit[message.channel.id]);
       delete client.lockit[message.channel.id];
@@ -33,9 +44,9 @@ module.exports.run = async (client, message, args) => {
       let embed = new Discord.RichEmbed()
       .setTitle('This channel has been locked down!')
       .setColor(config.red)
-      .setDescription(`${message.channel} has been **locked down** for ${ms(ms(time), { long:true })}`)
+      .setDescription(`${message.channel} has been **locked down** for ${ms(ms(time), { long:true })} by **${message.author.username}**`)
       message.channel.send(embed);
-      console.log(`[${message.guild}] ${message.author.username} has locked down ${message.channel.name}.`);
+      console.log(`[${message.guild}] ${message.author.username} has locked down #${message.channel.name}.`);
 
       client.lockit[message.channel.id] = setTimeout(() => {
         message.channel.overwritePermissions(message.guild.id, {
@@ -46,7 +57,7 @@ module.exports.run = async (client, message, args) => {
         .setColor(config.green)
         .setDescription('Lockdown has been lifted.')
         message.channel.send(embed);
-        console.log(`[${message.guild}] The lockdown on ${message.channel.name} has been lifted.`);
+        console.log(`[${message.guild}] The lockdown on #${message.channel.name} has been lifted.`);
 
         delete client.lockit[message.channel.id];
       }, ms(time));
@@ -56,6 +67,7 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'lockdown',
-  description: 'Temporarily lock a channel from interaction.',
+  description: 'Temporarily lock any channel from interaction from other users.',
+  permission: 'MANAGE_MESSAGES',
   usage: 'lockdown [h/m/s] unlock, release'
 };

@@ -1,7 +1,17 @@
-const Discord = require('discord.js'); // this links to the official Discord npm package
-const config = require('../config.json'); // this links to the config.json file
+const Discord = require('discord.js');
+const config = require('../config.json');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+    .setColor(config.cyan)
+    message.channel.send(embed);
+    return
+  };
+
   let guild = message.guild;
   let large = message.guild.large ? "✅" : "❎";
   let icon = message.guild.iconURL;

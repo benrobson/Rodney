@@ -3,6 +3,16 @@ const config = require('../config.json');
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+    .setColor(config.cyan)
+    message.channel.send(embed);
+    return
+  };
+
   message.channel.createInvite()
     .then((invite) => {
       let embed = new Discord.RichEmbed()
@@ -18,6 +28,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'invite',
-  description: 'Generate an instant invite to your guild.',
+  description: 'Generates an instant invite to your guild.',
   usage: 'invite'
 };

@@ -5,6 +5,16 @@ const token = require('../token.json');
 const Discord = require('discord.js');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+    .setColor(config.cyan)
+    message.channel.send(embed);
+    return
+  };
+
   if (!config.tweetcommand) return errors.commandNotEnabled(message);
   if (token.consumer_key === 'KEY' || token.consumer_secret === 'KEY' || token.access_token === 'KEY' || token.access_token_secret === 'KEY') return errors.noAPIKey(message);
 
@@ -42,6 +52,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'tweet',
-  description: 'Tweet from your Discord client to a Twitter account (if configured).',
-  usage: 'tweet [message]'
+  description: 'Tweet from your Discord client to a Twitter account (if enabled & configured).',
+  usage: 'tweet [content]'
 };

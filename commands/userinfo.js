@@ -3,6 +3,16 @@ const config = require('../config.json');
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+      let embed = new Discord.RichEmbed()
+      .setTitle(`${module.exports.help.name} Command Information`)
+      .setDescription(`${module.exports.help.description}`)
+      .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+      .setColor(config.cyan)
+      message.channel.send(embed);
+      return
+    };
+
   let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
 
@@ -48,6 +58,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'userinfo',
-  description: 'Displays information about the user.',
+  description: 'Displays information about the mentioned user.',
   usage: 'userinfo [@user]'
 }

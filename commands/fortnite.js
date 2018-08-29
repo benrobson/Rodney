@@ -7,6 +7,16 @@ const stats = new Client(fortniteapi);
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args, tools) => {
+	if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+    .setColor(config.cyan)
+    message.channel.send(embed);
+    return
+  };
+
 	if (fortniteapi === 'API KEY') return errors.noAPIKey(message);
 	if (args[0] === undefined || args[1] === undefined) {
 		return errors.invalidPlatform(message);

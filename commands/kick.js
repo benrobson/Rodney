@@ -3,6 +3,17 @@ const config = require('../config.json');
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+    .addField('Permission', `${module.exports.help.permission}`, true)
+    .setColor(config.cyan)
+    message.channel.send(embed);
+    return
+  };
+
   if (!message.member.hasPermission('MANAGE_MESSAGES')) return errors.noPermissions(message, 'MANAGE_MESSAGES');
 
   let user = message.guild.member(message.mentions.members.first());
@@ -36,6 +47,7 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'kick',
-  description: 'Kicks the mentioned user from the guild.',
-  usage: 'kick [user] [reason]'
+  description: 'Kicks the mentioned user from the guild with the reason provided.',
+  permission: 'MANAGE_MESSAGES',
+  usage: 'kick [@user] [reason]'
 };

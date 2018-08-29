@@ -2,6 +2,16 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+    .addField('Permission', `${module.exports.help.permission}`, true)
+    .setColor(config.cyan)
+    message.channel.send(embed);
+    return
+  };
 
   if (message.author.id !== `${config.ownerid}`) return errors.ownersOnly(message);
 
@@ -19,6 +29,7 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'terminate',
-  description: 'Will make the bot leave the guild and terminate it\'s instance.',
+  description: 'Will make the bot leave the Discord guild and terminate it\'s instance.',
+  permission: 'BOTOWNER',
   usage: 'terminate'
 };

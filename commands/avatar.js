@@ -5,10 +5,12 @@ const errors = require('../util/errors.js');
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
     let embed = new Discord.RichEmbed()
-    .setTitle(`${module.exports.help.name} Information`)
-    .addField('Usage', `${module.exports.help.usage}`)
+    .setTitle(`${module.exports.help.name} Command Information`)
+    .setDescription(`${module.exports.help.description}`)
+    .addField('Usage', `${config.prefix}${module.exports.help.usage}`)
+    .setColor(config.cyan)
     message.channel.send(embed);
-    return true;
+    return
   };
 
   let user = message.guild.member(message.mentions.members.first());
@@ -24,5 +26,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
     name: 'avatar',
     description: 'This will allow you to display a users avatar.',
-    usage: 'avatar [@user]'
+    usage: `avatar [@user]`
 };

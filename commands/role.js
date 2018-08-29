@@ -3,6 +3,17 @@ const config = require('../config.json');
 const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
+  if (args == 'help') {
+      let embed = new Discord.RichEmbed()
+      .setTitle(`${module.exports.help.name} Command Information`)
+      .setDescription(`${module.exports.help.description}`)
+      .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+      .addField('Permission', `${module.exports.help.permission}`, true)
+      .setColor(config.cyan)
+      message.channel.send(embed);
+      return
+    };
+
   if (!message.member.hasPermission('MANAGE_ROLES')) return errors.noPermissions(message, 'MANAGE_ROLES');
 
   let user = message.guild.member(message.mentions.members.first());
@@ -47,5 +58,6 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
   name: 'role',
   description: 'This will add or remove a role from the mentioned user.',
-  usage: 'role [add/remove] [user] [role]'
+  permission: 'MANAGE_ROLES',
+  usage: 'role [add/remove] [@user] [role]'
 };
