@@ -6,9 +6,16 @@ module.exports.run = async (client, message, args) => {
   let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
 
+  if (args == 'help') {
+    let embed = new Discord.RichEmbed()
+    .setTitle(`${module.exports.help.name} Information`)
+    .addField('Usage', `${module.exports.help.usage}`)
+    message.channel.send(embed);
+    return
+  }
+
   let embed = new Discord.RichEmbed()
-  .setTitle(`Here is ${user.displayName}s avatar.`)
-  .setColor(config.white)
+  .setTitle(`${user.displayName}s avatar.`)
   .setImage(user.user.displayAvatarURL);
   message.channel.send(embed);
   return
