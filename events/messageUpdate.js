@@ -9,7 +9,7 @@ module.exports = (oldMessage, newMessage) => {
 
   let embed = new Discord.RichEmbed()
   .setColor(config.orange)
-  .addField(`Message Edited in #${newMessage.channel.name}.`, `${newMessage.author.username}\n Old Message: ${oldMessage.content} -> ${newMessage.content}`)
+  .addField(`Message Edited in #${newMessage.channel.name} by ${newMessage.author.username}`, `${oldMessage.content} -> ${newMessage.content}`)
   auditlogchannel.send(embed);
 
   console.log(`[${newMessage.guild}] A message sent by ${newMessage.author.username} has been deleted: ${newMessage.content}.`);
