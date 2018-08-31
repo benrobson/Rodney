@@ -6,7 +6,7 @@ module.exports = client => {
   let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
   let pluralnonpluralusers = (client.users.size > 1) ? 'Users' : 'User';
 
-  console.log(`${client.user.username} is online and is operating on ${client.guilds.size} ${pluralnonpluralservers} for ${client.users.size} ${pluralnonpluralusers}.`);
+  console.log(`\n\n${client.user.username} is online.\nOperating on ${client.guilds.size} ${pluralnonpluralservers}.\nOperating for ${client.users.size} ${pluralnonpluralusers}.\n\n`);
   client.user.setActivity('Booting..');
 
   function setActivity() {
