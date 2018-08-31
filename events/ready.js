@@ -7,6 +7,7 @@ module.exports = client => {
   let pluralnonpluralusers = (client.users.size > 1) ? 'Users' : 'User';
 
   console.log(`${client.user.username} is online and is operating on ${client.guilds.size} ${pluralnonpluralservers} for ${client.users.size} ${pluralnonpluralusers}.`);
+  client.user.setActivity('Booting..');
 
   function setActivity() {
     const Gameinfo = [`Using ${(((process.memoryUsage().heapUsed)/1024)/1024).toFixed(0)}MBs of RAM`, 'Source: http://bit.ly/rodneybotsource', 'Developer: shadowolf#9212', 'Discord: http://bit.ly/mancavediscord', 'Invite: http://bit.ly/inviterodney', `Running on ${client.guilds.size} ${pluralnonpluralservers}`, `Running for ${client.users.size} ${pluralnonpluralusers}`, `Use ${config.prefix}help`];
