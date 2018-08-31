@@ -1,5 +1,5 @@
 {
-  "name": "rodneythediscordbot",
+  "name": "Rodney",
   "version": "1.0.0",
   "description": "A Discord bot developed in JavaScript using the discord.js Library.",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shadowolfyt/RodneyTheDiscordBot.git"
+    "url": "git+https://github.com/shadowolfyt/Rodney.git"
   },
-  "author": "shadowolf",
+  "author": "shadowolfyt",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shadowolfyt/RodneyTheDiscordBot/issues"
+    "url": "https://github.com/shadowolfyt/Rodney/issues"
   },
-  "homepage": "https://github.com/shadowolfyt/RodneyTheDiscordBot#readme",
+  "homepage": "https://github.com/shadowolfyt/Rodney#readme",
   "dependencies": {
     "discord.js": "^11.3.2",
     "fortnite": "^4.0.1",

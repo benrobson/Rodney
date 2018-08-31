@@ -14,17 +14,17 @@ module.exports.run = async (client, message, args) => {
   };
 
   let embed = new Discord.RichEmbed()
-  .setTitle('Issue Tracker')
+  .setTitle('GitHub')
   .setThumbnail('https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2000px-Octicons-mark-github.svg.png')
   .setURL(package.bugs.url)
-  .setDescription(`If you would like to report an issue or make a suggestion in the bot development, please do so on the tracker ${package.bugs.url}`)
+  .setDescription(`If you didn't know, this Discord bot is Open Source, feel free to add or to fork your own version of the bot.\nIf you would like to report an issue or make a suggestion in the bot development, please do so on the tracker: ${package.bugs.url}`)
 
   message.channel.send(embed);
   return
 }
 
 module.exports.help = {
-  name: 'issues',
-  description: 'Displays information that takes user to the issue tracker if they would like report an issue or make a suggestion.',
-  usage: 'issues'
+  name: 'github',
+  description: 'This displays information and a URL to the Open Source project.',
+  usage: 'github'
 }
