@@ -52,6 +52,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'tweet',
-  description: 'Tweet from your Discord client to a Twitter account (if enabled & configured).',
+  description: 'Tweet from your Discord client to a Twitter account (if enabled & configured).\n**NOTE** If you\'re running a public instance of this bot this command will not work.\nIf you would like to use this command, please clone the GitHub project and run the bot yourself.',
   usage: 'tweet [content]'
 };
