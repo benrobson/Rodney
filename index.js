@@ -5,6 +5,8 @@ const fs = require('fs');
 client.commands = new Discord.Collection();
 require('./util/eventLoader.js')(client);
 
+const privatekey = require('./privatekey.json'); // Used for local development
+
 // Reads all commands and boots them in
 fs.readdir('./commands/', (err, files) => {
   if (err) console.log(err);
@@ -37,23 +39,29 @@ client.on('message', (message) => {
 
   // Discord Invite Detector
   const invite = ['discord.gg', 'discord.io', 'discord.me'];
-  if (!config.discordinvite) return;
-  if (invite.some(word => message.content.toLowerCase().includes(word))) {
-  message.delete().catch(O_o=>{});
-
-  let embed = new Discord.RichEmbed()
-    .setTitle('Discord Invite Detected')
-    .setColor(config.red)
-    .setDescription(`${message.author}, you are not allowed to advertise other Discords`);
-    message.channel.send(embed);
-
-    console.log(`[${message.guild}] ${message.author.username} advertised a Discord server in their message.`);
+  if (config.discordinvite == false) {
+    console.log('Discord Invite detector is disabled.');
     return;
-  };
+  } else {
+    if (invite.some(word => message.content.toLowerCase().includes(word))) {
+    message.delete().catch(O_o=>{});
+
+    let embed = new Discord.RichEmbed()
+      .setTitle('Discord Invite Detected')
+      .setColor(config.red)
+      .setDescription(`${message.author}, you are not allowed to advertise other Discords`);
+      message.channel.send(embed);
+
+      console.log(`[${message.guild}] ${message.author.username} advertised a Discord server in their message.`);
+      return;
+  }};
 
   // Swear Detector
   const swearWords = ['shit', 'fuck', 'bitch', 'nigger', 'nigga', 'cunt', 'whore', 'fag', 'faggot', 'dick', 'cock', 'pussy', 'slut', 'bastard'];
-  if (!config.swearfilter) return;
+  if (config.discordinvite == false) {
+    console.log('Swear detector is disabled.');
+    return;
+  } else {
   if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
   message.delete().catch(O_o=>{});
 
@@ -63,7 +71,8 @@ client.on('message', (message) => {
     .setDescription(`${message.author}, you can't say that, this is a Christian Minecraft Server!`);
     message.channel.send(embed).then(message => message.delete(3000));
     return;
-  };
+  }};
 });
 
 client.login(process.env.BOT_TOKEN);
+//client.login(privatekey.token); // Used for local development
