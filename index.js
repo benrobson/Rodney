@@ -5,7 +5,7 @@ const fs = require('fs');
 client.commands = new Discord.Collection();
 require('./util/eventLoader.js')(client);
 
-const privatekey = require('./privatekey.json'); // Used for local development
+//const privatekey = require('./privatekey.json'); // Used for local development
 
 // Reads all commands and boots them in
 fs.readdir('./commands/', (err, files) => {
