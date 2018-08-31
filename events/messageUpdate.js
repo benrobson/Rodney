@@ -12,6 +12,6 @@ module.exports = (oldMessage, newMessage) => {
   .addField(`Message Edited in #${newMessage.channel.name} by ${newMessage.author.username}`, `${oldMessage.content} -> ${newMessage.content}`)
   auditlogchannel.send(embed);
 
-  console.log(`[${newMessage.guild}] A message sent by ${newMessage.author.username} has been deleted: ${newMessage.content}.`);
+  console.log(`[${newMessage.guild}] A message in #${newMessage.channel.name} has been edited by ${newMessage.author.username}\n${oldMessage.content} -> ${newMessage.content}`);
   return
 }
