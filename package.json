@@ -17,15 +17,15 @@
   },
   "homepage": "https://github.com/shadowolfyt/Rodney#readme",
   "dependencies": {
-    "discord.js": "^11.3.2",
-    "fortnite": "^4.0.1",
+    "discord.js": "^11.4.2",
+    "fortnite": "^4.1.1",
     "isgd": "^1.1.3",
-    "memejs": "^1.0.7",
+    "memejsfork": "^1.0.4",
     "ms": "^2.1.1",
-    "request": "^2.85.0",
-    "snekfetch": "^4.0.0",
-    "superagent": "^3.8.2",
-    "twit": "^2.2.9"
+    "request": "^2.88.0",
+    "snekfetch": "^4.0.4",
+    "superagent": "^3.8.3",
+    "twit": "^2.2.11"
   },
   "devDependencies": {}
 }
