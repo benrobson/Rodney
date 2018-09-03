@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args, tools) => {
 	if (args == 'help') {
     let embed = new Discord.RichEmbed()
     .setTitle(`${module.exports.help.name} Command Information`)
-    .setDescription(`${module.exports.help.description}`)
+    .setDescription(`${module.exports.help.description}\n**NOTE** If you\'re running a public instance of this bot this command will not work.\nIf you would like to use this command, please clone the GitHub project and run the bot yourself.`)
     .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
     .setColor(config.cyan)
     message.channel.send(embed);
