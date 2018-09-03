@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args, tools) => {
 	} else if (/(pc|xbl|psn)/.test(args[1].toLowerCase()) === false) {
 		return errors.invalidPlatform(message);
 	} else {
-		const platform = args[1].toLowerCase().match(/(pc|xbl|psn)/)[0];
+		const platform = args[1].toLowerCase().match(/(pc|xbl|psn)/)[1];
 		const username = args.slice(1).join(' ');
 
 		try {
@@ -44,13 +44,6 @@ module.exports.run = async (client, message, args, tools) => {
 	}
 };
 
-module.exports.help = {
-	name: 'fortnite',
-	description: 'Displays stats for a user on the game Fortnite.',
-	usage: 'fortnite [pc | xbl | psn] [username]'
-};
-
-
 /**
  * Format info for the mode
  * @param {Object} data Fortnite data object
@@ -58,16 +51,22 @@ module.exports.help = {
  */
 function formatInfo(data, mode) {
 	return `Matches: ${data.stats[mode].matches}
-Kills: ${data.stats[mode].kills}
-Score: ${data.stats[mode].score}
-Score/Kills: ${Math.round(data.stats[mode].score/data.stats[mode].kills)}
-Score/Match: ${Math.round(data.stats[mode].score_per_match)}
-Score/Kills Per Match: ${Math.round(data.stats[mode].score_per_match/data.stats[mode].kills)}
-K/D: ${data.stats[mode].kd}
-Wins: ${data.stats[mode].wins}
-Top 3s: ${data.stats[mode].top_3}
-Top 5s: ${data.stats[mode].top_5}
-Top 6s: ${data.stats[mode].top_6}
-Top 12s: ${data.stats[mode].top_12}
-Top 25s: ${data.stats[mode].top_25}`;
+	Kills: ${data.stats[mode].kills}
+	Score: ${data.stats[mode].score}
+	Score/Kills: ${Math.round(data.stats[mode].score/data.stats[mode].kills)}
+	Score/Match: ${Math.round(data.stats[mode].score_per_match)}
+	Score/Kills Per Match: ${Math.round(data.stats[mode].score_per_match/data.stats[mode].kills)}
+	K/D: ${data.stats[mode].kd}
+	Wins: ${data.stats[mode].wins}
+	Top 3s: ${data.stats[mode].top_3}
+	Top 5s: ${data.stats[mode].top_5}
+	Top 6s: ${data.stats[mode].top_6}
+	Top 12s: ${data.stats[mode].top_12}
+	Top 25s: ${data.stats[mode].top_25}`;
 }
+
+module.exports.help = {
+	name: 'fortnite',
+	description: 'Displays stats for a user on the game Fortnite.',
+	usage: 'fortnite [pc | xbl | psn] [username]'
+};
