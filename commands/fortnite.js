@@ -20,10 +20,10 @@ module.exports.run = async (client, message, args, tools) => {
 	if (fortniteapi === 'API KEY') return errors.noAPIKey(message);
 	if (args[0] === undefined || args[1] === undefined) {
 		return errors.invalidPlatform(message);
-	} else if (/(pc|xbl|psn)/.test(args[0].toLowerCase()) === false) {
+	} else if (/(pc|xbl|psn)/.test(args[1].toLowerCase()) === false) {
 		return errors.invalidPlatform(message);
 	} else {
-		const platform = args[0].toLowerCase().match(/(pc|xbl|psn)/)[0];
+		const platform = args[1].toLowerCase().match(/(pc|xbl|psn)/)[0];
 		const username = args.slice(1).join(' ');
 
 		try {
