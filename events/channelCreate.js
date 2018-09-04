@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 
 module.exports = (channel, message) => {
-  let auditlogchannel = guild.channels.find(c => c.name === 'audit-log').send(embed);
+  let auditlogchannel = channel.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()

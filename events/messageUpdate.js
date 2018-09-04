@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 
 module.exports = (oldMessage, newMessage) => {
-  let auditlogchannel = newMessage.guild.channels.find('name', 'audit-log');
+  let auditlogchannel = newMessage.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return;
 
   if (newMessage.author.bot) return;
