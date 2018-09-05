@@ -4,7 +4,7 @@ const superagent = require('superagent');
 
 module.exports = client => {
   
-  client.emit("guildMemberAdd", member.guild);
+  client.emit("guildMemberAdd", guild);
   
   let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
   let pluralnonpluralusers = (client.users.size > 1) ? 'Users' : 'User';
