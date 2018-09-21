@@ -1,0 +1,20 @@
+{
+  "prefix": "/",
+  "ownerid": "ID",
+  "guildid": "ID",
+
+  "swearfilter": false,
+  "discordinvite": true,
+  "tweetcommand": false,
+
+  "userchannel": "CHANNELID",
+
+  "white": "#ffffff",
+  "red": "#ff0000",
+  "orange": "#ffa500",
+  "yellow": "#ffff00",
+  "green": "#00ff00",
+  "blue": "#0000ff",
+  "purple": "#551a8b",
+  "cyan": "#46CED5"
+}
