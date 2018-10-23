@@ -20,13 +20,13 @@ module.exports.run = async (client, message, args) => {
   let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
 
-  let muterole = message.guild.roles.find('name', 'Muted');
-  if (user !== !muterole) return errors.userNotMuted(message);
+  let muterole = message.guild.roles.find(c => c.name === 'Muted');
+  if (user == !muterole) return errors.userNotMuted(message);
 
-  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+  let auditlogchannel = message.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
 
-  user.removeRole(muterole.id)
+  await(user.removeRole(muterole.id))
     let embed = new Discord.RichEmbed()
     .setTitle('User has been Unmuted')
     .setColor(config.yellow)
