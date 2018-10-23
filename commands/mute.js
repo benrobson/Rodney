@@ -21,10 +21,10 @@ module.exports.run = async (client, message, args) => {
   if (!user) return errors.invalidUser(message);
   if (user.hasPermission(`${module.exports.help.permission}`)) return errors.cannotPunish(message);
 
-  let reason = args.slice(1).join(" ");
+  let reason = args.slice(2).join(" ");
   if (!reason) return errors.invalidReason(message);
 
-  let muterole = message.guild.roles.find('name', 'Muted');
+  let muterole = message.guild.roles.find(c => c.name === 'Muted');
   if (!muterole) {
     try {
       muterole = await message.guild.createRole({
@@ -56,7 +56,7 @@ module.exports.run = async (client, message, args) => {
   .addField('Time', message.createdAt)
   .addField('Reason', reason);
 
-  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+  let auditlogchannel = message.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
 
   message.delete().catch(O_o=>{});
