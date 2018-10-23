@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
+const chalk = require ('chalk');
 
 module.exports = (channel, message) => {
   let auditlogchannel = channel.guild.channels.find(c => c.name === 'audit-log');
@@ -10,6 +11,6 @@ module.exports = (channel, message) => {
   .setColor(config.red)
   auditlogchannel.send(embed);
 
-  console.log(`[${channel.guild}] A ${channel.type} channel called ${channel.name} has been deleted.`);
+  console.log(chalk.yellow(`[${channel.guild}]`) + ` A ${channel.type} channel called ${channel.name} has been deleted.`);
   return
 }

@@ -1,8 +1,9 @@
 const token = require('../token.json');
 const config = require('../config.json');
 const superagent = require('superagent');
+const chalk = require('chalk');
 
-module.exports = client => {  
+module.exports = client => {
   let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
   let pluralnonpluralusers = (client.users.size > 1) ? 'Users' : 'User';
 
@@ -14,7 +15,7 @@ module.exports = client => {
     var info = Gameinfo[Math.floor(Math.random() * Gameinfo.length)];
 
     client.user.setActivity(info);
-    console.log(`[Console] Activity set to (${info})`);
+    console.log(chalk.green('[Console]') + ` Activity set to (${info})`);
   };
 
 /*

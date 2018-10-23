@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
+const chalk = require('chalk');
 
 module.exports = member => {
   let auditlogchannel = member.guild.channels.find(c => c.name === 'audit-log');
@@ -11,7 +12,7 @@ module.exports = member => {
   .addField('Tag', member, true)
   auditlogchannel.send(embed);
 
-  console.log(`[${member.guild}] ${member.user.username} has left the ${member.guild} Guild.`);
+  console.log(chalk.yellow(`[${member.guild}]`) + ` ${member.user.username} has left the ${member.guild} Guild.`);
 
   // This option is only useful if you run the bot locally, yourself.
   if (config.guildid == '450938867034619914') {

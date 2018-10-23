@@ -12,6 +12,6 @@ module.exports = (channel, message) => {
   .setColor(config.green)
   auditlogchannel.send(embed);
 
-  console.log(`[${channel.guild}] A ${channel.type} channel called ${channel.name} has been created.`);
+  console.log(chalk.yellow(`[${channel.guild}]`) + ` A ${channel.type} channel called ${channel.name} has been created.`);
   return
 }
