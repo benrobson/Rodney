@@ -18,7 +18,6 @@
   "homepage": "https://github.com/shadowolfyt/Rodney#readme",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "fortnite": "^4.1.1",
     "isgd": "^1.1.3",
     "memejsfork": "^1.0.4",
     "ms": "^2.1.1",
