@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 
 module.exports = (channel, message) => {
+  if (channel.type === "dm") return;
+
   let auditlogchannel = channel.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return;
 
