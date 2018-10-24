@@ -17,7 +17,7 @@ fs.readdir('./commands/', (err, files) => {
 
 jsfile.forEach((files, i) => {
     let props = require(`./commands/${files}`);
-    console.log(chalk.green('[Console]') + chalk.yellow(files) + `has been loaded.`);
+    console.log(chalk.green('[Console] ') + chalk.yellow(files) + ` has been loaded.`);
     client.commands.set(props.help.name, props);
   })
 });
@@ -57,8 +57,8 @@ client.on('message', (message) => {
 
   // Swear Detector
   const swearWords = ['shit', 'fuck', 'bitch', 'nigger', 'nigga', 'cunt', 'whore', 'fag', 'faggot', 'dick', 'cock', 'pussy', 'slut', 'bastard'];
-  if (config.discordinvite == false) {
-    console.log(chalk.red('Swear detector is disabled.'));
+  if (config.swearfilter == false) {
+    console.log(chalk.red('Swear filter is disabled.'));
     return;
   } else {
   if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
