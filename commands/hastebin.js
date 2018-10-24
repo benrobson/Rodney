@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 const errors = require('../util/errors.js');
 const snekfetch = require('snekfetch');
+const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
@@ -27,6 +28,7 @@ module.exports.run = async (client, message, args) => {
       .setColor(config.green);
 
       message.channel.send(embed);
+      console.log(chalk.green(`[${message.guild}]`) + ` ${message.author.username} generated a hastebin at https://hastebin.com/${body.body.key}`);
 		});
 };
 
