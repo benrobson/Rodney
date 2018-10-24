@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
       .setColor(config.cyan)
       message.channel.send(embed);
       return
-    };
+  };
 
   if (!message.member.hasPermission(`${module.exports.help.permission}`)) return errors.noPermissions(message, `${module.exports.help.permission}`);
 
