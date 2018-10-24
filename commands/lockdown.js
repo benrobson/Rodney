@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 const errors = require('../util/errors.js');
 const ms = require('ms');
+const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
@@ -44,9 +45,9 @@ module.exports.run = async (client, message, args) => {
       let embed = new Discord.RichEmbed()
       .setTitle('This channel has been locked down!')
       .setColor(config.red)
-      .setDescription(`${message.channel} has been **locked down** for ${ms(ms(time), { long:true })} by **${message.author.username}**`)
+      .setDescription(`${message.channel} has been locked down for ${ms(ms(time), { long:true })} by ${message.author.username}`)
       message.channel.send(embed);
-      console.log(`[${message.guild}] ${message.author.username} has locked down #${message.channel.name}.`);
+      console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has locked down #${message.channel.name}.`);
 
       client.lockit[message.channel.id] = setTimeout(() => {
         message.channel.overwritePermissions(message.guild.id, {
@@ -57,7 +58,7 @@ module.exports.run = async (client, message, args) => {
         .setColor(config.green)
         .setDescription('Lockdown has been lifted.')
         message.channel.send(embed);
-        console.log(`[${message.guild}] The lockdown on #${message.channel.name} has been lifted.`);
+        console.log(chalk.yellow(`[${message.guild}]`) + ` The lockdown on #${message.channel.name} has been lifted.`);
 
         delete client.lockit[message.channel.id];
       }, ms(time));

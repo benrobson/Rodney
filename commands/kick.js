@@ -41,7 +41,7 @@ module.exports.run = async (client, message, args) => {
 
   auditlogchannel.send(embed);
   message.guild.member(user).kick(reason);
-  console.log(`[${message.guild}] ${message.author.username} has kicked ${user.user.username} from ${message.guild} for ${reason}.`);
+  console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has kicked ${user.user.username} from ${message.guild} for ${reason}.`);
   return
 };
 

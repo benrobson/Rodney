@@ -3,6 +3,7 @@ const errors = require('../util/errors.js');
 const config = require('../config.json');
 const token = require('../token.json');
 const Discord = require('discord.js');
+const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
@@ -36,7 +37,7 @@ module.exports.run = async (client, message, args) => {
     if (message.channel === tweetchannel)
 
     twitter.post('statuses/update', { status: `${inputmessage}` }, function (err, data, response) {
-      console.log(`[${message.guild}] ${message.author.username} has tweeted "${inputmessage}"`);
+      console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has tweeted "${inputmessage}"`);
 
       let embed = new Discord.RichEmbed()
       .setTitle('Tweet Successfully Tweeted!')

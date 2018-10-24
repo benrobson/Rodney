@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const client = new Discord.Client({disableEveryone: true});
 const fs = require('fs');
+const chalk = require('chalk');
 client.commands = new Discord.Collection();
 require('./util/eventLoader.js')(client);
 
@@ -10,13 +11,13 @@ fs.readdir('./commands/', (err, files) => {
   if (err) console.log(err);
   let jsfile = files.filter(f => f.split(".").pop() === 'js')
   if (jsfile.length <= 0) {
-    console.log('Couldn\'t find commands.');
+    console.log(chalk.red('Couldn\'t find commands.'));
     return
   }
 
 jsfile.forEach((files, i) => {
     let props = require(`./commands/${files}`);
-    console.log(`${files} has been loaded.`);
+    console.log(chalk.green('[Console]') + chalk.yellow(files) + `has been loaded.`);
     client.commands.set(props.help.name, props);
   })
 });
@@ -38,7 +39,7 @@ client.on('message', (message) => {
   // Discord Invite Detector
   const invite = ['discord.gg', 'discord.io', 'discord.me'];
   if (config.discordinvite == false) {
-    console.log('Discord Invite detector is disabled.');
+    console.log(chalk.red('Discord Invite detector is disabled.'));
     return;
   } else {
     if (invite.some(word => message.content.toLowerCase().includes(word))) {
@@ -50,14 +51,14 @@ client.on('message', (message) => {
       .setDescription(`${message.author}, you are not allowed to advertise other Discords`);
       message.channel.send(embed);
 
-      console.log(`[${message.guild}] ${message.author.username} advertised a Discord server in their message.`);
+      console.log(chalk.green(`[${message.guild}]`) + ` ${message.author.username} advertised a Discord server in their message.`);
       return;
   }};
 
   // Swear Detector
   const swearWords = ['shit', 'fuck', 'bitch', 'nigger', 'nigga', 'cunt', 'whore', 'fag', 'faggot', 'dick', 'cock', 'pussy', 'slut', 'bastard'];
   if (config.discordinvite == false) {
-    console.log('Swear detector is disabled.');
+    console.log(chalk.red('Swear detector is disabled.'));
     return;
   } else {
   if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
@@ -66,7 +67,7 @@ client.on('message', (message) => {
   let embed = new Discord.RichEmbed()
     .setTitle('Swear Word Detected')
     .setColor(config.red)
-    .setDescription(`${message.author}, you can't say that, this is a Christian Minecraft Server!`);
+    .setDescription(`${message.author}, you can't say that.`);
     message.channel.send(embed).then(message => message.delete(3000));
     return;
   }};

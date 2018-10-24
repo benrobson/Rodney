@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 const ms = require('ms');
 const errors = require('../util/errors.js');
+const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
@@ -61,7 +62,7 @@ module.exports.run = async (client, message, args) => {
 
   message.delete().catch(O_o=>{});
   auditlogchannel.send(embed);
-  console.log(`[${message.guild}] ${message.author.username} has muted ${user.user.username} in ${message.guild} for ${time} for ${reason}.`);
+  console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has muted ${user.user.username} in ${message.guild} for ${time} for ${reason}.`);
 
   await(user.addRole(muterole.id));
 

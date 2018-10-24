@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
 const errors = require('../util/errors.js');
+const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
@@ -42,7 +43,7 @@ module.exports.run = async (client, message, args) => {
   auditlogchannel.send(embed);
   message.member(user).ban(reason);
 
-  console.log(`[${message.guild}] ${message.author.username} has banned ${user.user.username} from ${message.guild} for ${reason}.`);
+  console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has banned ${user.user.username} from ${message.guild} for ${reason}.`);
   return
 };
 

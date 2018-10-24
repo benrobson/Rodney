@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
 const errors = require('../util/errors.js');
+const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
@@ -20,7 +21,7 @@ module.exports.run = async (client, message, args) => {
   .setColor(config.yellow)
   .setDescription(`${args}`.split(',').join(' '));
 
-  console.log(`[${message.guild}] ${message.author.username} has created a poll with the question: ${args}.`);
+  console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has created a poll with the question: ${args}.`);
   return message.channel.send(embed).then(message.delete())
 
   .then(function (message, str) {

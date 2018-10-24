@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 const ms = require('ms');
 const errors = require('../util/errors.js');
+const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
@@ -32,7 +33,7 @@ module.exports.run = async (client, message, args) => {
     .setColor(config.yellow)
     .addField('Muted User', `${user}`)
     auditlogchannel.send(embed);
-    console.log(`[${message.guild}] ${user.user.username} has been unmuted in ${message.guild}.`);
+    console.log(chalk.yellow(`[${message.guild}]`) + ` ${user.user.username} has been unmuted in ${message.guild}.`);
 };
 
 module.exports.help = {

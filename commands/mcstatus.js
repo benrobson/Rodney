@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args) => {
   .addField('Max Players', body.players.max, true);
   message.channel.send(embed);
 
-  console.log(`[${message.guild}] ${message.author.username} requested the Minecraft Server status for ${mcIP}`);
+  console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} requested the Minecraft Server status for ${mcIP}`);
   return
 };
 

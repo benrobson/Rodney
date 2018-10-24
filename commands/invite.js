@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
 const errors = require('../util/errors.js');
+const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
@@ -22,7 +23,7 @@ module.exports.run = async (client, message, args) => {
       .setDescription(`Successfully created an invite!\nhttps://discord.gg/${invite.code}`)
       message.channel.send(embed);
 
-      console.log(`[${message.guild}] ${message.author.username} has generated an invite to the guild ${message.guild}: https://discord.gg/${invite.code}`);
+      console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has generated an invite to the guild ${message.guild}: https://discord.gg/${invite.code}`);
     });
 };
 

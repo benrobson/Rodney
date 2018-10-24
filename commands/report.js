@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
 const errors = require('../util/errors.js');
+const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
@@ -36,7 +37,7 @@ module.exports.run = async (client, message, args) => {
 
   message.delete().catch(O_o=>{});
   reportschannel.send(embed);
-  console.log(`[${message.guild}] ${message.author.username} has reported ${user.user.username} for: ${reason}.`);
+  console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has reported ${user.user.username} for: ${reason}.`);
   return;
 }
 

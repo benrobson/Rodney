@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
 const errors = require('../util/errors.js');
+const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
@@ -43,7 +44,7 @@ module.exports.run = async (client, message, args) => {
   if (!auditlogchannel) return errors.noLogChannel(message);
 
   auditlogchannel.send(embed);
-  console.log(`[${message.guild}] ${args} messages have been purged from ${message.channel.name} by ${message.author.username}`);
+  console.log(chalk.yellow(`[${message.guild}]`) + ` ${args} messages have been purged from ${message.channel.name} by ${message.author.username}`);
   return
 };
 

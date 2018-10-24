@@ -28,7 +28,7 @@ module.exports.run = async (client, message, args) => {
       .setColor(config.green);
 
       message.channel.send(embed);
-      console.log(chalk.green(`[${message.guild}]`) + ` ${message.author.username} generated a hastebin at https://hastebin.com/${body.body.key}`);
+      console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} generated a hastebin at https://hastebin.com/${body.body.key}`);
 		});
 };
 
