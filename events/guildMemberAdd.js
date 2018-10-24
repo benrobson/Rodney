@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 const chalk = require('chalk');
 
-module.exports = member => {
+module.exports = async member => {
   let auditlogchannel = member.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return
 
