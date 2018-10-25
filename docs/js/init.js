@@ -1,6 +1,10 @@
-// Loading the test b.html
 console.log('init.js recognised!');
 
-$(function(){
-  $("#includedContent").load("../b.html");
+// Loading in the header
+$(function(header) {
+	$("#header").load("./inc/header.html");
+});
+
+$(function(icons) {
+	$("#icons").load("./inc/icons.html");
 });
