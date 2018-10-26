@@ -4,7 +4,7 @@ const errors = require('../util/errors.js');
 const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
-  if (args == 'help') {
+  if (args[0] == 'help') {
       let embed = new Discord.RichEmbed()
       .setTitle(`${module.exports.help.name} Command Information`)
       .setDescription(`${module.exports.help.description}`)
@@ -19,15 +19,14 @@ module.exports.run = async (client, message, args) => {
 
   let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
-
-  let role = args.slice(1).join(" ");
+  let role = args.slice(2).join(" ");
   if (!role) return message.reply('Please specify a role.');
-  let guildRole = message.guild.roles.find('name', role);
-  if (!role) return message.reply('Couldn\'t find that role.');
+  let guildRole = message.guild.roles.find(x => x.name === role);
+  if (!guildRole) return message.reply('Couldn\'t find that role.');
 
-  if (message.content === 'add') {
-    if (user.roles.has(guildRole.id)) return message.reply('That role does exist!');
-    await (user.addRole(guildRole.id));
+  if (args[0] === 'add') {
+    if (user.roles.has(guildRole.id)) return message.reply('User already has that role!');
+    await (user.addRole(guildRole));
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been assigned to a role.')
@@ -40,19 +39,19 @@ module.exports.run = async (client, message, args) => {
     console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has assigned the role ${guildRole.name} to ${user.user.username}.`);
   };
 
-  if (message.content === 'remove') {
-    if (user.roles.has(guildRole.id)) return message.reply('That role does exist!');
-    await (user.addRole(guildRole.id));
+  if (args[0] === 'remove') {
+    if (!user.roles.has(guildRole.id)) return message.reply('User doesn\'t have that role!')
+    await (user.removeRole(guildRole.id));
 
     let embed = new Discord.RichEmbed()
-    .setTitle('User has been assigned to a role.')
+    .setTitle('User\'s role has been removed.')
     .setColor(config.green)
     .addField('Assigned User', `${user}`, true)
     .addField('Assigned By', `${message.author}`, true)
     .addField('Assigned Role', `${role}`, true);
     message.channel.send(embed);
 
-    console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has assigned the role ${guildRole.name} to ${user.user.username}.`);
+    console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has removed the role ${guildRole.name} to ${user.user.username}.`);
   };
 };
 
