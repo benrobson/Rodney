@@ -240,3 +240,13 @@ module.exports.emptyCode = (message) => {
 
   message.channel.send(embed);
 };
+
+// Used if a user does not specify a number of messages to purge
+module.exports.noRoleExists = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('The specified role does not exist.')
+  .setColor(config.red);
+
+  message.channel.send(embed);
+};

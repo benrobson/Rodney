@@ -26,15 +26,15 @@ module.exports.run = async (client, message, args) => {
   if (!role) return message.reply('Couldn\'t find that role.');
 
   if (message.content === 'add') {
-    if (user.roles.has(guildRole.id)) return message.reply('That role does exist!');
+    if (user.roles.has(guildRole.id)) return errors.noRoleExists(message);
     await (user.addRole(guildRole.id));
 
     let embed = new Discord.RichEmbed()
     .setTitle('User has been assigned to a role.')
     .setColor(config.green)
-    .addField('Assigned User', `${user}`, true)
-    .addField('Assigned By', `${message.author}`, true)
-    .addField('Assigned Role', `${role}`, true);
+    .addField('Assigned User', `${user}`)
+    .addField('Assigned By', `${message.author}`)
+    .addField('Assigned Role', `${role}`);
     message.channel.send(embed);
 
     console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has assigned the role ${guildRole.name} to ${user.user.username}.`);
@@ -47,9 +47,9 @@ module.exports.run = async (client, message, args) => {
     let embed = new Discord.RichEmbed()
     .setTitle('User has been assigned to a role.')
     .setColor(config.green)
-    .addField('Assigned User', `${user}`, true)
-    .addField('Assigned By', `${message.author}`, true)
-    .addField('Assigned Role', `${role}`, true);
+    .addField('Assigned User', `${user}`)
+    .addField('Assigned By', `${message.author}`)
+    .addField('Assigned Role', `${role}`);
     message.channel.send(embed);
 
     console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has assigned the role ${guildRole.name} to ${user.user.username}.`);
