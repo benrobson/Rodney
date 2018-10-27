@@ -20,12 +20,12 @@ module.exports.run = async (client, message, args) => {
   let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
   let role = args.slice(2).join(" ");
-  if (!role) return message.reply('Please specify a role.');
+  if (!role) return errors.specifyARole(message);
   let guildRole = message.guild.roles.find(x => x.name === role);
-  if (!guildRole) return message.reply('Couldn\'t find that role.');
+  if (!guildRole) return errors.noRoleExists(message);
 
   if (args[0] === 'add') {
-    if (user.roles.has(guildRole.id)) return message.reply('User already has that role!');
+    if (user.roles.has(guildRole.id)) return errors.userHasRole(message);
     await (user.addRole(guildRole));
 
     let embed = new Discord.RichEmbed()
@@ -40,7 +40,7 @@ module.exports.run = async (client, message, args) => {
   };
 
   if (args[0] === 'remove') {
-    if (!user.roles.has(guildRole.id)) return message.reply('User doesn\'t have that role!')
+    if (!user.roles.has(guildRole.id)) return errors.userDoesNotHaveRole(message);
     await (user.removeRole(guildRole.id));
 
     let embed = new Discord.RichEmbed()
