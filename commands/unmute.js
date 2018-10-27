@@ -22,8 +22,9 @@ module.exports.run = async (client, message, args) => {
   if (!user) return errors.invalidUser(message);
 
   let muterole = message.guild.roles.find(c => c.name === 'Muted');
-  if (user == !muterole) return errors.userNotMuted(message);
+  if (!user.roles.has(muterole.id)) return errors.userNotMuted(message);
 
+  message.delete().catch(O_o=>{});
   let auditlogchannel = message.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
 

@@ -5,7 +5,7 @@ const errors = require('../util/errors.js');
 const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
-  if (args == 'help') {
+  if (args[0] == 'help') {
     let embed = new Discord.RichEmbed()
     .setTitle(`${module.exports.help.name} Command Information`)
     .setDescription(`${module.exports.help.description}`)
@@ -44,6 +44,7 @@ module.exports.run = async (client, message, args) => {
       console.log(e.stack);
     }
   };
+  if (user.roles.has(muterole.id)) return errors.userAlreadyMuted(message);
 
   let time = args[1];
   if (!time) return errors.invalidTime(message);
@@ -67,12 +68,15 @@ module.exports.run = async (client, message, args) => {
   await(user.addRole(muterole.id));
 
   setTimeout(function(){
-    user.removeRole(muterole.id);
-    let embed = new Discord.RichEmbed()
-    .setTitle('User has been Unmuted')
-    .setColor(config.yellow)
-    .addField('Muted User', `${user}`)
-    auditlogchannel.send(embed);
+    if (user.roles.has(muterole.id))
+    {
+      user.removeRole(muterole.id);
+      let embed = new Discord.RichEmbed()
+      .setTitle('User has been Unmuted')
+      .setColor(config.yellow)
+      .addField('Muted User', `${user}`)
+      auditlogchannel.send(embed);
+    }
   }, ms(time));
 };
 

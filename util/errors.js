@@ -191,11 +191,21 @@ module.exports.anotherNumber = (message) => {
   message.channel.send(embed);
 };
 
-// Used if a user attempts to send a tweet command that is not in the #tweet channel
+// Used if a user attempts to mute a user who is not muted.
 module.exports.userNotMuted = (message) => {
   let embed = new Discord.RichEmbed()
   .setTitle('An error has occurred!')
   .setDescription('This user is not muted.')
+  .setColor(config.red);
+
+  message.channel.send(embed);
+};
+
+// Used if a user attempts to mute a user who is already muted
+module.exports.userAlreadyMuted = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('This user has already been muted.')
   .setColor(config.red);
 
   message.channel.send(embed);
