@@ -30,7 +30,7 @@ module.exports = async client => {
 
     client.user.setActivity(info);
     console.log(chalk.green('[Console]') + ` Activity set to (${info})`);
-  };
+  }
 
 setInterval(setActivity, 120000);
 };
