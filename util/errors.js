@@ -240,3 +240,43 @@ module.exports.emptyCode = (message) => {
 
   message.channel.send(embed);
 };
+
+// Used if a user attempts to assign a role that does not exist
+module.exports.noRoleExists = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('The specified role does not exist.')
+  .setColor(config.red);
+
+  message.channel.send(embed);
+};
+
+// Used if a user is trying to be assigned a role that they already have
+module.exports.userHasRole = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('The specified user already has this role.')
+  .setColor(config.red);
+
+  message.channel.send(embed);
+};
+
+// Used if a user is trying to be assigned a role that they don't have
+module.exports.userDoesNotHaveRole = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('The specified user does not have this role.')
+  .setColor(config.red);
+
+  message.channel.send(embed);
+};
+
+// Used if a user is trying to be assigned a role that they don't have
+module.exports.specifyARole = (message) => {
+  let embed = new Discord.RichEmbed()
+  .setTitle('An error has occurred!')
+  .setDescription('Please specify a role to assign to the user.')
+  .setColor(config.red);
+
+  message.channel.send(embed);
+};

@@ -3,11 +3,13 @@
   "ownerid": "ID",
   "guildid": "ID",
 
-  "swearfilter": false,
+  "swearfilter": true,
   "discordinvite": true,
   "tweetcommand": false,
 
+  "twitterid": "ID",
   "userchannel": "CHANNELID",
+  "twitterchannel": "CHANNELID",
 
   "white": "#ffffff",
   "red": "#ff0000",
