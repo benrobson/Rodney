@@ -38,10 +38,7 @@ client.on('message', (message) => {
 
   // Discord Invite Detector
   const invite = ['discord.gg', 'discord.io', 'discord.me'];
-  if (config.discordinvite == false) {
-    console.log(chalk.red('Discord Invite detector is disabled.'));
-    return;
-  } else {
+  if (config.discordinvite == true) {
     if (invite.some(word => message.content.toLowerCase().includes(word))) {
     message.delete().catch(O_o=>{});
 
@@ -57,23 +54,20 @@ client.on('message', (message) => {
 
   // Swear Detector
   const swearWords = ['shit', 'fuck', 'bitch', 'nigger', 'nigga', 'cunt', 'whore', 'fag', 'faggot', 'dick', 'cock', 'pussy', 'slut', 'bastard'];
-  if (config.swearfilter == false) {
-    console.log(chalk.red('Swear filter is disabled.'));
-    return;
-  } else {
-  if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
-  message.delete().catch(O_o=>{});
+  if (config.swearfilter == true) {
+    if (swearWords.some(word => message.content.toLowerCase().includes(word))) {
+    message.delete().catch(O_o=>{});
 
-  let embed = new Discord.RichEmbed()
-    .setTitle('Swear Word Detected')
-    .setColor(config.red)
-    .setDescription(`${message.author}, you can't say that.`);
-    message.channel.send(embed).then(message => message.delete(3000));
-    return;
-  }};
+    let embed = new Discord.RichEmbed()
+      .setTitle('Swear Word Detected')
+      .setColor(config.red)
+      .setDescription(`${message.author}, you can't say that.`);
+      message.channel.send(embed).then(message => message.delete(3000));
+      return;
+    }};
 });
 
-client.login(process.env.BOT_TOKEN);
+//client.login(process.env.BOT_TOKEN);
 
-//const privatekey = require('./privatekey.json'); // Used for local development
-//client.login(privatekey.token); // Used for local development
+const privatekey = require('./privatekey.json'); // Used for local development
+client.login(privatekey.token); // Used for local development
