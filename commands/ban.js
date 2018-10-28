@@ -37,13 +37,13 @@ module.exports.run = async (client, message, args) => {
     .addField('Time', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`, true)
     .addField('Reason', reason);
 
-  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+  let auditlogchannel = message.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
 
   auditlogchannel.send(embed);
   await user.send(embed);
-  message.member(user).ban(reason);
 
+  message.guild.member(user).ban(reason);
   console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has banned ${user.user.username} from ${message.guild} for ${reason}.`);
   return
 };
