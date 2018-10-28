@@ -7,8 +7,8 @@ module.exports = (message) => {
   if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
-  .addField(`Message Deleted in #${message.channel.name}.`, `${message.author.username}: ${message.content}`)
-  .setColor(config.orange)
+    .addField(`Message Deleted in #${message.channel.name}.`, `${message.author.username}: ${message.content}`)
+    .setColor(config.orange)
   auditlogchannel.send(embed);
 
   console.log(chalk.yellow(`[${message.guild}]`) + ` A message has been deleted in #${message.channel.name} by ${message.author.username}: ${message.content}`);

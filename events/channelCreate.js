@@ -8,8 +8,8 @@ module.exports = async (channel, message) => {
   if (!auditlogchannel) return;
 
   let embed = new Discord.RichEmbed()
-  .setTitle(`A ${channel.type} channel called ${channel.name} has been created.`)
-  .setColor(config.green)
+    .setTitle(`A ${channel.type} channel called ${channel.name} has been created.`)
+    .setColor(config.green)
   auditlogchannel.send(embed);
 
   console.log(chalk.yellow(`[${channel.guild}]`) + ` A ${channel.type} channel called ${channel.name} has been created.`);
