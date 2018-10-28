@@ -18,8 +18,6 @@ module.exports = async member => {
   if (config.guildid == '450938867034619914') {
     if (!config.userchannel) return;
     member.guild.channels.get(config.userchannel).setName(`Total Users: ${member.guild.memberCount}`);
-    return;
-  } else {
-    return;
   }
+  return;
 };

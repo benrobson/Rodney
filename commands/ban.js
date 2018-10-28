@@ -41,7 +41,7 @@ module.exports.run = async (client, message, args) => {
   if (!auditlogchannel) return errors.noLogChannel(message);
 
   auditlogchannel.send(embed);
-  user.send(embed)
+  await user.send(embed);
   message.member(user).ban(reason);
 
   console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has banned ${user.user.username} from ${message.guild} for ${reason}.`);
