@@ -40,7 +40,7 @@ module.exports.run = async (client, message, args) => {
     .addField('Channel', message.channel, true)
     .addField('Time', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`)
 
-  let auditlogchannel = message.guild.channels.find('name', 'audit-log');
+  let auditlogchannel = message.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
 
   auditlogchannel.send(embed);
