@@ -7,11 +7,11 @@ const chalk = require('chalk');
 module.exports.run = async (client, message, args) => {
   if (args[0] == 'help') {
     let embed = new Discord.RichEmbed()
-    .setTitle(`${module.exports.help.name} Command Information`)
-    .setDescription(`${module.exports.help.description}`)
-    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
-    .addField('Permission', `${module.exports.help.permission}`, true)
-    .setColor(config.cyan)
+      .setTitle(`${module.exports.help.name} Command Information`)
+      .setDescription(`${module.exports.help.description}`)
+      .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+      .addField('Permission', `${module.exports.help.permission}`, true)
+      .setColor(config.cyan)
     message.channel.send(embed);
     return
   };
@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
       muterole = await message.guild.createRole({
         name: 'Muted',
         color: "#000000",
-        permissions:[]
+        permissions: []
       })
       message.guild.channels.forEach(async (channel, id) => {
         await channel.overwritePermissions(muterole, {
@@ -40,7 +40,7 @@ module.exports.run = async (client, message, args) => {
           SPEAK: false
         });
       });
-    } catch(e) {
+    } catch (e) {
       console.log(e.stack);
     }
   };
@@ -50,31 +50,31 @@ module.exports.run = async (client, message, args) => {
   if (!time) return errors.invalidTime(message);
 
   let embed = new Discord.RichEmbed()
-  .setTitle('User has been Temporarily Muted')
-  .setColor(config.red)
-  .addField('Muted User', `${user}`, true)
-  .addField('Muted By', `${message.author}`, true)
-  .addField('Muted For', time)
-  .addField('Time', message.createdAt)
-  .addField('Reason', reason);
+    .setTitle('User has been Temporarily Muted')
+    .setColor(config.red)
+    .addField('Muted User', `${user}`, true)
+    .addField('Muted By', `${message.author}`, true)
+    .addField('Muted For', time)
+    .addField('Time', message.createdAt)
+    .addField('Reason', reason);
 
   let auditlogchannel = message.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
 
-  message.delete().catch(O_o=>{});
+  message.delete().catch(O_o => {});
   auditlogchannel.send(embed);
+  user.send(embed);
   console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has muted ${user.user.username} in ${message.guild} for ${time} for ${reason}.`);
 
-  await(user.addRole(muterole.id));
+  await (user.addRole(muterole.id));
 
-  setTimeout(function(){
-    if (user.roles.has(muterole.id))
-    {
+  setTimeout(() => {
+    if (user.roles.has(muterole.id)) {
       user.removeRole(muterole.id);
       let embed = new Discord.RichEmbed()
-      .setTitle('User has been Unmuted')
-      .setColor(config.yellow)
-      .addField('Muted User', `${user}`)
+        .setTitle('User has been Unmuted')
+        .setColor(config.yellow)
+        .addField('Muted User', `${user}`)
       auditlogchannel.send(embed);
     }
   }, ms(time));

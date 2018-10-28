@@ -7,11 +7,11 @@ const chalk = require('chalk');
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
     let embed = new Discord.RichEmbed()
-    .setTitle(`${module.exports.help.name} Command Information`)
-    .setDescription(`${module.exports.help.description}`)
-    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
-    .addField('Permission', `${module.exports.help.permission}`, true)
-    .setColor(config.cyan)
+      .setTitle(`${module.exports.help.name} Command Information`)
+      .setDescription(`${module.exports.help.description}`)
+      .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+      .addField('Permission', `${module.exports.help.permission}`, true)
+      .setColor(config.cyan)
     message.channel.send(embed);
     return
   };
@@ -24,17 +24,17 @@ module.exports.run = async (client, message, args) => {
   let muterole = message.guild.roles.find(c => c.name === 'Muted');
   if (!user.roles.has(muterole.id)) return errors.userNotMuted(message);
 
-  message.delete().catch(O_o=>{});
+  message.delete().catch(O_o => {});
   let auditlogchannel = message.guild.channels.find(c => c.name === 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);
 
-  await(user.removeRole(muterole.id))
-    let embed = new Discord.RichEmbed()
+  await (user.removeRole(muterole.id))
+  let embed = new Discord.RichEmbed()
     .setTitle('User has been Unmuted')
     .setColor(config.yellow)
     .addField('Muted User', `${user}`)
-    auditlogchannel.send(embed);
-    console.log(chalk.yellow(`[${message.guild}]`) + ` ${user.user.username} has been unmuted in ${message.guild}.`);
+  auditlogchannel.send(embed);
+  console.log(chalk.yellow(`[${message.guild}]`) + ` ${user.user.username} has been unmuted in ${message.guild}.`);
 };
 
 module.exports.help = {

@@ -7,29 +7,29 @@ const chalk = require('chalk');
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
     let embed = new Discord.RichEmbed()
-    .setTitle(`${module.exports.help.name} Command Information`)
-    .setDescription(`${module.exports.help.description}`)
-    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
-    .setColor(config.cyan)
+      .setTitle(`${module.exports.help.name} Command Information`)
+      .setDescription(`${module.exports.help.description}`)
+      .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+      .setColor(config.cyan)
     message.channel.send(embed);
     return
   };
 
   if (!args.slice(0)
-		.join(' ')) return errors.emptyCode(message)
-	snekfetch.post('https://hastebin.com/documents')
-		.send(args.slice(0)
-			.join(' '))
-		.then(body => {
+    .join(' ')) return errors.emptyCode(message)
+  snekfetch.post('https://hastebin.com/documents')
+    .send(args.slice(0)
+      .join(' '))
+    .then(body => {
       let embed = new Discord.RichEmbed()
-      .setTitle('Your hastebin has been posted.')
-      .setURL(`https://hastebin.com/${body.body.key}`)
-      .setDescription(`Posted text to Hastebin\nURL: https://hastebin.com/${body.body.key}`)
-      .setColor(config.green);
+        .setTitle('Your hastebin has been posted.')
+        .setURL(`https://hastebin.com/${body.body.key}`)
+        .setDescription(`Posted text to Hastebin\nURL: https://hastebin.com/${body.body.key}`)
+        .setColor(config.green);
 
       message.channel.send(embed);
       console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} generated a hastebin at https://hastebin.com/${body.body.key}`);
-		});
+    });
 };
 
 module.exports.help = {

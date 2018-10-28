@@ -6,11 +6,11 @@ const chalk = require('chalk');
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
     let embed = new Discord.RichEmbed()
-    .setTitle(`${module.exports.help.name} Command Information`)
-    .setDescription(`${module.exports.help.description}`)
-    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
-    .addField('Permission', `${module.exports.help.permission}`, true)
-    .setColor(config.cyan)
+      .setTitle(`${module.exports.help.name} Command Information`)
+      .setDescription(`${module.exports.help.description}`)
+      .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+      .addField('Permission', `${module.exports.help.permission}`, true)
+      .setColor(config.cyan)
     message.channel.send(embed);
     return
   };
@@ -22,9 +22,9 @@ module.exports.run = async (client, message, args) => {
 
   message.channel.bulkDelete(args[0]).then(() => {
     let embed = new Discord.RichEmbed()
-    .setTitle('Messages Cleared!')
-    .setColor(config.green)
-    .setDescription(`Deleted ${args[0]} messages.`)
+      .setTitle('Messages Cleared!')
+      .setColor(config.green)
+      .setDescription(`Deleted ${args[0]} messages.`)
     message.channel.send(embed).then(message.delete(5000));
     return
   })
@@ -33,12 +33,12 @@ module.exports.run = async (client, message, args) => {
   let createdAt = createdAtRaw.split(' ');
 
   let embed = new Discord.RichEmbed()
-  .setTitle('Messages Purged!')
-  .setColor(config.green)
-  .addField('Purged By', `${message.author}`, true)
-  .addField('Number of Messages', args, true)
-  .addField('Channel', message.channel, true)
-  .addField('Time', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`)
+    .setTitle('Messages Purged!')
+    .setColor(config.green)
+    .addField('Purged By', `${message.author}`, true)
+    .addField('Number of Messages', args, true)
+    .addField('Channel', message.channel, true)
+    .addField('Time', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`)
 
   let auditlogchannel = message.guild.channels.find('name', 'audit-log');
   if (!auditlogchannel) return errors.noLogChannel(message);

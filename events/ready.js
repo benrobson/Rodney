@@ -14,14 +14,16 @@ module.exports = async client => {
   // Use https://codeofaninja.com/tools/find-twitter-id to find your Twitter id
 
   if (config.guildid == '450938867034619914') {
-      let {body} = await superagent
+    let {
+      body
+    } = await superagent
       .get('https://api.twittercounter.com/?twitter_id=' + config.twitterid + '&apikey=' + token.twittercounterapikey);
-      client.channels.get(config.twitterchannel).setName(`${body.username} Followers: ${body.followers_current}`);
-      console.log(chalk.green('[Console] ') + `Twitter Channel detected! Setting ammount of followers that @${body.username} has.`);
-      return;
-    } else {
-      return;
-    }
+    client.channels.get(config.twitterchannel).setName(`${body.username} Followers: ${body.followers_current}`);
+    console.log(chalk.green('[Console] ') + `Twitter Channel detected! Setting ammount of followers that @${body.username} has.`);
+    return;
+  } else {
+    return;
+  }
 
   function setActivity() {
     // Sets Activity in a rotation
@@ -32,5 +34,5 @@ module.exports = async client => {
     console.log(chalk.green('[Console]') + ` Activity set to (${info})`);
   }
 
-setInterval(setActivity, 120000);
+  setInterval(setActivity, 120000);
 };
