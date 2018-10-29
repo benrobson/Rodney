@@ -11,8 +11,8 @@ module.exports = (oldMessage, newMessage) => {
   if (newMessage.author.bot) return;
 
   let embed = new Discord.RichEmbed()
-  .setColor(config.orange)
-  .addField(`Message Edited in #${newMessage.channel.name} by ${newMessage.author.username}`, `${oldMessage.content} **->** ${newMessage.content}`)
+    .setColor(config.orange)
+    .addField(`Message Edited in #${newMessage.channel.name} by ${newMessage.author.username}`, `${oldMessage.content} **->** ${newMessage.content}`)
   auditlogchannel.send(embed);
 
   console.log(chalk.yellow(`[${newMessage.guild}]`) + ` A message in #${newMessage.channel.name} has been edited by ${newMessage.author.username}: [${oldMessage.content} -> ${newMessage.content}]`);

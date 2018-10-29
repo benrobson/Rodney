@@ -5,14 +5,14 @@ const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
-      let embed = new Discord.RichEmbed()
+    let embed = new Discord.RichEmbed()
       .setTitle(`${module.exports.help.name} Command Information`)
       .setDescription(`${module.exports.help.description}`)
       .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
       .setColor(config.cyan)
-      message.channel.send(embed);
-      return
-    };
+    message.channel.send(embed);
+    return
+  };
 
   let user = message.guild.member(message.mentions.members.first());
   if (!user) return errors.invalidUser(message);
@@ -24,18 +24,18 @@ module.exports.run = async (client, message, args) => {
   let createdAt = createdAtRaw.split(" ");
 
   let embed = new Discord.RichEmbed()
-  .setTitle('Incoming Report!')
-  .setColor(config.yellow)
-  .addField('Reported User', `${user}`, true)
-  .addField('Reported By', `${message.author}`, true)
-  .addField('Reported in Channel', message.channel, true)
-  .addField('Time', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`)
-  .addField('Reason', reason)
+    .setTitle('Incoming Report!')
+    .setColor(config.yellow)
+    .addField('Reported User', `${user}`, true)
+    .addField('Reported By', `${message.author}`, true)
+    .addField('Reported in Channel', message.channel, true)
+    .addField('Time', `${createdAt[0]} ${createdAt[2]} ${createdAt[1]} ${createdAt[3]}`)
+    .addField('Reason', reason)
 
   let reportschannel = message.guild.channels.find('name', 'reports');
   if (!reportschannel) return errors.noReportChannel(message);
 
-  message.delete().catch(O_o=>{});
+  message.delete().catch(O_o => {});
   reportschannel.send(embed);
   console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has reported ${user.user.username} for: ${reason}.`);
   return;

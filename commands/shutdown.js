@@ -5,25 +5,25 @@ const errors = require('../util/errors.js');
 
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
-      let embed = new Discord.RichEmbed()
+    let embed = new Discord.RichEmbed()
       .setTitle(`${module.exports.help.name} Command Information`)
       .setDescription(`${module.exports.help.description}`)
       .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
       .addField('Permission', `${module.exports.help.permission}`, true)
       .setColor(config.cyan)
-      message.channel.send(embed);
-      return
+    message.channel.send(embed);
+    return
   };
 
   if (message.author.id !== `${config.ownerid}`) return errors.ownersOnly(message);
 
-  if (message.author.id == `${config.ownerid}`){
+  if (message.author.id == `${config.ownerid}`) {
     let embed = new Discord.RichEmbed()
-    .setTitle('Shutting Down...')
-    .setColor(config.red);
+      .setTitle('Shutting Down...')
+      .setColor(config.red);
 
     message.channel.send(embed)
-    .then(message => client.destroy())
+      .then(message => client.destroy())
   }
 }
 

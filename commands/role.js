@@ -5,15 +5,15 @@ const chalk = require('chalk');
 
 module.exports.run = async (client, message, args) => {
   if (args[0] == 'help') {
-      let embed = new Discord.RichEmbed()
+    let embed = new Discord.RichEmbed()
       .setTitle(`${module.exports.help.name} Command Information`)
       .setDescription(`${module.exports.help.description}`)
       .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
       .addField('Permission', `${module.exports.help.permission}`, true)
       .setColor(config.cyan)
-      message.channel.send(embed);
-      return
-    };
+    message.channel.send(embed);
+    return
+  };
 
   if (!message.member.hasPermission(`${module.exports.help.permission}`)) return errors.noPermissions(message, `${module.exports.help.permission}`);
 
@@ -29,11 +29,11 @@ module.exports.run = async (client, message, args) => {
     await (user.addRole(guildRole));
 
     let embed = new Discord.RichEmbed()
-    .setTitle('User has been assigned to a role.')
-    .setColor(config.green)
-    .addField('Assigned User', `${user}`)
-    .addField('Assigned By', `${message.author}`)
-    .addField('Assigned Role', `${role}`);
+      .setTitle('User has been assigned to a role.')
+      .setColor(config.green)
+      .addField('Assigned User', `${user}`)
+      .addField('Assigned By', `${message.author}`)
+      .addField('Assigned Role', `${role}`);
     message.channel.send(embed);
 
     console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has assigned the role ${guildRole.name} to ${user.user.username}.`);
@@ -44,11 +44,11 @@ module.exports.run = async (client, message, args) => {
     await (user.removeRole(guildRole.id));
 
     let embed = new Discord.RichEmbed()
-    .setTitle('User\'s role has been removed.')
-    .setColor(config.green)
-    .addField('Assigned User', `${user}`)
-    .addField('Assigned By', `${message.author}`)
-    .addField('Assigned Role', `${role}`);
+      .setTitle('User\'s role has been removed.')
+      .setColor(config.green)
+      .addField('Assigned User', `${user}`)
+      .addField('Assigned By', `${message.author}`)
+      .addField('Assigned Role', `${role}`);
     message.channel.send(embed);
 
     console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has removed the role ${guildRole.name} to ${user.user.username}.`);

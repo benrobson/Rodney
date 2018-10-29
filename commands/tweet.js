@@ -8,10 +8,10 @@ const chalk = require('chalk');
 module.exports.run = async (client, message, args) => {
   if (args == 'help') {
     let embed = new Discord.RichEmbed()
-    .setTitle(`${module.exports.help.name} Command Information`)
-    .setDescription(`${module.exports.help.description}\n**NOTE** If you\'re running a public instance of this bot this command will not work.\nIf you would like to use this command, please clone the GitHub project and run the bot yourself.`)
-    .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
-    .setColor(config.cyan)
+      .setTitle(`${module.exports.help.name} Command Information`)
+      .setDescription(`${module.exports.help.description}\n**NOTE** If you\'re running a public instance of this bot this command will not work.\nIf you would like to use this command, please clone the GitHub project and run the bot yourself.`)
+      .addField('Usage', `${config.prefix}${module.exports.help.usage}`, true)
+      .setColor(config.cyan)
     message.channel.send(embed);
     return
   };
@@ -20,12 +20,12 @@ module.exports.run = async (client, message, args) => {
   if (token.consumer_key === 'KEY' || token.consumer_secret === 'KEY' || token.access_token === 'KEY' || token.access_token_secret === 'KEY') return errors.noAPIKey(message);
 
   // Twitter API Credentials & Information
-  const twitter = new twit ({
+  const twitter = new twit({
     consumer_key: `${token.consumer_key}`,
     consumer_secret: `${token.consumer_secret}`,
     access_token: `${token.access_token}`,
     access_token_secret: `${token.access_token_secret}`,
-    timeout_ms: 60*1000
+    timeout_ms: 60 * 1000
   });
 
   let tweetchannel = message.guild.channels.find('name', 'tweet');
@@ -36,19 +36,22 @@ module.exports.run = async (client, message, args) => {
     if (!inputmessage) return errors.emptyMessage(message);
     if (message.channel === tweetchannel)
 
-    twitter.post('statuses/update', { status: `${inputmessage}` }, function (err, data, response) {
-      console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has tweeted "${inputmessage}"`);
+      twitter.post('statuses/update', {
+        status: `${inputmessage}`
+      }, function (err, data, response) {
+        console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has tweeted "${inputmessage}"`);
 
-      let embed = new Discord.RichEmbed()
-      .setTitle('Tweet Successfully Tweeted!')
-      .setColor(config.green)
-      .addField('Message Content', `${inputmessage}`)
-      .addField('Tweeted By', `${message.author.username}`)
-      message.channel.send(embed);
-    })} else {
-      let inputmessage = args.join(' ');
-      return errors.incorrectChannel(message);
-    };
+        let embed = new Discord.RichEmbed()
+          .setTitle('Tweet Successfully Tweeted!')
+          .setColor(config.green)
+          .addField('Message Content', `${inputmessage}`)
+          .addField('Tweeted By', `${message.author.username}`)
+        message.channel.send(embed);
+      })
+  } else {
+    let inputmessage = args.join(' ');
+    return errors.incorrectChannel(message);
+  };
 };
 
 module.exports.help = {
