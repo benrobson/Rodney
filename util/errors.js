@@ -191,6 +191,16 @@ module.exports.anotherNumber = (message) => {
   message.channel.send(embed);
 };
 
+// Used if a user attempts to ban a user who is not banned.
+module.exports.userNotBanned = (message) => {
+  let embed = new Discord.RichEmbed()
+    .setTitle('An error has occurred!')
+    .setColor(config.red)
+    .setDescription('This user is not banned.');
+
+  message.channel.send(embed);
+};
+
 // Used if a user attempts to mute a user who is not muted.
 module.exports.userNotMuted = (message) => {
   let embed = new Discord.RichEmbed()
