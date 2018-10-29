@@ -18,8 +18,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.member.hasPermission(`${module.exports.help.permission}`)) return errors.noPermissions(message, `${module.exports.help.permission}`);
 
   let user = args[0];
-  if (!user)
-    return errors.invalidUser(message);
+  if (!user) return errors.invalidUser(message);
   if (message.guild.members.get(user)) return errors.userNotBanned(message)
 
   let reason = args.slice(1).join(' ');
