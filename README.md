@@ -19,7 +19,7 @@ If you are having troubles and/or issues setting up the bot, please leave an iss
 - [jasoryeh](https://github.com/jasoryeh) for helping out with general grammar and clean up.
 - [GitStonic](https://github.com/GitStonic) & [abhinavk99](https://github.com/abhinavk99) for helping out with the [fortnite](https://github.com/shadowolfyt/RodneyTheDiscordBot/blob/master/commands/fortnite.js) command.
 - `CM|T Frosty#9889` for helping out with the [mojangapi](https://github.com/shadowolfyt/RodneyTheDiscordBot/blob/master/commands/mojangapi.js) command.
-- [Lodelite](https://github.com/Lodelite) for helping out with the [role](https://github.com/shadowolfyt/Rodney/blob/master/commands/role.js) command and adding a [unban][https://github.com/shadowolfyt/Rodney/blob/master/commands/unban.js] command.
+- [Lodelite](https://github.com/Lodelite) for helping out with the [role](https://github.com/shadowolfyt/Rodney/blob/master/commands/role.js) command and adding a [unban](https://github.com/shadowolfyt/Rodney/blob/master/commands/unban.js) command.
 - [Bawbby](https://github.com/Bawbby) for helping out with general code formatting and code clean up.
 
 ## Useful Resources
