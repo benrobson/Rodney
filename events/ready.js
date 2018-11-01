@@ -4,11 +4,13 @@ const superagent = require('superagent');
 const chalk = require('chalk');
 
 module.exports = async client => {
+  client.user.setActivity("Booting...");
+  
   let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
   let pluralnonpluralusers = (client.users.size > 1) ? 'Users' : 'User';
 
   console.log(`\n\n${client.user.username} is online.\nOperating on ${client.guilds.size} ${pluralnonpluralservers}.\nOperating for ${client.users.size} ${pluralnonpluralusers}.\n`);
-  client.user.setActivity('Booting..');
+  setActivity(); setInterval(setActivity, 60000);
 
   // Grabs a users Twitter followers and displays them
   // Use https://codeofaninja.com/tools/find-twitter-id to find your Twitter id
