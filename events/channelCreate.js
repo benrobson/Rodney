@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
+const chalk = require('chalk');
 
 module.exports = async (channel, message) => {
   if (channel.type === "dm") return;
