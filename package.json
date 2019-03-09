@@ -2,7 +2,7 @@
   "name": "Rodney",
   "version": "1.0.0",
   "description": "A Discord bot developed in JavaScript using the discord.js Library.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +21,7 @@
     "chalk": "^2.4.1",
     "discord.js": "^11.4.2",
     "ejs": "^2.6.1",
+    "express": "^4.16.4",
     "isgd": "^1.1.3",
     "memejsfork": "^1.0.4",
     "ms": "^2.1.1",

@@ -1,4 +1,7 @@
 const Discord = require('discord.js');
+const express = require('express');
+const bodyParser = require('body-parser');
+const ejs = require('ejs');
 const config = require('./config.json');
 const client = new Discord.Client({
   disableEveryone: true
@@ -7,6 +10,18 @@ const fs = require('fs');
 const chalk = require('chalk');
 client.commands = new Discord.Collection();
 require('./util/eventLoader.js')(client);
+
+const app = express();
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+var obj = {};
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+app.use(express.static('public'));
+
+app.get('/', function (req, res) {
+  res.render('index');
+});
 
 // Reads all commands and boots them in
 fs.readdir('./commands/', (err, files) => {
@@ -71,7 +86,9 @@ client.on('message', (message) => {
   };
 });
 
+app.listen(process.env.PORT || '8080');
+console.log(chalk.yellow('[CONSOLE] ' ) + 'Application is listening to the port ' + '8080');
 client.login(process.env.BOT_TOKEN);
 
-//const privatekey = require('./privatekey.json'); // Used for local development
-//client.login(privatekey.token); // Used for local development
+const privatekey = require('./privatekey.json'); // Used for local development
+client.login(privatekey.token); // Used for local development
