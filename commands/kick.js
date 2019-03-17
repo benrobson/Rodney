@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
 
   if (!message.member.hasPermission(`${module.exports.help.permission}`)) return errors.noPermissions(message, `${module.exports.help.permission}`);
 
-  let user = message.guild.member(message.mentions.members.first());
+  let user = message.mentions.members.first();
   if (!user) return errors.invalidUser(message);
 
   let reason = args.slice(1).join(" ");
@@ -38,10 +38,12 @@ module.exports.run = async (client, message, args) => {
     .addField('Reason:', reason);
 
   let auditlogchannel = message.guild.channels.find(c => c.name === 'audit-log');
-  if (!auditlogchannel) return errors.noLogChannel(message);
 
-  auditlogchannel.send(embed);
-  await user.send(embed)
+  auditlogchannel.send(embed).catch(e => {
+    errors.noLogChannel(message);
+  })
+
+  await user.send(embed).catch(e => { })
   
   message.guild.member(user).kick(reason);
   console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has kicked ${user.user.username} from ${message.guild} for ${reason}.`);
