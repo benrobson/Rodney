@@ -59,10 +59,11 @@ module.exports.run = async (client, message, args) => {
     .addField('Reason', reason);
 
   let auditlogchannel = message.guild.channels.find(c => c.name === 'audit-log');
-  if (!auditlogchannel) return errors.noLogChannel(message);
 
   message.delete().catch(O_o => {});
-  auditlogchannel.send(embed);
+  auditlogchannel.send(embed).catch(e => { 
+    errors.noLogChannel(message);
+  });
   user.send(embed);
   console.log(chalk.yellow(`[${message.guild}]`) + ` ${message.author.username} has muted ${user.user.username} in ${message.guild} for ${time} for ${reason}.`);
 
