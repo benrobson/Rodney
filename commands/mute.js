@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
 
   if (!message.member.hasPermission(`${module.exports.help.permission}`)) return errors.noPermissions(message, `${module.exports.help.permission}`);
 
-  let user = message.guild.member(message.mentions.members.first());
+  let user = message.mentions.members.first();
   if (!user) return errors.invalidUser(message);
   if (user.hasPermission(`${module.exports.help.permission}`)) return errors.cannotPunish(message);
 
