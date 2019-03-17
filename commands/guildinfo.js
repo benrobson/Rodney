@@ -19,11 +19,12 @@ module.exports.run = async (client, message, args) => {
   let createdAtRaw = guild.createdAt.toDateString();
   let createdAt = createdAtRaw.split(" ");
 
-  let textChannels = 0;
-  let voiceChannels = 0;
+  let textChannels = message.guild.channels.filter(c => c.type === 'text').size;
+  let voiceChannels = message.guild.channels.filter(c => c.type === 'voice').size
+  /*
   guild.channels.forEach(channel => {
     channel.type === "text" ? textChannels++ : voiceChannels++;
-  });
+  });*/
 
   const emojis = message.guild.emojis.map(e => e.toString()).join(" ");
   const roles = message.guild.roles.map(e => e.toString()).join(" ");
@@ -40,7 +41,7 @@ module.exports.run = async (client, message, args) => {
     .addField('Members', message.guild.members.filter(member => !member.user.bot).size, true)
     .addField('Bots', message.guild.members.filter(member => member.user.bot).size, true)
     .addField('Large', large, true)
-    //.addField('Verification Level', guild.verificationLevel, true)
+    .addField('Verification Level', veriToText(guild.verificationLevel), true)
     .addField('Text Channels', textChannels, true)
     .addField('Text Channels', voiceChannels, true)
     .addField('Roles', roles, true)
@@ -53,4 +54,21 @@ module.exports.help = {
   name: 'guildinfo',
   description: 'Displays information about the guild.',
   usage: 'guildinfo'
+}
+
+function veriToText(lvl) {
+    switch (lvl) {
+        case 0:
+            return "None";
+        case 1:
+            return "Verified Email";
+        case 2:
+            return "Verified Email & Registered on Discord for 5 Minutes or More.";
+        case 3:
+            return "Verified Email & Registered on Discord for 10 Minutes or More.";
+        case 4:
+            return "Verified Phone.";
+        default:
+            return "Ultra???"
+    }
 }
