@@ -8,12 +8,6 @@ const chalk = require('chalk');
 client.commands = new Discord.Collection();
 require('./util/eventLoader.js')(client);
 
-// Database
-const Endb = require('endb');
-client.prefixes = new Endb.Database({ 
-  name: 'prefixes'
-});
-
 // Reads all commands and boots them in
 fs.readdir('./commands/', (err, files) => {
   if (err) console.log(err);
@@ -35,10 +29,7 @@ client.on('message', (message) => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
 
-  let prefix;
-  let fetched = client.prefixes.get(message.guild.id);
-  if (client.prefixes.has(message.guild.id)) prefix = fetched;
-  else prefix = config.prefix;
+  let prefix = config.prefix;
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
