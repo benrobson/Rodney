@@ -22,6 +22,7 @@ If you are having troubles and/or issues setting up the bot, please leave an iss
 - [Lodelite](https://github.com/Lodelite) for helping out with the [role](https://github.com/shadowolfyt/Rodney/blob/master/commands/role.js) command and adding a [unban](https://github.com/shadowolfyt/Rodney/blob/master/commands/unban.js) command.
 - [Bawbby](https://github.com/Bawbby) for helping out with general code formatting and code clean up.
 - [Apolusk](https://github.com/Apolusk) for fixing some errors.
+- [ewang20027](https://github.com/ewang20027) for adding some error checking features and general code changes.
 
 ## Useful Resources
 - [An Idiots Guide Discord](https://discord.gg/gkZCQtH) [these guys were helpful in little code issues]
