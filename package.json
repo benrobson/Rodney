@@ -25,7 +25,7 @@
     "request": "^2.88.0",
     "snekfetch": "^4.0.4",
     "superagent": "^3.8.3",
-    "twit": "^2.2.11",
+    "twit": "^2.2.11"
   },
   "devDependencies": {}
 }
