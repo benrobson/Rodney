@@ -13,11 +13,11 @@ module.exports.run = async (client, message, args) => {
     return
   };
 
-  let user = message.guild.member(message.mentions.members.first());
+  let user = message.mentions.members.first();
   if (!user) return errors.invalidUser(message);
 
   let embed = new Discord.RichEmbed()
-    .setTitle(`${user.displayName}s avatar.`)
+    .setTitle(`${user.displayName}'s avatar.`)
     .setImage(user.user.displayAvatarURL);
   message.channel.send(embed);
   return
