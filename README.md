@@ -23,6 +23,6 @@ A Discord bot developed in JavaScript using the discord.js Library.
 ## Useful Resources
 - [An Idiots Guide Discord](https://discord.gg/gkZCQtH) [these guys were helpful in little code issues]
 - [The Source Code Discord](https://discordapp.com/invite/w24CQMR) [these guys were helpful in little code issues]
-- [My Discord](http://bit.ly/mancavediscord) [these guys were helpful in little code issues]
+- [My Discord](https://discord.gg/AZQJ26z) [these guys were helpful in little code issues]
 - [Emoji Unicode Tables](https://apps.timwhitlock.info/emoji/tables/unicode) [this was helpful when it came to using emojis in the code]
 - [discord.js Documentation](https://discord.js.org/#/docs/main/stable/general/welcome) [overall helpful]
