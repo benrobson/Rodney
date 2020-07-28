@@ -2,18 +2,14 @@
   <img height="250" src="https://i.imgur.com/c5oaTfE.png">
 </p>
 
+# This bot is no longer maintained. If you require help or support with Rodney or Discord overall, join my Discord [here](https://discord.gg/AZQJ26z)
+
 # Rodney
 A Discord bot developed in JavaScript using the discord.js Library.
-At this point in time the bot will not be supporting multiple guilds at once during the development period of the Beta process.
-
-If you are having troubles and/or issues setting up the bot, please leave an issue on the [tracker](https://github.com/shadowolfyt/RodneyTheDiscordBot/issues) or join my [Discord](http://bit.ly/mancavediscord).
 
 ## Requirements
 - A channel named `#audit-log`, otherwise notifications will not come in and errors will occur.
 - A channel named `#reports`, otherwise reports will not be received and errors will occur.
-
-## Links
-- [Development Roadmap / Issue Tracker](https://github.com/shadowolfyt/RodneyTheDiscordBot/issues)
 
 ## Contributors
 - [jasoryeh](https://github.com/jasoryeh) for helping out with general grammar and clean up.
