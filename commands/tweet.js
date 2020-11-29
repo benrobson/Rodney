@@ -17,14 +17,14 @@ module.exports.run = async (client, message, args) => {
   };
 
   if (!config.tweetcommand) return errors.commandNotEnabled(message);
-  if (token.consumer_key === 'KEY' || token.consumer_secret === 'KEY' || token.access_token === 'KEY' || token.access_token_secret === 'KEY') return errors.noAPIKey(message);
+  if (process.env.consumer_key === 'KEY' || process.env.consumer_secret === 'KEY' || process.env.access_token === 'KEY' || process.env.access_token_secret === 'KEY') return errors.noAPIKey(message);
 
   // Twitter API Credentials & Information
   const twitter = new twit({
-    consumer_key: `${token.consumer_key}`,
-    consumer_secret: `${token.consumer_secret}`,
-    access_token: `${token.access_token}`,
-    access_token_secret: `${token.access_token_secret}`,
+    consumer_key: `${process.env.consumer_key}`,
+    consumer_secret: `${process.env.consumer_secret}`,
+    access_token: `${process.env.access_token}`,
+    access_token_secret: `${process.env.access_token_secret}`,
     timeout_ms: 60 * 1000
   });
 

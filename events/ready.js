@@ -5,7 +5,7 @@ const chalk = require('chalk');
 
 module.exports = async client => {
   client.user.setActivity("Booting...");
-  
+
   let pluralnonpluralservers = (client.guilds.size > 1) ? 'Servers' : 'Server';
   let pluralnonpluralusers = (client.users.size > 1) ? 'Users' : 'User';
 
@@ -17,7 +17,7 @@ module.exports = async client => {
 
   if (config.guildid == '450938867034619914') {
     let {body} = await superagent
-      .get('https://api.twittercounter.com/?twitter_id=' + config.twitterid + '&apikey=' + token.twittercounterapikey);
+      .get('https://api.twittercounter.com/?twitter_id=' + config.twitterid + '&apikey=' + process.env.twittercounterapikey);
     client.channels.get(config.twitterchannel).setName(`${body.username} Followers: ${body.followers_current}`);
     console.log(chalk.green('[Console] ') + `Twitter Channel detected! Setting ammount of followers that @${body.username} has.`);
   }
