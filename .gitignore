@@ -2,3 +2,4 @@ node_modules
 privatekey.json
 token.json
 config.json
+.env

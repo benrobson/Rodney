@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
+require('dotenv').config();
 const client = new Discord.Client({
   disableEveryone: true
 });
@@ -71,4 +72,4 @@ client.on('message', (message) => {
   };
 });
 
-client.login(process.env.BOTTOKEN);
+client.login(process.env.discordapitoken);

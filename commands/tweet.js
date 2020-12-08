@@ -1,7 +1,6 @@
 const twit = require('twit');
 const errors = require('../util/errors.js');
 const config = require('../config.json');
-const token = require('../token.json');
 const Discord = require('discord.js');
 const chalk = require('chalk');
 
